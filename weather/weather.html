@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style>
+          * {
+               padding: 0;
+               margin: 0;
+               box-sizing: border-box;
+          }
+          .body-weather {
+               background: url(./weather-bg.jpg) no-repeat;
+               width: 100%;
+               height: 100vh;
+               background-size: cover;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+          }
+          .content {
+               width: 400px;
+               height: 555px;
+               backdrop-filter: blur(9px);
+               background-color: rgba(255, 255, 255, .2);
+               border-radius: 16px;
+               padding: 20px;
+               position: relative;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               flex-direction: column;
+          }
+          .search-box {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+          }
+
+          .search-box input {
+               width: 100%;
+               height: 50px;
+               border: 2px solid rgba(255, 255, 255, .2);
+               outline: none;
+               border-radius: 10px;
+               font-size: 18px;
+               padding-left: 20px;
+               position: relative;
+               left: 12px;
+               background: transparent;
+               color: #fff;
+          }
+          .search-box button {
+               font-size: 25px;
+               position: relative;
+               left: -25px;
+               background: transparent;
+               border: none;
+               outline: none;
+               color: #fff;
+          }
+          .img-box img{
+               width: 250px;
+               height: 250px;
+               position: relative;
+               top: -20px;
+          }
+          .content h1 {
+               color: #ededeb;
+               font-family: sans-serif;
+               font-size: 40px;
+               position: relative;
+               top: -10px;
+          }
+          #weather {
+               position: relative;
+               top: -40px;
+          }
+     </style>
+</head>
+<body>
+     
+     <div class="content">
+          <div class="search-box">
+               <input id="inp" type="text" placeholder="Search weather">
+               <button id="btn">
+                    <ion-icon name="search-outline"></ion-icon>
+               </button>
+          </div>
+          <h1 id="text" style="text-align: center;">Weather Search</h1>
+          <div class="img-box">
+               <img src="../weather.png" alt="" id="img">
+          </div>
+          <h1 id="weather" style="text-align: center;"></h1>
+     </div>
+
+
+
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+     <script>
+          document.addEventListener("DOMContentLoaded", async function(e){
+               document.getElementById("btn").addEventListener("click", async function(e){
+                    let inp = document.getElementById("inp").value.trim()
+                    let request = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inp}&units=metric&appid=827e02ac6f41dc6dbe450c07fa86c420`)
+                    let response = await request.json()
+                    let weatherText = document.getElementById("weather")
+                    // console.log(response.name);
+                    // console.log(response.main.temp);
+                    // console.log(response.weather[0].main);
+                     
+                    let img = document.getElementById("img")
+                    console.log(response.weather[0].main);
+                    document.getElementById("text").innerHTML = `${response.name} ${response.main.temp}°C`
+                    if(response.weather[0].main == "Sunny"){
+                         img.setAttribute("src", `https://cdn1.iconfinder.com/data/icons/weather-color-3/515/weather-06-1024.png`)
+                         weatherText.innerHTML = `Quyoshli`
+                    } else if(response.weather[0].main == "Clouds"){
+                         img.setAttribute("src","./cloud.png")
+                         weather.innerHTML = `Bulutli`
+                    } else if(response.weather[0].main == "Clear"){
+                         img.setAttribute("src","./clear-sky.png")
+                         weather.innerHTML = `Musaffo osmon`
+                    } else if(response.weather[0].main == "Rain"){
+                         img.setAttribute("src","./rain.png")
+                         weather.innerHTML = `Yomg'irli`
+                    } 
+                    
+                    document.getElementById("inp").value = ""
+               })
+          })
+     </script>
+</body>
+</html>
