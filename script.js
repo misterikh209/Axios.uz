@@ -21,13 +21,53 @@ document.addEventListener("DOMContentLoaded", async function(e){
                <li id="li2" class="list-group-item bg-dark" style="padding-bottom:1px solid #fff"><span style="color:white;">${e.duration}</span></li>
             </ul>
              <span style="display:flex;gap:7px;">
-             <a href="#" class="btn btn-primary">Смотреть</a>
+             <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
              <a href="#" class="btn btn-danger" id="del">Удалить</a>
              </span>
           </div>
           `
+          
+
           container.append(card)
+
+          
      })
+
+     d.getElementById("playFilm").addEventListener("click", async function(e){
+               
+          container.innerHTML = `
+          <div class="container">
+          <div class="movie-about-box">
+              <div class="movie-about">
+                  <div class="img-content"><img src="./titanik.jpg" alt=""></div>
+                  <div class="right-content">
+                      <h1 class="movie-title">Титаник</h1>
+                      <p class="reliz">Релиз: <a href="#">1995</a></p>
+                      <p class="genre">Жанр: <a href="#">Романтика Драмма История Мелодрамма</a></p>
+                      <p class="actors">Актёры: <a href="#">Леонардо Ди Каприо Кейт Уинслет</a></p>
+                      <p class="duration">Длительность: 03:14:00</p>
+                      <h2>Описание</h2>
+                      <p class="description" style="position: relative;left: 10px;margin-top: 10px;">
+                          Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…
+                      </p>
+                      <p class="views" style="text-align: right;margin-right: 20px;">
+                          Просмотры: 400
+                      </p>
+                  </div>
+              </div>
+              <div class="comment">
+                  <p>Чтобы отсавлять коментарии пожалуйста, <a href="#">авторизуйтесь!</a></p>
+              </div>
+              <div class="comments">
+                  <p>Комментарии...</p>
+              </div>
+          </div>
+          
+          </div>
+          `
+     })
+     
+     
 
      ///////////////////////////////////////////////////////////////////////
      /// Главное меню click
@@ -49,7 +89,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                     <li id="li2" class="list-group-item bg-dark" style="padding-bottom:1px solid #fff"><span style="color:white;">${e.duration}</span></li>
                  </ul>
                   <span style="display:flex;gap:7px;">
-                  <a href="#" class="btn btn-primary">Смотреть</a>
+                  <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
                   <a href="#" class="btn btn-danger" id="del">Удалить</a>
                   </span>
                </div>
@@ -74,13 +114,20 @@ document.addEventListener("DOMContentLoaded", async function(e){
      /// Войти click
 
      d.getElementById("login").addEventListener("click", async function(e){
+          document.getElementById("loading").style.display = "block"
+          document.body.style.overflow = "hidden"
+          setTimeout(()=>{
+               document.getElementById("loading").style.display = "none"
+               document.body.style.overflow = "auto"
+               
+          },200)
           container.innerHTML = `
-          <div class="content">
+          <form class="content" id="forms_login">
           <h1 style="text-align: center;">Login</h1>
           <div class="inputs">
           
-               <input type="text" placeholder="Username">
-               <input type="password" placeholder="Parol">
+               <input type="text" placeholder="Username" id="login_username">
+               <input type="password" placeholder="Parol" id="login_password">
           </div>
           <div class="remFor">
                <div class="remember">
@@ -91,7 +138,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
           </div>
           <button class="loginBtn">Login</button>
           <p style="text-align: center;padding-top: 15px;">Sizda akkaunt yo'qmi? <span><a href="#">Ro'yxatdan o'tish</a></span></p>
-          </div>
+          </form>
           `
           d.body.style.backgroundImage = "url(./images/login-bg.jpg)"
           d.body.style.backgroundRepeat = "no-repeat"
@@ -107,12 +154,121 @@ document.addEventListener("DOMContentLoaded", async function(e){
           setTimeout(()=>{
                animation.style.top = "-30px"
           }, 1000)
+
+          document.querySelector("#forms_login").addEventListener("submit", async function(e){
+               document.getElementById("loading").style.display = "block"
+               document.body.style.overflow = "hidden"
+               setTimeout(()=>{
+                    document.getElementById("loading").style.display = "none"
+                    document.body.style.overflow = "auto"
+                    
+               },200)
+               e.preventDefault()
+       
+               let loginUser = document.querySelector("#login_username").value.trim()
+               let passwordUser = document.querySelector("#login_password").value.trim()
+               if(loginUser && passwordUser){
+                   let formData = new FormData()
+                   formData.append("login", loginUser)
+                   formData.append("password", passwordUser)
+       
+                   let requestLogin = await fetch("https://axios.uz/index.php/api/auth", 
+                   {
+                       method:"POST",
+                       body: formData,
+                   })
+                   let responseLogin = await requestLogin.json()
+       
+                   console.log(responseLogin);
+       
+                   localStorage.setItem("token", responseLogin.data.token)
+                   localStorage.setItem("userId", responseLogin.data.userId)
+                   if(responseLogin.data.token != undefined){
+                        d.getElementById("mainMenu").click()
+                       
+                       d.getElementById("login").style.display = "none"
+                       d.getElementById("signUp").style.display = "none"
+                       d.querySelector(".addMovieBox").style.display = "flex"
+                       d.querySelector(".btns").innerHTML = `
+                       <div style="display: flex;align-items: center;justify-content: center;flex-direction: column;position: absolute;left: -50px;top: -10px;" class="acc-box">
+                       <ion-icon name="person-circle-outline" style="color: #fff; font-size: 35px;"></ion-icon>
+                       <p style="color: #fff;">${loginUser}</p>
+                       </div>
+                       <button id="exitAcc" style="background: transparent;border: none;color: #fff;font-size: 25px;position: relative;left: 20px ;"><ion-icon name="exit-outline"></ion-icon></button>
+                       `
+                       setTimeout(()=>{
+                         d.getElementById("login_successful_container").style.display = "flex"
+                       },1000)
+                       d.getElementById("exitAcc").addEventListener("click", ()=>{
+                         location.reload()
+                         
+                       })
+                       d.getElementById("addMovieBtn").addEventListener("click", ()=>{
+                         //    container.innerHTML = ``  
+                            d.querySelector(".addMovieWindow").style.display = "flex"
+                            d.querySelector(".addMovieWindow").style.display = "flex"
+                            d.getElementById("addMovieBtn").style.background = "#0a6c1d"
+                            d.getElementById("addMovieBtn").style.color = "#fff"
+                            d.body.style.overflow = "hidden"
+                            d.getElementById("addMovieCloseBtn").addEventListener("click", ()=>{
+                              d.querySelector(".addMovieWindow").style.display = "none"
+                              d.getElementById("addMovieBtn").style.background = "transparent"
+                              d.getElementById("addMovieBtn").style.color = "#0a6c1d"
+                              d.body.style.overflow = "auto"
+                            })
+                            d.getElementById("movieAddBtn").addEventListener("click", ()=>{
+                              d.querySelector(".addMovieWindow").style.display = "none"
+                              d.getElementById("addMovieBtn").style.background = "transparent"
+                              d.getElementById("addMovieBtn").style.color = "#0a6c1d"
+                              d.body.style.overflow = "auto"
+                            })
+                    })
+
+                       d.getElementById("addActorBtn").addEventListener("click", ()=>{
+                         d.querySelector(".addActorWindow").style.display = "flex"
+                         d.getElementById("addActorBtn").style.background = "#0a6c1d"
+                         d.getElementById("addActorBtn").style.color = "#fff"
+                         d.body.style.overflow = "hidden"
+                         // d.getElementById("addMovieCloseBtn").addEventListener("click", ()=>{
+                         //      d.querySelector(".addActorWindow").style.display = "none"
+                         //      d.getElementById("addActorBtn").style.background = "transparent"
+                         //      d.getElementById("addActorBtn").style.color = "#0a6c1d"
+                         //      d.body.style.overflow = "auto"
+                         // })
+                         d.getElementById("actorAddBtn").addEventListener("click", ()=>{
+                              d.querySelector(".addActorWindow").style.display = "none"
+                              d.getElementById("addActorBtn").style.background = "transparent"
+                              d.getElementById("addActorBtn").style.color = "#0a6c1d"
+                              d.body.style.overflow = "auto"
+                         })
+                    })
+                   } else if(responseLogin.data.token == undefined) {
+                         d.querySelector(".error").style.display = "flex"
+                         d.getElementById("errorOk").addEventListener("click", ()=>{
+                              d.querySelector(".error").style.display = "none"
+                         })
+                         setTimeout(()=>{
+                              d.getElementById("errorOk").click()
+                         }, 3000)
+                   }
+               } 
+       
+               d.querySelector("#login_username").value = ""
+               d.querySelector("#login_password").value = ""
+          })
      })
 
      ///////////////////////////////////////////////////////////////////////
      /// зарегистрироваться click
      
      d.getElementById("signUp").addEventListener("click", async function(e){
+          document.getElementById("loading").style.display = "block"
+          document.body.style.overflow = "hidden"
+          setTimeout(()=>{
+               document.getElementById("loading").style.display = "none"
+               document.body.style.overflow = "auto"
+               
+          },200)
           container.innerHTML = `
           <div class="content">
                <h1 style="text-align: center;">Sign Up</h1>
@@ -169,7 +325,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                <div class="card-body">
                  <h5 class="card-title" style="color:#fff;">${e.name}</h5>
                  <p class="card-text" style="color:#fff;">${e.movies.map(t=>t.title)}</p>
-                 <a href="#" class="btn btn-primary">Смотреть</a>
+                 <a href="#" class="btn btn-primary"  id="playActor">Смотреть</a>
                  <a href="#" class="btn btn-danger">Удалить</a>
                </div>
                </div>
@@ -208,7 +364,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                <div class="card-body">
                  <h5 class="card-title" style="color:#fff;">${m.title}</h5>
                  <p class="card-text" style="color:#fff;">${m.duration}</p>
-                 <a href="#" class="btn btn-primary">Смотреть</a>
+                 <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
                  <a href="#" class="btn btn-danger">Удалить</a>
                </div>
                </div>
@@ -232,7 +388,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                <div class="card-body">
                  <h5 class="card-title" style="color:#fff;">${ad.name}</h5>
                  <p class="card-text" style="color:#fff;">${ad.movies.map(r=>r.release)}</p>
-                 <a href="#" class="btn btn-primary">Смотреть</a>
+                 <a href="#" class="btn btn-primary" id="playActor">Смотреть</a>
                  <a href="#" class="btn btn-danger">Удалить</a>
                </div>
                </div>
@@ -246,6 +402,13 @@ document.addEventListener("DOMContentLoaded", async function(e){
      /// Погода click
 
      document.getElementById("weatherPage").addEventListener("click", async function(e){
+          document.getElementById("loading").style.display = "block"
+          document.body.style.overflow = "hidden"
+          setTimeout(()=>{
+               document.getElementById("loading").style.display = "none"
+               document.body.style.overflow = "auto"
+               
+          },300)
           container.innerHTML = ``
           
           d.querySelector(".navbar").classList.remove("bg-dark")

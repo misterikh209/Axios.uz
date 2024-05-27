@@ -91,7 +91,71 @@
                transition: 0.3s;
           }
 
+          /* Movie About */
+          .movie-about-box {
+            row-gap: 20px;
+            color: #fff; 
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .movie-about {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            background: #131313;
+            border-radius: 20px;
+            box-shadow: 0 1px 50px 5px;
+        }
+        .right-content {
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            
+            flex-direction: column;
+        }
+        .movie-title {
+            font-size: 45px;
+            text-shadow: 0 1px 10px #fff;
+        }
+        .img-content {
+            /* filter: drop-shadow(); */
+            border-radius: 20px;
+        }
+        .img-content img {
+            border-radius: 20px;
+        }
 
+        .comment {
+            width: 100%;
+            padding: 10px 20px;
+            box-shadow: 0 1px 50px 5px;
+            background: #131313;
+            border-radius: 20px;
+        }
+        .comment p {
+            font-size: 25px;
+            position: relative;
+            top: 5px;
+            
+        }
+
+        .comments {
+            width: 100%;
+            padding: 10px 20px;
+            padding-bottom: 40px;
+            box-shadow: 0 1px 50px 5px;
+            border-radius: 20px;
+        }
+        .comments p {
+            font-size: 25px;
+            letter-spacing: 0.1em;
+        }
+          /* /////////////////// */
 
 
 
@@ -167,12 +231,164 @@
                position: relative;
                top: -40px;
           } */
+          #loading {
+               width: 100%;
+               height: 100vh;
+               position: fixed;
+               background: #000 url(./load.gif) no-repeat center center;
+               background-size: 25vh;
+               z-index: 999;
+               opacity: 95%;
+          
+          }
+          body {
+               overflow: hidden;
+          }
+          ::-webkit-scrollbar {
+               width: 15px;
+          }
+          ::-webkit-scrollbar-track {
+               background: #737272;
+               border-radius: 10px;
+          }
+          ::-webkit-scrollbar-thumb {
+               /* background: ; */
+               background: #c9c31b;
+               border-radius: 10px;
+          }
+
+
+
+          /* Login successfull */
+          #login_successful_container {
+               width: 100%;
+               height: 100vh;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               z-index: 999;
+               color: #fff;
+               background: rgba(0, 0, 0, 0.8);
+               font-family: sans-serif;
+               display: none;
+          }
+          .login-success-content {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               flex-direction: column;
+               row-gap: 20px;
+               padding: 20px;
+               background: #131313;
+               border-radius: 15px;
+          }
+          .login-success-content h1 {
+               font-size: 50px;
+               filter: drop-shadow(0 1px 10px #fff);
+               -webkit-box-reflect: below 0px linear-gradient(transparent 50%, white);
+               font-weight: 700;
+               text-align: center;
+          }
+          .login-success-content p {
+               font-size: 40px;
+               text-align: center;
+          }
+
+          .lsc-btns {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               gap: 10px;
+          }
+
+          .lsc-btns button {
+               width: 150px;
+               height: 30px;
+               background: #fff;
+               border: none;
+               outline: none;
+               border-radius: 6px;
+               font-weight: 600;
+               box-shadow: 0 0 15px 2px #fff;
+               transition: 0.3s ease;
+          }
+          .lsc-btns button:first-child:hover {
+               background: #08780c;
+               box-shadow: 0 0 15px 2px #08780c;
+               color: #fff;
+               cursor: pointer;
+          }
+          .lsc-btns button:hover {
+               background: #780d0d;
+               box-shadow: 0 0 15px 2px #780d0d;
+               color: #fff;
+               cursor: pointer;
+          }
+          
           </style>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 <body style="background: #131313;">
-     <div class="stick" style="position: fixed; width: 100%;z-index: 999;">
+
+     <div id="loading">
+          <script>
+               setTimeout(()=>{
+                    document.getElementById("loading").style.display = "none"
+                    document.body.style.overflow = "auto"
+               },800)
+          </script>
+     </div>
+     <div id="login_successful_container" style="position: fixed;">
+          <div class="login-success-content">
+               <h1>ESLATMA!</h1>
+               <p>Akkauntga <br> muvaffaqiyatli kirildi</p>
+               <div class="lsc-btns">
+                    <button id="lscBtnOk">OK</button>
+                    <button id="lscBtnExit">Exit Acc</button>
+               </div>
+          </div>
+          <script>
+               document.getElementById("lscBtnOk").addEventListener("click", ()=>{
+                    document.getElementById("login_successful_container").style.display = "none"
+               })
+               document.getElementById("lscBtnExit").addEventListener("click", ()=>{
+                    location.reload()
+               })
+          </script>
+     </div>
+     <div class="stick" style="position: fixed; width: 100%;z-index: 888;">
+          
+          <div class="addMovieWindow" style="z-index: 999;">
+               <form class="addMovie">
+                    <h1>Add Movie <span><ion-icon name="film-outline"></ion-icon></span></h1>
+                    <label for="addMovieTitle">Movie Name</label>
+                    <input type="text" id="addMovieTitle" placeholder="Movie name...">
+                    <label for="addMovieRelease">Movie Release</label>
+                    <input type="number" id="addMovieRelease" placeholder="Movie release...">
+                    <label for="addMovieDescription">Movie Descripion</label>
+                    <textarea name="" id="addMovieDescription" placeholder="Movie descripion"></textarea>
+                    <label for="addMovieDuration">Movie Duration</label>
+                    <input type="time" id="addMovieDuration">
+                    <button id="movieAddBtn">Add</button>
+                    <button id="addMovieCloseBtn"><ion-icon name="close-outline"></ion-icon></button>
+                    
+               </form>
+          </div>
+          <div class="addActorWindow" style="z-index: 999;">
+               <form class="addActor">
+                    <h1>Add Actor <span><ion-icon name="person-add-outline"></ion-icon></span></h1>
+                    <label for="addActorTitle">Actor Name</label>
+                    <input type="text" id="addActorTitle" placeholder="Actor name...">
+                    <label for="addActorDescription">Actor Films</label>
+                    <textarea name="" id="addActorDescription" placeholder="Actor films..."></textarea>
+                    <label for="addActorDuration">Actor Photo</label>
+                    <input type="file" id="addActorDuration">
+                    <button id="actorAddBtn">Add</button>
+                    <button id="addMovieCloseBtn"><ion-icon name="close-outline"></ion-icon></button>
+                    
+               </form>
+          </div>
           <nav class="navbar navbar-expand-lg bg-dark" style="padding: 20px 100px;" >
                <div class="container-fluid">
                  <a class="navbar-brand" href="#" style="color: #fff;position: relative;top: -2px;" id="weatherPage">Погода</a>
@@ -271,16 +487,89 @@
                      </li>
                    </ul>
                  </div>
-     
+                 <div class="addMovieBox">
+                    <button id="addMovieBtn">
+                         <ion-icon name="add-circle-outline"></ion-icon>
+                         <p>Movie</p>
+                    </button>
+                    <button id="addActorBtn">
+                         <ion-icon name="add-circle-outline"></ion-icon>
+                         <p>Actor</p>
+                    </button>
+                    <style>
+                         .addMovieBox {
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 20px;
+                              position: relative;
+                              left: -180px;
+                              display: none;
+                         }
+                         .addMovieBox #addMovieBtn {
+                              background: transparent;
+                              border: 1px solid #0a6c1d;
+                              color: #0a6c1d;
+                              border-radius: 8px;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 5px;
+                              font-size: 16px;
+                              padding: 0 20px;
+                              transition: 0.3s ease;
+                         }
+                         .addMovieBox #addMovieBtn:hover {
+                              background: #0a6c1d;
+                              color: #fff;
+                         }
+                         .addMovieBox #addMovieBtn p {
+                              position: relative;
+                              top: 7px;
+                              font-weight: 600;
+                         }
+
+                         .addMovieBox #addActorBtn {
+                              position: relative;
+                              /* left: -300px; */
+                              background: transparent;
+                              border: 1px solid #0a6c1d;
+                              color: #0a6c1d;
+                              border-radius: 8px;
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              gap: 5px;
+                              font-size: 16px;
+                              padding: 0 20px;
+                              transition: 0.3s ease;
+                         }
+                         .addMovieBox #addActorBtn:hover {
+                              background: #0a6c1d;
+                              color: #fff;
+                         }
+
+                         .addMovieBox #addActorBtn p {
+                              position: relative;
+                              top: 7px;
+                              font-weight: 600;
+                         }
+                    </style>
+                 </div>
                  <div class="search-box" style="display: flex;align-items: center;justify-content: center;gap: 10px;">
                     <input id="searchInp" style="background: transparent;color: #fff;" class="form-control me-2" type="search" placeholder="Поиск филм..." aria-label="Search">
                     <button id="searchBtn" class="btn btn-outline-light">Поиск</button>
                  </div>
                  
-                 <div class="btns">
+                 <div class="btns" style="position: relative;">
                     
                     <button type="button" class="btn btn-outline-light" id="login">Войти</button>
                     <button type="button" class="btn btn-warning" id="signUp">Зарегистрироваться</button>
+                    <!-- <div style="display: flex;align-items: center;justify-content: center;flex-direction: column;position: absolute;left: -50px;top: -10px;" class="acc-box">
+                         <ion-icon name="person-circle-outline" style="color: #fff; font-size: 35px;"></ion-icon>
+                         <p style="color: #fff;">Ixtiyor</p>
+                    </div>
+                    <button id="exitAcc" style="background: transparent;border: none;color: #fff;font-size: 25px;position: relative;left: 20px ;"><ion-icon name="exit-outline"></ion-icon></button> -->
                  </div>
                </div>
              </nav>
@@ -289,6 +578,335 @@
         <div class="container" style="padding: 35px 0;display: flex;align-items: center;justify-content: center;gap: 20px;flex-wrap: wrap;position: relative;top: 80px;">
           
         </div>
+
+     <div class="error">
+          
+          <div class="error-content">
+               <img src="./images/error-icon.png" alt="" width="200px">
+               <h1>Xatolik!</h1>
+               <h2>Login yoki Parolda Xatolik!</h2>
+               <p>Qayta urinib ko'ring</p>
+               <button id="errorOk">OK</button>
+          </div>
+     </div>
+     <style>
+          .error {
+               z-index: 999;
+               width: 100%;
+               height: 100vh;
+               position: absolute;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               font-family: sans-serif;
+               background: rgba(0, 0, 0, 0.8);
+               display: none;
+               top: 0;
+          }
+          .error-content {
+               width: 360px;
+               padding: 0 20px;
+               position: relative;
+               display: flex;
+               align-items: center;
+               justify-content: space-between;
+               flex-direction: column;
+               background: #131313;
+               border-radius: 20px;
+          }
+          .error-content h1 {
+               text-align: center;
+               position: relative;
+               top: -20px;
+               font-size: 40px;
+               color: #fff;
+               letter-spacing: 0.05em;
+          }
+          .error-content img {
+               position: relative;
+               top: -38px;
+               
+          }
+          .error-content h2 {
+               text-align: center;
+               position: relative;
+               top: -20px;
+               font-size: 20px;
+               color: #fff;
+               letter-spacing: 0.05em;
+          }
+          .error-content p {
+               text-align: center;
+               position: relative;
+               top: -20px;
+               font-size: 20px;
+               color: #fff;
+               letter-spacing: 0.05em;
+          }
+          #errorOk {
+               width: 100%;
+               border-radius: 8px;
+               height: 40px;
+               border: none;
+               font-weight: 800;
+               position: relative;
+               top: -20px;
+               transition: 0.3s ease;
+          }
+          #errorOk:active {
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+     </style>
+
+     
+     <style>
+          .addMovieWindow, .addActorWindow {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               width: 100%;
+               height: 100vh;
+               background: rgba(0, 0, 0, 0.6);
+               font-family: sans-serif;
+               color: #fff;
+               position: absolute; 
+               top: 0;
+               display: none;
+          }
+          
+          .addMovie {
+               padding: 20px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               row-gap: 10px;
+               background: #131313;
+               width: 400px;
+               flex-direction: column;
+               border-radius: 20px;
+               position: relative;
+          }
+          .addMovie h1 span {
+               position: relative;
+               top: 5px;
+          }
+          .addMovie label {
+               font-size: 20px;
+          }
+          #addMovieTitle {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               font-size: 18px;
+               padding: 5px 20px;
+               background: transparent;
+               color: #fff;
+               border: 1px solid #fff;
+          }
+          #addMovieTitle::placeholder {
+               /* color: #fff; */
+               font-size: 18px;
+          }
+          #addMovieRelease {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               font-size: 18px;
+               padding: 5px 20px;
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+          #addMovieRelease::placeholder {
+               /* color: #fff; */
+               font-size: 18px;
+          }
+          #addMovieDescription {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               font-size: 20px;
+               padding: 5px 20px;
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+          #addMovieDescription::placeholder {
+               font-size: 18px;
+          }
+          #addMovieDuration {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               padding: 5px 20px;
+               background: transparent;
+               border: 1px solid #fff;
+               font-size: 18px;
+               color: #fff;
+          }
+          #movieAddBtn, #movieActorBtn {
+               width: 80%;
+               height: 40px;
+               font-size: 20px;
+               font-weight: 600;
+               border: none;
+               border-radius: 6px;
+               margin-top: 20px;
+               transition: 0.3s ease;
+          }
+          #movieAddBtn:active {
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+          #addMovieCloseBtn {
+               border-radius: 50%;
+               background: #fff;
+               border:none;
+               color: #000;
+               width: 45px;
+               height: 45px;
+               position: absolute;
+               top: -10px;
+               right: -10px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+          }
+          #addMovieCloseBtn ion-icon {
+               font-size: 25px;
+          }
+
+
+
+          .addActorWindow {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               width: 100%;
+               height: 100vh;
+               background: rgba(0, 0, 0, 0.6);
+               font-family: sans-serif;
+               color: #fff;
+               position: absolute; 
+               top: 0;
+               display: none;
+          }
+          
+          .addActor {
+               padding: 20px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               row-gap: 10px;
+               background: #131313;
+               width: 400px;
+               flex-direction: column;
+               border-radius: 20px;
+               position: relative;
+          }
+          .addActor h1 span {
+               position: relative;
+               top: 5px;
+          }
+          .addActor label {
+               font-size: 20px;
+          }
+          #addActorTitle {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               font-size: 18px;
+               padding: 5px 20px;
+               background: transparent;
+               color: #fff;
+               border: 1px solid #fff;
+          }
+          #addActorTitle::placeholder {
+               /* color: #fff; */
+               font-size: 18px;
+          }
+          #addActorRelease {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               font-size: 18px;
+               padding: 5px 20px;
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+          #addActorRelease::placeholder {
+               /* color: #fff; */
+               font-size: 18px;
+          }
+          #addActorDescription {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               font-size: 20px;
+               padding: 5px 20px;
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+          #addActorDescription::placeholder {
+               font-size: 18px;
+          }
+          #addActorDuration {
+               width: 70%;
+               height: 40px;
+               border-radius: 10px;
+               outline: none;
+               padding: 5px 20px;
+               background: transparent;
+               border: 1px solid #fff;
+               font-size: 18px;
+               color: #fff;
+          }
+          #actorAddBtn {
+               width: 80%;
+               height: 40px;
+               font-size: 20px;
+               font-weight: 600;
+               border: none;
+               border-radius: 6px;
+               margin-top: 20px;
+               transition: 0.3s ease;
+          }
+          #actorAddBtn:active {
+               background: transparent;
+               border: 1px solid #fff;
+               color: #fff;
+          }
+          #addActorCloseBtn {
+               border-radius: 50%;
+               background: #fff;
+               border:none;
+               color: #000;
+               width: 45px;
+               height: 45px;
+               position: absolute;
+               top: -10px;
+               right: -10px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+          }
+          #addActorCloseBtn ion-icon {
+               font-size: 25px;
+          }
+     </style>
+
 
         
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

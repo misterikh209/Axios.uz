@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+</head>
+<body>
+     <div id="login_successful_container">
+          <div class="login-success-content">
+               <h1>ESLATMA!</h1>
+               <p>Akkauntga <br> muvaffaqiyatli kirildi</p>
+               <div class="lsc-btns">
+                    <button id="lscBtnOk">OK</button>
+                    <button id="lscBtnExit">Akkauntdan Chiqish</button>
+               </div>
+          </div>
+     </div>
+
+     <style>
+          #login_successful_container {
+               width: 100%;
+               height: 100vh;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               z-index: 999;
+               color: #fff;
+               background: rgba(0, 0, 0, 0.8);
+               font-family: sans-serif;
+               display: none;
+          }
+          .login-success-content {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               flex-direction: column;
+               row-gap: 20px;
+               padding: 20px;
+               background: #131313;
+               border-radius: 15px;
+          }
+          .login-success-content h1 {
+               font-size: 50px;
+               filter: drop-shadow(0 1px 10px #fff);
+               -webkit-box-reflect: below 0px linear-gradient(transparent 50%, white);
+               font-weight: 700;
+               text-align: center;
+          }
+          .login-success-content p {
+               font-size: 40px;
+               text-align: center;
+          }
+
+          .lsc-btns {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               gap: 10px;
+          }
+
+          .lsc-btns button {
+               width: 150px;
+               height: 30px;
+               background: #fff;
+               border: none;
+               outline: none;
+               border-radius: 6px;
+               font-weight: 600;
+               box-shadow: 0 0 15px 2px #fff;
+               transition: 0.3s ease;
+          }
+          .lsc-btns button:first-child:hover {
+               background: #08780c;
+               box-shadow: 0 0 15px 2px #08780c;
+               color: #fff;
+               cursor: pointer;
+          }
+          .lsc-btns button:hover {
+               background: #780d0d;
+               box-shadow: 0 0 15px 2px #780d0d;
+               color: #fff;
+               cursor: pointer;
+          }
+     </style>
+
+     <script>
+          document.getElementById("lscBtnOk").addEventListener("click", ()=>{
+               document.getElementById("login_successful_container").style.display = "none"
+          })
+          document.getElementById("lscBtnExit").addEventListener("click", ()=>{
+               location.reload()
+          })
+     </script>
+</body>
+</html>
