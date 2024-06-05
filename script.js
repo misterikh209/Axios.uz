@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
           <h1 style="text-align: center;">Login</h1>
           <div class="inputs">
           
-               <input type="text" placeholder="Username" id="login_username">
+               <input autocomplete="off" type="text" placeholder="Username" id="login_username">
                <input type="password" placeholder="Parol" id="login_password">
           </div>
           <div class="remFor">
@@ -210,17 +210,43 @@ document.addEventListener("DOMContentLoaded", async function(e){
                             d.getElementById("addMovieBtn").style.background = "#0a6c1d"
                             d.getElementById("addMovieBtn").style.color = "#fff"
                             d.body.style.overflow = "hidden"
-                            d.getElementById("addMovieCloseBtn").addEventListener("click", ()=>{
-                              d.querySelector(".addMovieWindow").style.display = "none"
-                              d.getElementById("addMovieBtn").style.background = "transparent"
-                              d.getElementById("addMovieBtn").style.color = "#0a6c1d"
-                              d.body.style.overflow = "auto"
+                            document.getElementById("movieAddExit").addEventListener("click", ()=>{
+                              document.querySelector(".addMovieWindow").style.display = "none"
+                              document.body.style.overflow = "auto"
+                              document.getElementById("addMovieBtn").style.background = "transparent"
+                              document.getElementById("addMovieBtn").style.color = "#0a6c1d"
                             })
-                            d.getElementById("movieAddBtn").addEventListener("click", ()=>{
-                              d.querySelector(".addMovieWindow").style.display = "none"
-                              d.getElementById("addMovieBtn").style.background = "transparent"
-                              d.getElementById("addMovieBtn").style.color = "#0a6c1d"
-                              d.body.style.overflow = "auto"
+
+                            //form Submit
+
+                            let tokenAddMovie = localStorage.getItem("token")
+                            let userIdAddMovie = localStorage.getItem("userId")
+                            d.querySelector(".addMovie").addEventListener("submit", async function(e){
+                              e.preventDefault()
+                              let title = d.querySelector("#addMovieTitle").value.trim();
+                              let release = d.querySelector("#addMovieRelease").value.trim();
+                              let duration = d.querySelector("#addMovieDuration").value.trim();
+                              let description = d.querySelector("#addMovieDescription").value.trim();
+
+                              let formDataMovie = new FormData()
+                              formDataMovie.append("title", title)
+                              formDataMovie.append("release", release)
+                              formDataMovie.append("duration", duration)
+                              formDataMovie.append("description", description)
+
+                              let requestAddMovie = await fetch("http://axios.uz/index.php/api/addMovie",{
+                                   method: "POST",
+                                   body: formDataMovie,
+                                   headers:{
+                                      "User-Id": userIdAddMovie,
+                                      "Token": tokenAddMovie,
+                                   }
+                              })
+                              let respAddMovie = await requestAddMovie.json()
+                              
+                              d.getElementById("movieAddExit").click()
+
+
                             })
                     })
 
@@ -229,18 +255,40 @@ document.addEventListener("DOMContentLoaded", async function(e){
                          d.getElementById("addActorBtn").style.background = "#0a6c1d"
                          d.getElementById("addActorBtn").style.color = "#fff"
                          d.body.style.overflow = "hidden"
-                         // d.getElementById("addMovieCloseBtn").addEventListener("click", ()=>{
-                         //      d.querySelector(".addActorWindow").style.display = "none"
-                         //      d.getElementById("addActorBtn").style.background = "transparent"
-                         //      d.getElementById("addActorBtn").style.color = "#0a6c1d"
-                         //      d.body.style.overflow = "auto"
-                         // })
-                         d.getElementById("actorAddBtn").addEventListener("click", ()=>{
+                         d.getElementById("actorAddExit").addEventListener("click", ()=>{
                               d.querySelector(".addActorWindow").style.display = "none"
                               d.getElementById("addActorBtn").style.background = "transparent"
                               d.getElementById("addActorBtn").style.color = "#0a6c1d"
                               d.body.style.overflow = "auto"
                          })
+                         
+                            //form Submit
+
+                            let tokenAddActor = localStorage.getItem("token")
+                            let userIdAddActor = localStorage.getItem("userId")
+                            d.querySelector(".addActor").addEventListener("submit", async function(e){
+                              e.preventDefault()
+                              let actorName = d.querySelector("#addMovieTitle").value.trim();
+                              let films = d.querySelector("#addActorDescription").value.trim();
+
+                              let formDataActor = new FormData()
+                              formDataMovie.append("actorName", actorName)
+                              formDataMovie.append("films", films)
+
+                              let requestAddActor = await fetch("https://axios.uz/index.php/api/addActor",{
+                                   method: "POST",
+                                   body: formDataActor,
+                                   headers:{
+                                      "User-Id": userIdAddActor,
+                                      "Token": tokenAddActor,
+                                   }
+                              })
+                              let respAddActor = await requestAddActor.json()
+                              
+                              d.getElementById("actorAddExit").click()
+
+
+                            })
                     })
                    } else if(responseLogin.data.token == undefined) {
                          d.querySelector(".error").style.display = "flex"

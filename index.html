@@ -341,7 +341,7 @@
      </div>
      <div id="login_successful_container" style="position: fixed;">
           <div class="login-success-content">
-               <h1>ESLATMA!</h1>
+               
                <p>Akkauntga <br> muvaffaqiyatli kirildi</p>
                <div class="lsc-btns">
                     <button id="lscBtnOk">OK</button>
@@ -370,8 +370,11 @@
                     <textarea name="" id="addMovieDescription" placeholder="Movie descripion"></textarea>
                     <label for="addMovieDuration">Movie Duration</label>
                     <input type="time" id="addMovieDuration">
-                    <button id="movieAddBtn">Add</button>
-                    <button id="addMovieCloseBtn"><ion-icon name="close-outline"></ion-icon></button>
+                    <div class="btnsAddMovie">
+                         <button id="movieAddBtn">Add</button>
+                         <button id="movieAddExit">Cancel</button>
+                    </div>
+                    
                     
                </form>
           </div>
@@ -380,12 +383,12 @@
                     <h1>Add Actor <span><ion-icon name="person-add-outline"></ion-icon></span></h1>
                     <label for="addActorTitle">Actor Name</label>
                     <input type="text" id="addActorTitle" placeholder="Actor name...">
-                    <label for="addActorDescription">Actor Films</label>
-                    <textarea name="" id="addActorDescription" placeholder="Actor films..."></textarea>
-                    <label for="addActorDuration">Actor Photo</label>
-                    <input type="file" id="addActorDuration">
-                    <button id="actorAddBtn">Add</button>
-                    <button id="addMovieCloseBtn"><ion-icon name="close-outline"></ion-icon></button>
+                    <!-- <label for="addActorDescription">Actor Films</label> -->
+                    <!-- <textarea name="" id="addActorDescription" placeholder="Actor films..."></textarea> -->
+                    <div class="btnsAddActor">
+                         <button id="actorAddBtn">Add</button>
+                         <button id="actorAddExit">Cancel</button>
+                    </div>
                     
                </form>
           </div>
@@ -557,7 +560,7 @@
                     </style>
                  </div>
                  <div class="search-box" style="display: flex;align-items: center;justify-content: center;gap: 10px;">
-                    <input id="searchInp" style="background: transparent;color: #fff;" class="form-control me-2" type="search" placeholder="Поиск филм..." aria-label="Search">
+                    <input autocomplete="off" id="searchInp" style="background: transparent;color: #fff;" class="form-control me-2" type="search" placeholder="Поиск филм..." aria-label="Search">
                     <button id="searchBtn" class="btn btn-outline-light">Поиск</button>
                  </div>
                  
@@ -750,41 +753,46 @@
                font-size: 18px;
                color: #fff;
           }
-          #movieAddBtn, #movieActorBtn {
-               width: 80%;
-               height: 40px;
-               font-size: 20px;
-               font-weight: 600;
-               border: none;
-               border-radius: 6px;
-               margin-top: 20px;
-               transition: 0.3s ease;
-          }
-          #movieAddBtn:active {
-               background: transparent;
-               border: 1px solid #fff;
-               color: #fff;
-          }
-          #addMovieCloseBtn {
-               border-radius: 50%;
-               background: #fff;
-               border:none;
-               color: #000;
-               width: 45px;
-               height: 45px;
-               position: absolute;
-               top: -10px;
-               right: -10px;
+
+          .btnsAddActor {
                display: flex;
                align-items: center;
                justify-content: center;
+               width: 250px;
+               margin-top: 20px;
+               gap: 10px;
           }
-          #addMovieCloseBtn ion-icon {
-               font-size: 25px;
+
+          .btnsAddActor button {
+               width: 125px;
+               height: 40px;
+               color: #fff;
+               border-radius: 6px;
+               font-size: 18px;
+               border: none;
+               transition: 0.3s ease;
           }
 
+          .btnsAddActor button:first-child{
+               background: #0a6c1d;
+          }
+          .btnsAddActor button:last-child{
+               background: #780d0d;
+          }
+          .btnsAddActor button:first-child:active {
+               background: transparent;
+               border: 1px solid #0a6c1d;
+               box-shadow: 0 1px 30px 3px #0a6c1d;
+               color: #0a6c1d;
+          }
+          .btnsAddActor button:last-child:active {
+               background: transparent;
+               border: 1px solid #780d0d;
+               box-shadow: 0 1px 30px 3px #780d0d;
+               color: #780d0d;
+          }
 
-
+/* /////////////////////////////////////////////////////////////// */
           .addActorWindow {
                display: flex;
                align-items: center;
@@ -873,39 +881,51 @@
                font-size: 18px;
                color: #fff;
           }
-          #actorAddBtn {
-               width: 80%;
-               height: 40px;
-               font-size: 20px;
-               font-weight: 600;
-               border: none;
-               border-radius: 6px;
-               margin-top: 20px;
-               transition: 0.3s ease;
-          }
-          #actorAddBtn:active {
-               background: transparent;
-               border: 1px solid #fff;
-               color: #fff;
-          }
-          #addActorCloseBtn {
-               border-radius: 50%;
-               background: #fff;
-               border:none;
-               color: #000;
-               width: 45px;
-               height: 45px;
-               position: absolute;
-               top: -10px;
-               right: -10px;
+
+          .btnsAddMovie {
                display: flex;
                align-items: center;
                justify-content: center;
+               width: 250px;
+               margin-top: 20px;
+               gap: 10px;
           }
-          #addActorCloseBtn ion-icon {
-               font-size: 25px;
+
+          .btnsAddMovie button {
+               width: 125px;
+               height: 40px;
+               color: #fff;
+               border-radius: 6px;
+               font-size: 18px;
+               border: none;
+               transition: 0.3s ease;
+          }
+
+          .btnsAddMovie button:first-child{
+               background: #0a6c1d;
+          }
+          .btnsAddMovie button:last-child{
+               background: #780d0d;
+          }
+          .btnsAddMovie button:first-child:active {
+               background: transparent;
+               border: 1px solid #0a6c1d;
+               box-shadow: 0 1px 30px 3px #0a6c1d;
+               color: #0a6c1d;
+          }
+          .btnsAddMovie button:last-child:active {
+               background: transparent;
+               border: 1px solid #780d0d;
+               box-shadow: 0 1px 30px 3px #780d0d;
+               color: #780d0d;
           }
      </style>
+     <script>
+          document.getElementById("movieAddExit").addEventListener("click", ()=>{
+               document.querySelector(".addMovieWindow").style.display = "none"
+               document.body.style.overflow = "auto"
+          })
+     </script>
 
 
         
