@@ -121,34 +121,16 @@ document.addEventListener("DOMContentLoaded", async function(e){
                document.body.style.overflow = "auto"
                
           },200)
-          container.innerHTML = `
-          <form class="content" id="forms_login">
-          <h1 style="text-align: center;">Login</h1>
-          <div class="inputs">
-          
-               <input autocomplete="off" type="text" placeholder="Username" id="login_username">
-               <input type="password" placeholder="Parol" id="login_password">
-          </div>
-          <div class="remFor">
-               <div class="remember">
-                    <input type="checkbox" id="checkBox">
-                    <label for="checkBox">Meni eslab qol</label>
-               </div>
-               <a href="#">Forgot password</a>
-          </div>
-          <button class="loginBtn">Login</button>
-          <p style="text-align: center;padding-top: 15px;">Sizda akkaunt yo'qmi? <span><a href="#">Ro'yxatdan o'tish</a></span></p>
-          </form>
-          `
-          d.body.style.backgroundImage = "url(./images/login-bg.jpg)"
-          d.body.style.backgroundRepeat = "no-repeat"
-          d.body.style.backgroundSize = "cover"
-          d.querySelector(".navbar").classList.remove("bg-dark")
+          d.querySelector(".login_click_container").style.display = "flex"
           d.getElementById("signUp").classList.remove("btn-warning")
           d.getElementById("signUp").classList.add("btn-primary")
-          d.querySelector(".search-box").style.display = "none"
-          d.querySelector(".stick").style.background = "rgba(255, 255, 255, .1)"
 
+          d.querySelector(".login_click_container").addEventListener("click", function(e){
+               if(e.target.classList.contains("login_click_container")){
+                    d.querySelector(".login_click_container").style.display = "none"
+               }
+          })
+          
           ///////animation
           let animation = document.querySelector(".weather-nav")
           setTimeout(()=>{
@@ -158,6 +140,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
           document.querySelector("#forms_login").addEventListener("submit", async function(e){
                document.getElementById("loading").style.display = "block"
                document.body.style.overflow = "hidden"
+               d.querySelector(".login_click_container").style.display = "none"
                setTimeout(()=>{
                     document.getElementById("loading").style.display = "none"
                     document.body.style.overflow = "auto"
@@ -205,23 +188,22 @@ document.addEventListener("DOMContentLoaded", async function(e){
                        })
                        d.getElementById("addMovieBtn").addEventListener("click", ()=>{
                          //    container.innerHTML = ``  
-                            d.querySelector(".addMovieWindow").style.display = "flex"
-                            d.querySelector(".addMovieWindow").style.display = "flex"
-                            d.getElementById("addMovieBtn").style.background = "#0a6c1d"
-                            d.getElementById("addMovieBtn").style.color = "#fff"
-                            d.body.style.overflow = "hidden"
-                            document.getElementById("movieAddExit").addEventListener("click", ()=>{
-                              document.querySelector(".addMovieWindow").style.display = "none"
-                              document.body.style.overflow = "auto"
-                              document.getElementById("addMovieBtn").style.background = "transparent"
-                              document.getElementById("addMovieBtn").style.color = "#0a6c1d"
-                            })
+                         d.querySelector(".addMovieWindow").style.display = "flex"
+                         d.getElementById("movieAddExit").addEventListener("click", ()=>{
+                              d.querySelector(".addMovieWindow").style.display = "none"
+                         })
 
-                            //form Submit
+                         d.querySelector(".addMovieWindow").addEventListener("click", function(e){
+                              if(e.target.classList.contains("addMovieWindow")) {
+                                   d.querySelector(".addMovieWindow").style.display = "none"
+                              }
+                         })
 
-                            let tokenAddMovie = localStorage.getItem("token")
-                            let userIdAddMovie = localStorage.getItem("userId")
-                            d.querySelector(".addMovie").addEventListener("submit", async function(e){
+                         //form Submit
+
+                         let tokenAddMovie = localStorage.getItem("token")
+                         let userIdAddMovie = localStorage.getItem("userId")
+                         d.querySelector(".addMovie").addEventListener("submit", async function(e){
                               e.preventDefault()
                               let title = d.querySelector("#addMovieTitle").value.trim();
                               let release = d.querySelector("#addMovieRelease").value.trim();
@@ -247,19 +229,20 @@ document.addEventListener("DOMContentLoaded", async function(e){
                               d.getElementById("movieAddExit").click()
 
 
-                            })
+                         })
+                            
                     })
 
                        d.getElementById("addActorBtn").addEventListener("click", ()=>{
                          d.querySelector(".addActorWindow").style.display = "flex"
-                         d.getElementById("addActorBtn").style.background = "#0a6c1d"
-                         d.getElementById("addActorBtn").style.color = "#fff"
-                         d.body.style.overflow = "hidden"
                          d.getElementById("actorAddExit").addEventListener("click", ()=>{
                               d.querySelector(".addActorWindow").style.display = "none"
-                              d.getElementById("addActorBtn").style.background = "transparent"
-                              d.getElementById("addActorBtn").style.color = "#0a6c1d"
-                              d.body.style.overflow = "auto"
+                         })
+
+                         d.querySelector(".addActorWindow").addEventListener("click", function(e){
+                              if(e.target.classList.contains("addActorWindow")) {
+                                   d.querySelector(".addActorWindow").style.display = "none"
+                              }
                          })
                          
                             //form Submit
@@ -300,6 +283,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                          }, 3000)
                    }
                } 
+               
        
                d.querySelector("#login_username").value = ""
                d.querySelector("#login_password").value = ""
@@ -311,44 +295,22 @@ document.addEventListener("DOMContentLoaded", async function(e){
      
      d.getElementById("signUp").addEventListener("click", async function(e){
           document.getElementById("loading").style.display = "block"
-          document.body.style.overflow = "hidden"
           setTimeout(()=>{
                document.getElementById("loading").style.display = "none"
                document.body.style.overflow = "auto"
                
           },200)
-          container.innerHTML = `
-          <div class="content">
-               <h1 style="text-align: center;">Sign Up</h1>
-               <div class="inputs">
-               
-                    <input type="text" placeholder="Your Name">
-                    <select name="" id="">
-                         <option value="">Frontend-20</option>
-                         <option value="">Frontend-21</option>
-                         <option value="">Frontend-22</option>
-                         <option value="">Frontend-23</option>
-                         <option value="">Frontend-24</option>
-                         <option value="">Frontend-25</option>
-                    </select>
-                    <input type="text" placeholder="Username">
-                    <input type="password" placeholder="Password">
-               </div>
-               <button class="loginBtn">Ro'yxatdan o'tish</button>
-               
-          </div>
-          `
-          d.getElementById("searchInp").style.background = "transparent"
-          d.getElementById("searchInp").style.backdropFilter = "blur(9px)"
-          d.getElementById("searchInp").style.border = "2px solid rgba(255, 255, 255, .2)"
-          d.body.style.backgroundImage = "url(./images/sign-in-bg.jpg)"
-          d.body.style.backgroundRepeat = "no-repeat"
-          d.body.style.backgroundSize = "cover"
-          d.querySelector(".navbar").classList.remove("bg-dark")
+
+          d.querySelector(".signUp_click_container").style.display = "flex"
+
+          d.querySelector(".signUp_click_container").addEventListener("click", function(e){
+               if(e.target.classList.contains("signUp_click_container")){
+                    d.querySelector(".signUp_click_container").style.display = "none"
+               }
+          })
+
           d.getElementById("signUp").classList.remove("btn-warning")
           d.getElementById("signUp").classList.add("btn-primary")
-          d.querySelector(".search-box").style.display = "none"
-          d.querySelector(".stick").style.background = "rgba(255, 255, 255, .1)"     
           
           ///////animation
           let animation = document.querySelector(".weather-nav")
