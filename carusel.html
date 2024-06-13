@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            transition: 1s ease;
+        }
+        
+        .carusel-container {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            justify-content: center;
+            position: relative;
+            top: 300px;
+        }
+        .carusel {
+            width: 1500px;
+            overflow: hidden;
+            
+        }
+
+        .carusel-img {
+            width: 4500px;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            right: 0;
+        }
+
+        .carusel-img img {
+            width: 1500px;
+            height: 500px;
+        }
+
+        .carusel-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .carusel-content button {
+            width: 50px;
+            height: 50px;
+            font-size: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="carusel-container">
+        <div class="carusel-content">
+            <button id="preview"><</button>
+            <div class="carusel">
+                <div class="carusel-img">
+                    <img src="https://ratatum.com/wp-content/uploads/2018/03/1_jfR0trcAPT3udktrFkOebA-min.jpeg" alt="">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/67486e53347939.5b6da2eab616f.jpg" alt="">
+                    <img src="https://user-images.githubusercontent.com/33485020/108069438-5ee79d80-7089-11eb-8264-08fdda7e0d11.jpg" alt="">
+                </div>
+            </div>
+            <button id="next">></button>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e){
+            let carusel = document.querySelector(".carusel-img")
+            let offset = 0
+            document.getElementById("next").addEventListener("click", ()=>{
+                offset = offset + 1500
+                carusel.style.right = offset + "px"
+                if(offset>3000) {
+                    offset = 0
+                    carusel.style.right = offset + "px"
+                }
+                console.log(offset);
+            })
+            document.getElementById("preview").addEventListener("click", ()=>{
+                offset = offset - 1500
+                carusel.style.right = offset + "px"
+                if(offset<0) {
+                    offset = 3000
+                    carusel.style.right = offset + "px"
+                }
+            })
+        })
+    </script>
+
+</body>
+</html>

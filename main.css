@@ -1,3 +1,9 @@
+* {
+     padding: 0;
+     margin: 0;
+     box-sizing: border-box;
+     transition: 1s ease;
+}
 .content {
      width: 420px;
      background: transparent;
@@ -170,7 +176,7 @@
      width: 400px;
      height: 555px;
      backdrop-filter: blur(9px);
-     background-color: rgba(255, 255, 255, .2);
+     border: 2px solid rgba(255, 255, 255, .2);
      border-radius: 16px;
      padding: 20px;
      position: relative;
@@ -227,13 +233,80 @@
 #loading {
      width: 100%;
      height: 100vh;
+     z-index: 9999;
+     background: rgba(0, 0, 0, 0.7);
      position: fixed;
-     background: #000 url(./load.gif) no-repeat center center;
-     background-size: 25vh;
-     z-index: 999;
-     opacity: 95%;
-
+     top: 0;
+     left: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     
 }
+.loading-box {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 300px;
+     height: 300px;
+     transform: scale(0.8);
+}
+.loading-gif-1 {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     border-radius: 50%;
+     border-bottom: 8px solid rgb(183, 174, 174);
+     border-right: 8px solid rgb(183, 174, 174);
+     border-top: 8px solid transparent;
+     width: 300px;
+     height: 300px;
+     /* animation-name: gif1;
+     animation-duration: 3s;
+     animation-iteration-count: infinite; */
+     animation: gif1 0.8s linear infinite;
+}
+.loading-gif-2 {
+     border-radius: 50%;
+     border-top: 8px solid rgb(183, 174, 174);
+     border-left: 8px solid rgb(183, 174, 174);
+     border-right: 8px solid transparent;
+     width: 210px;
+     height: 210px;
+     /* animation-name: gif2;
+     animation-duration: 1s;
+     animation-iteration-count: infinite; */
+     animation: gif2 0.8s linear infinite;
+}
+@keyframes gif1 {
+     0% {
+          rotate: 0deg;
+     }
+     100% {
+          rotate: -360deg;
+     }
+}
+@keyframes gif2 {
+     0% {
+          rotate: 0deg;
+     }
+     100% {
+          rotate: 720deg;
+     }
+}
+
+@keyframes navbarAnm {
+     0% {
+          filter: drop-shadow(0 0 5px #a39f9f);
+     }
+     50% {
+          filter: drop-shadow(0 0 15px #a39f9f)
+     }
+     100% {
+          filter: drop-shadow(0 0 5px #a39f9f)
+     }
+}
+
 body {
      overflow: hidden;
 }
@@ -241,14 +314,16 @@ body {
      width: 15px;
 }
 ::-webkit-scrollbar-track {
-     background: #737272;
-     border-radius: 10px;
+     background: #212529;
+     border-radius: 0 0 10px 10px;
 }
 ::-webkit-scrollbar-thumb {
      /* background: ; */
-     background: #c9c31b;
+     background: #0d6efd;
      border-radius: 10px;
 }
+
+
 
 
 
@@ -261,7 +336,7 @@ body {
      justify-content: center;
      z-index: 999;
      color: #fff;
-     background: rgba(0, 0, 0, 0.8);
+     background: rgba(0, 0, 0, 0.6);
      font-family: sans-serif;
      display: none;
 }
@@ -271,20 +346,23 @@ body {
      justify-content: center;
      flex-direction: column;
      row-gap: 20px;
-     padding: 20px;
-     background: #131313;
+     padding: 50px;
+     backdrop-filter: blur(9px);
+     border: 2px solid rgba(255, 255, 255, .2);
      border-radius: 15px;
 }
 .login-success-content h1 {
-     font-size: 50px;
-     filter: drop-shadow(0 1px 10px #fff);
+     font-size: 75px;
+     letter-spacing: 0.1em;
      -webkit-box-reflect: below 0px linear-gradient(transparent 50%, white);
+     line-height: 0.85em;
      font-weight: 700;
      text-align: center;
 }
 .login-success-content p {
      font-size: 40px;
      text-align: center;
+     margin-top: 15px;
 }
 
 .lsc-btns {
@@ -318,6 +396,10 @@ body {
      cursor: pointer;
 }
 
+.login_click_container {
+     display: flex;
+}
+
 .signUp_click_container .content .inputs input {
      transition: 0.3s ease;
 }
@@ -335,7 +417,7 @@ body {
      filter: drop-shadow(0 1px 10px #fff);
 }
 
-.login_click_container, .signUp_click_container {
+.login_click_container, .signUp_click_container, .weather-click-container {
      width: 100%;
      height: 100vh;
      position: fixed;
@@ -346,6 +428,8 @@ body {
      justify-content: center;
      display: none;
 }
+
+
 
 /* .line-content {
      width: 2px;
@@ -771,4 +855,67 @@ body {
      border: 1px solid #780d0d;
      box-shadow: 0 1px 30px 3px #780d0d;
      color: #780d0d;
+}
+
+
+
+#mainMenu2, #actor2 {
+     display: none;
+}
+
+.platforms-container {
+     width: 100%;
+     height: 100vh;
+     position: fixed;
+     top: 0;
+     left: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.platforms-content {
+     position: fixed;
+     top: 45%;
+     right: 15px;
+     width: 55px;
+     height: 150px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     row-gap: 15px;
+     flex-direction: column;
+     
+}
+.platforms-content a {
+     border-radius: 50%;
+     width: 35px;
+     height: 35px;
+     background: #fff;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     transition: 0.3s ease;
+     background: transparent;
+     filter: drop-shadow(0 0 5px #fff);
+}
+
+.platforms-content a:hover {
+     transform: scale(1.1);
+     filter: drop-shadow(0 0 15px #fff);
+}
+
+
+
+
+
+.platforms-content a ion-icon, img[src="./images/telegram icon.png"] {
+     width: 35px;
+     height: 35px;
+     transition: 0.3s ease;
+     color: #fff;
+}
+
+.container {
+     z-index: 111;
 }
