@@ -90,7 +90,9 @@
           <div class="loading-content">
                <div class="loading-box">
                     <div class="loading-gif-1">
-                         <div class="loading-gif-2"></div>
+                         <div class="loading-gif-2">
+                              <p>Loading Axios</p>
+                         </div>
                     </div>
                </div>
           </div>
@@ -98,7 +100,8 @@
                setTimeout(()=>{
                     document.getElementById("loading").style.display = "none"
                     document.body.style.overflow = "auto"
-               },800)
+                    
+               },1000)
           </script>
      </div>
      <!-- Loading Animation -->
@@ -233,36 +236,39 @@
                display: flex;
                align-items: center;
                justify-content: center;
-          }
-          .carusel-images {
-               display: flex;
-               align-items: center;
-               justify-content: flex-start;
+               margin-bottom: 20px;
           }
 
-          .carousel-content {
-               display: flex;
-               align-items: center;
-               justify-content: flex-start;
+          .carousel-box {
                width: 1220px;
                height: 500px;
-               border-radius: 10px;
-               box-shadow: 0 1px 20px 0 rgba(255, 255, 255, .2);
-               position: relative;
-               top: 90px;
-               margin-top: 20px;
-               overflow: hidden;
-          }
-
-          .slide-content  {
                display: flex;
                align-items: center;
                justify-content: flex-start;
                position: relative;
+               top: 100px;
+               border-radius: 20px;
+               overflow: hidden;
+               box-shadow: 0 0 50px 0 rgb(184, 206, 206); /*interstellar shadow*/
+               /* box-shadow: 0 0 50px 0 rgb(118, 28, 245); avangers shadow */
+               /* box-shadow: 0 0 50px 0 rgb(67, 63, 63); spiderman shadow */
+               /* box-shadow: 0 0 50px 0 rgb(33, 137, 255); aquamen shadow */
+               /* box-shadow: 0 0 40px 0 rgb(9, 131, 25); avatar shadow */
+               position: relative;
           }
 
-          .carousel-content img {
-               width: 1250px;
+          .carousel-main {
+               display: flex;
+               align-items: center;
+               justify-content: flex-start;
+               position: relative;
+               transition: 0.6s ease;
+               left: 0;
+               /* display: none; */
+          }
+
+          .carousel-main img {
+               width: 1220px;
                height: 500px;
           }
 
@@ -275,31 +281,245 @@
                color: #fff;
                font-size: 45px;
                position: relative;
-               top: 90px;
+               top: 100px;
           }
+
+          .slide-bottom-btns {
+               position: absolute;
+               bottom: 10px;
+               left: 43%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               gap: 20px;
+          }
+
+          .slide-bottom-btn {
+               width: 15px;
+               height: 15px;
+               border-radius: 50%;
+               border: 2px solid #fff;
+               background: transparent;
+               transition: 0.3s ease;
+               outline: none;
+          }
+          .slide-bottom-btn:hover {
+               transform: scale(1.3);
+               width: 35px;
+               border: none;
+               background: #fff;
+               border-radius: 10px;
+               filter: drop-shadow(0 0 10px #fff);
+          }
+
+          .slide-bottom-btns .active {
+               transform: scale(1.3);
+               width: 35px;
+               border: none;
+               background: #fff;
+               border-radius: 10px;
+               filter: drop-shadow(0 0 10px #fff);
+          }
+
+
+          .slide-film-play {
+               position: absolute;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+          }
+
+          .sfp-box {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               width: 100px;
+               height: 100px;
+               position: relative;
+               top: 100px;
+               color: rgba(36, 238, 238, 0.514);
+               transition: 0.3s ease;
+               filter: drop-shadow(0 0 10px rgb(184, 206, 206));
+          }
+
+          .sfp-box:hover {
+               transform: scale(1.2);
+               cursor: pointer;
+          }
+
+          .sfp-box ion-icon {
+               width: 100px;
+               height: 100px;
+               transition: 0.3s ease;
+          }
+
      </style>
 
      <div class="carusel-cont">
           <button class="preview-slide">
                <ion-icon name="chevron-back-outline"></ion-icon>
           </button>
-          <div class="carousel-content">
-               <div class="carousel-box">
-                    <div class="carousel-main">
-                         <img id="slideImg" src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/article/nV2VonPhcU8eYBJssm1tpCIHKgpHb8.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5" alt="">
-                         <img id="slideImg" src="https://w0.peakpx.com/wallpaper/156/622/HD-wallpaper-avengers-endgame-all-characters-superheroes-movies.jpg" alt="">
-                         <img id="slideImg" src="https://heroichollywood.com/wp-content/uploads/2021/07/Spider-Man-No-Way-Home-Banner-Tom-Holland.avif" alt="">
-                         <img id="slideImg" src="https://i0.wp.com/batman-news.com/wp-content/uploads/2018/11/Aquaman-Official-Images-08.jpg?resize=696%2C320&quality=80&strip=info&ssl=1" alt="">
-                         <img id="slideImg" src="https://c4.wallpaperflare.com/wallpaper/7/32/867/avatar-forest-avatar-2-pandora-entertainment-movies-hd-art-wallpaper-preview.jpg" alt="">
-                    </div>
+          <div class="carousel-box">
+               <div class="carousel-main">
+                    <img id="slideImg" src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/article/nV2VonPhcU8eYBJssm1tpCIHKgpHb8.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5" alt="">
+                    <img id="slideImg" src="https://w0.peakpx.com/wallpaper/156/622/HD-wallpaper-avengers-endgame-all-characters-superheroes-movies.jpg" alt="">
+                    <img id="slideImg" src="https://heroichollywood.com/wp-content/uploads/2021/07/Spider-Man-No-Way-Home-Banner-Tom-Holland.avif" alt="">
+                    <img id="slideImg" src="https://i0.wp.com/batman-news.com/wp-content/uploads/2018/11/Aquaman-Official-Images-08.jpg?resize=696%2C320&quality=80&strip=info&ssl=1" alt="">
+                    <img id="slideImg" src="https://c4.wallpaperflare.com/wallpaper/7/32/867/avatar-forest-avatar-2-pandora-entertainment-movies-hd-art-wallpaper-preview.jpg" alt="">
+               </div>
+               <div class="slide-bottom-btns">
+                    <button class="slideBtn1 slide-bottom-btn active"></button>
+                    <button class="slideBtn2 slide-bottom-btn"></button>
+                    <button class="slideBtn3 slide-bottom-btn"></button>
+                    <button class="slideBtn4 slide-bottom-btn"></button>
+                    <button class="slideBtn5 slide-bottom-btn"></button>
                </div>
           </div>
           <button class="next-slide">
                <ion-icon name="chevron-forward-outline"></ion-icon>
           </button>
+
+          <div class="slide-film-play">
+               <div class="sfp-box">
+                    <ion-icon name="play-circle-sharp"></ion-icon>
+               </div>
+          </div>
       </div>
       <script>
+          let offset = 0
+          let img = document.querySelector(".carousel-main")
+          document.querySelector(".next-slide").addEventListener("click", function(e){
+               // right slide
+               offset = offset + 1220
+               img.style.left = -offset + "px"
+               console.log(offset);
+               if (offset> 4880) {
+                    offset = 0
+                    img.style.left = -offset + "px"
+               }
+               // right slide
+               
+               // box shadow 
+               let caruselBox = document.querySelector(".carousel-box")
+               let playIcon = document.querySelector(".sfp-box")
+               if(offset == 0) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
+                    document.querySelector(".slideBtn1").click()
+               }
+               else if(offset == 1220) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
+                    document.querySelector(".slideBtn2").click()
+               } 
+               else if(offset == 2440) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
+                    document.querySelector(".slideBtn3").click()
+               }
+               else if(offset == 3660) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
+                    document.querySelector(".slideBtn4").click()
+               }
+               else if(offset == 4880) {
+                    caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
+                    document.querySelector(".slideBtn5").click()
+               }
+               // box shadow 
+          })
 
+          setInterval(()=>{
+               document.querySelector(".next-slide").click()
+          },5000)
+
+          document.querySelector(".preview-slide").addEventListener("click", function(e){
+               offset = offset - 1220
+               img.style.left = -offset + "px"
+               console.log(offset);
+               if (offset< 0) {
+                    offset = 4880
+                    img.style.left = -offset + "px"
+               }
+
+               // box shadow 
+               let caruselBox = document.querySelector(".carousel-box")
+               if(offset == 0) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
+                    document.querySelector(".slideBtn1").click()
+               }
+               else if(offset == 1220) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
+                    document.querySelector(".slideBtn2").click()
+               } 
+               else if(offset == 2440) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
+                    document.querySelector(".slideBtn3").click()
+               }
+               else if(offset == 3660) {
+                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
+                    document.querySelector(".slideBtn4").click()
+               }
+               else if(offset == 4880) {
+                    caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
+                    document.querySelector(".slideBtn5").click()
+               }
+               // box shadow 
+               
+          })
+
+          document.querySelector(".slideBtn1").addEventListener("click", ()=>{
+               document.querySelector(".slideBtn1").classList.add("active")
+
+               document.querySelector(".slideBtn2").classList.remove("active")
+               document.querySelector(".slideBtn3").classList.remove("active")
+               document.querySelector(".slideBtn4").classList.remove("active")
+               document.querySelector(".slideBtn5").classList.remove("active")
+
+               img.style.left = "0"
+          })
+
+          document.querySelector(".slideBtn2").addEventListener("click", ()=>{
+               document.querySelector(".slideBtn2").classList.add("active")
+               
+               document.querySelector(".slideBtn1").classList.remove("active")
+               document.querySelector(".slideBtn3").classList.remove("active")
+               document.querySelector(".slideBtn4").classList.remove("active")
+               document.querySelector(".slideBtn5").classList.remove("active")
+
+               img.style.left = "-1220px"
+          })
+
+          document.querySelector(".slideBtn3").addEventListener("click", ()=>{
+               document.querySelector(".slideBtn3").classList.add("active")
+               
+               document.querySelector(".slideBtn1").classList.remove("active")
+               document.querySelector(".slideBtn2").classList.remove("active")
+               document.querySelector(".slideBtn4").classList.remove("active")
+               document.querySelector(".slideBtn5").classList.remove("active")
+
+               img.style.left = "-2440px"
+               
+          })
+
+          document.querySelector(".slideBtn4").addEventListener("click", ()=>{
+               document.querySelector(".slideBtn4").classList.add("active")
+               
+               document.querySelector(".slideBtn1").classList.remove("active")
+               document.querySelector(".slideBtn2").classList.remove("active")
+               document.querySelector(".slideBtn3").classList.remove("active")
+               document.querySelector(".slideBtn5").classList.remove("active")
+               
+               img.style.left = "-3660px"
+          })
+
+          document.querySelector(".slideBtn5").addEventListener("click", ()=>{
+               document.querySelector(".slideBtn5").classList.add("active")
+               
+               document.querySelector(".slideBtn1").classList.remove("active")
+               document.querySelector(".slideBtn2").classList.remove("active")
+               document.querySelector(".slideBtn3").classList.remove("active")
+               document.querySelector(".slideBtn4").classList.remove("active")
+
+               img.style.left = "-4880px"
+          })
+          
       </script>
         
         <div class="container container1" style="padding: 35px 0;display: flex;align-items: center;justify-content: center;gap: 20px;flex-wrap: wrap;position: relative;top: 80px;">

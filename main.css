@@ -241,7 +241,7 @@
      display: flex;
      align-items: center;
      justify-content: center;
-     
+     backdrop-filter: blur(3px);
 }
 .loading-box {
      display: flex;
@@ -277,7 +277,16 @@
      animation-duration: 1s;
      animation-iteration-count: infinite; */
      animation: gif2 0.8s linear infinite;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #fff;
 }
+
+.loading-gif-2 p {
+     font-size: 18px;
+}
+
 @keyframes gif1 {
      0% {
           rotate: 0deg;
