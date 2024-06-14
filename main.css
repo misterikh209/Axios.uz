@@ -4,6 +4,17 @@
      box-sizing: border-box;
      transition: 1s ease;
 }
+
+.bg-img-container {
+     width: 100%;
+     height: 100vh;
+     position: fixed;
+     background: url(https://images4.alphacoders.com/909/909185.jpg) no-repeat;
+     background-position: center;
+     object-fit: cover;
+     background-size: cover;
+}
+
 .content {
      width: 420px;
      background: transparent;
@@ -286,6 +297,7 @@
 .loading-gif-2 p {
      font-size: 18px;
 }
+
 
 @keyframes gif1 {
      0% {
@@ -787,7 +799,7 @@ body {
      display: none;
 }
 
-.addActor {
+.addActorForm {
      padding: 20px;
      display: flex;
      align-items: center;
@@ -800,11 +812,11 @@ body {
      border-radius: 20px;
      position: relative;
 }
-.addActor h1 span {
+.addActorForm h1 span {
      position: relative;
      top: 5px;
 }
-.addActor label {
+.addActorForm label {
      font-size: 20px;
 }
 #addActorTitle {
@@ -928,3 +940,279 @@ body {
 .container {
      z-index: 111;
 }
+
+
+
+
+
+
+
+
+/* Cards */
+.card_movie {
+     width: 286px;
+     height: 386px;
+     position: relative;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     overflow: hidden;
+     backdrop-filter: blur(9px);
+     border-radius: 15px;
+}
+.card_movie img {
+     width: 286px;
+     height: 386px;
+     object-fit: cover;
+}
+.bottom-about-card {
+     transition: 0.6s ease;
+     position: absolute;
+     bottom: -340px;
+     left: 0;
+     width: 286px;
+     height: 386px;
+     background: #3030304d;
+     font-family: sans-serif;
+     color: #fff;
+     padding-left: 20px;
+     padding-top: 10px;
+     display: flex;
+     flex-direction: column;
+     row-gap: 15px;
+     border-radius: 15px;
+}
+.card_movie:hover .bottom-about-card{
+     bottom: 0;
+     backdrop-filter: blur(9px);
+}
+.bottom-about-card h1 {
+     position: relative;
+     left: -5px;
+     letter-spacing: 0.04em;
+     font-size: 25px;
+}
+.bottom-about-card p span {
+     font-weight: 600;
+}
+.bottom-about-card p:last-child {
+     font-size: 15px;
+}
+.card-top-part {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+}
+.card-top-btns {
+     margin-right: 20px;
+     margin-top: 10px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+     display: none;
+}
+.card_movie:hover .card-top-btns{
+     display: flex;
+}
+.card-top-btns button {
+     border: none;
+     outline: none;
+     background: transparent;
+     color: rgba(30, 255, 236, 0.588);
+     font-size: 35px; 
+     
+}
+.card-top-btns button:hover {
+     transform: scale(1.2);
+}
+.card-top-btns button:nth-child(2){
+     font-size: 30px;
+     color: rgba(207, 16, 16, 0.662);
+}
+
+/* card actor */
+
+
+.card_actor {
+     width: 286px;
+     height: 386px;
+     position: relative;
+     overflow: hidden;
+     border-radius: 15px;
+}
+
+.card_actor img {
+     width: 286px;
+     height: 386px;
+     object-fit: cover;
+}
+
+.bottom-about-cardactor {
+     transition: 0.6s ease;
+     position: absolute;
+     bottom: -340px;
+     left: 0;
+     width: 286px;
+     height: 386px;
+     background: #3030304d;
+     font-family: sans-serif;
+     color: #fff;
+     padding-left: 20px;
+     padding-top: 10px;
+     display: flex;
+     flex-direction: column;
+     row-gap: 15px;
+     border-radius: 15px;
+}
+
+.card_actor:hover .bottom-about-cardactor{
+     bottom: -210px;
+     backdrop-filter: blur(9px);
+     /* bottom: 0; */
+}
+.bottom-about-cardactor h1 {
+     position: relative;
+     left: -5px;
+     letter-spacing: 0.04em;
+     font-size: 25px;
+     font-weight: 600;
+}
+.bottom-about-cardactor p:last-child {
+     position: relative;
+     top: -25px;
+}
+.bottom-about-cardactor p span {
+     font-weight: 600;
+     font-family: sans-serif;
+}
+
+
+
+
+
+
+
+/* Carusel content */
+.carusel-cont {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     margin-bottom: 20px;
+}
+
+.carousel-box {
+     width: 1220px;
+     height: 500px;
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     position: relative;
+     top: 100px;
+     border-radius: 20px;
+     overflow: hidden;
+     box-shadow: 0 0 50px 0 rgb(184, 206, 206); /*interstellar shadow*/
+     /* box-shadow: 0 0 50px 0 rgb(118, 28, 245); avangers shadow */
+     /* box-shadow: 0 0 50px 0 rgb(67, 63, 63); spiderman shadow */
+     /* box-shadow: 0 0 50px 0 rgb(33, 137, 255); aquamen shadow */
+     /* box-shadow: 0 0 40px 0 rgb(9, 131, 25); avatar shadow */
+     position: relative;
+}
+
+.carousel-main {
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     position: relative;
+     transition: 0.6s ease;
+     left: 0;
+     /* display: none; */
+}
+
+.carousel-main img {
+     width: 1220px;
+     height: 500px;
+     object-fit: cover;
+}
+
+.preview-slide, .next-slide {
+     width: 50px;
+     height: 50px;
+     background: transparent;
+     border: none;
+     outline: none;
+     color: #fff;
+     font-size: 45px;
+     position: relative;
+     top: 100px;
+}
+
+.slide-bottom-btns {
+     position: absolute;
+     bottom: 10px;
+     left: 43%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 20px;
+}
+
+.slide-bottom-btn {
+     width: 15px;
+     height: 15px;
+     border-radius: 50%;
+     border: 2px solid #fff;
+     background: transparent;
+     transition: 0.3s ease;
+     outline: none;
+}
+.slide-bottom-btn:hover {
+     transform: scale(1.3);
+     width: 35px;
+     border: none;
+     background: #fff;
+     border-radius: 10px;
+     filter: drop-shadow(0 0 10px #fff);
+}
+
+.slide-bottom-btns .active {
+     transform: scale(1.3);
+     width: 35px;
+     border: none;
+     background: #fff;
+     border-radius: 10px;
+     filter: drop-shadow(0 0 10px #fff);
+}
+
+
+.slide-film-play {
+     position: absolute;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.sfp-box {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 100px;
+     height: 100px;
+     position: relative;
+     top: 100px;
+     color: rgba(36, 238, 238, 0.514);
+     transition: 0.3s ease;
+     filter: drop-shadow(0 0 10px rgb(184, 206, 206));
+}
+
+.sfp-box:hover {
+     transform: scale(1.2);
+     cursor: pointer;
+}
+
+.sfp-box ion-icon {
+     width: 100px;
+     height: 100px;
+     transition: 0.3s ease;
+}
+/* Carusel content */

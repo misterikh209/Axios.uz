@@ -3,37 +3,187 @@ document.addEventListener("DOMContentLoaded", async function (e) {
      d.querySelector("input").setAttribute("autocomplete", "off")
      let container = d.querySelector(".container1")
      let container2 = d.querySelector(".container2")
-
+     let offset = 0
+     
      let req = await fetch("https://axios.uz/index.php/api/getMovies", {
           method: "GET"
      })   
      let resp = await req.json()
 
-     resp.forEach(function (e) {
+     resp.forEach(function(mov) {
+          
+
           let card = d.createElement("div")
-          card.classList.add("card", "bg-dark")
-          card.setAttribute("style", "width:18rem;")
+          card.classList.add("card_movie")
           card.innerHTML = `
-          <img src="./images/movie.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" style="color: #fff;">${e.title}</h5>
-            <ul class="list-group list-group-flush">
-               <li id="li1" class="list-group-item bg-dark" style="padding-top:1px solid #fff";><span style="color:white;">${e.release}</span></li>
-               <li class="list-group-item bg-dark" style="color: white;">ID: ${e.id}</li>
-               <li id="li2" class="list-group-item bg-dark" style="padding-bottom:1px solid #fff"><span style="color:white;">${e.duration}</span></li>
-            </ul>
-             <span style="display:flex;gap:7px;">
-             <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
-             <a href="#" class="btn btn-danger" id="del">Удалить</a>
-             </span>
+          <img id="movieCardImg" src="https://w0.peakpx.com/wallpaper/363/426/HD-wallpaper-avengers-endgame-avengers-assemble-marvel-entertainment.jpg" alt="">
+               <div class="bottom-about-card">
+                    <div class="card-top-part">
+                         <h1>${mov.title}</h1>
+                         <div class="card-top-btns">
+                              <button id="playFilm"><ion-icon name="play-circle"></ion-icon></button>
+                              <button><ion-icon name="trash"></ion-icon></button>
+                         </div>
+                    </div>
+                    <p><span>Release:</span> ${mov.release}</p>
+                    <p><span>Duration:</span> ${mov.duration}</p>
+                    <p><span>Actors:</span> ${mov.actors.map(ac=>ac.name)}</p>
+                    <p><span>Description: <br></span> ${mov.description}</p>
           </div>
           `
-
-
           container.append(card)
 
+          
+          // else if(offset == 1220){
+          //      document.getElementById("movieCardImg").setAttribute("src", "https://w0.peakpx.com/wallpaper/982/511/HD-wallpaper-interstellar-nolan.jpg")
+          // }
 
      })
+
+     // carusel
+
+     let img = document.querySelector(".carousel-main")
+     document.querySelector(".next-slide").addEventListener("click", function(e){
+          // right slide
+          offset = offset + 1220
+          img.style.left = -offset + "px"
+          if (offset> 4880) {
+               offset = 0
+               img.style.left = -offset + "px"
+          }
+          // right slide
+          
+          // box shadow 
+          let caruselBox = document.querySelector(".carousel-box")
+          let playIcon = document.querySelector(".sfp-box")
+          if(offset == 0) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
+               document.querySelector(".slideBtn1").click()
+               
+          }
+          else if(offset == 1220) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
+               document.querySelector(".slideBtn2").click()
+          } 
+          else if(offset == 2440) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
+               document.querySelector(".slideBtn3").click()
+          }
+          else if(offset == 3660) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
+               document.querySelector(".slideBtn4").click()
+          }
+          else if(offset == 4880) {
+               caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
+               document.querySelector(".slideBtn5").click()
+          }
+          // box shadow 
+          
+     })
+     
+
+     setInterval(()=>{
+          document.querySelector(".next-slide").click()
+     },5000)
+     let caruselBox = document.querySelector(".carousel-box")
+     document.querySelector(".preview-slide").addEventListener("click", function(e){
+          offset = offset - 1220
+          img.style.left = -offset + "px"
+          console.log(offset);
+          if (offset< 0) {
+               offset = 4880
+               img.style.left = -offset + "px"
+          }
+
+          // box shadow 
+          
+          if(offset == 0) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
+               document.querySelector(".slideBtn1").click()
+          }
+          else if(offset == 1220) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
+               document.querySelector(".slideBtn2").click()
+          } 
+          else if(offset == 2440) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
+               document.querySelector(".slideBtn3").click()
+          }
+          else if(offset == 3660) {
+               caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
+               document.querySelector(".slideBtn4").click()
+          }
+          else if(offset == 4880) {
+               caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
+               document.querySelector(".slideBtn5").click()
+          }
+          // box shadow 
+          
+     })
+     
+
+     document.querySelector(".slideBtn1").addEventListener("click", ()=>{
+          document.querySelector(".slideBtn1").classList.add("active")
+
+          document.querySelector(".slideBtn2").classList.remove("active")
+          document.querySelector(".slideBtn3").classList.remove("active")
+          document.querySelector(".slideBtn4").classList.remove("active")
+          document.querySelector(".slideBtn5").classList.remove("active")
+
+          caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
+          img.style.left = "0"
+     })
+
+     document.querySelector(".slideBtn2").addEventListener("click", ()=>{
+          document.querySelector(".slideBtn2").classList.add("active")
+          
+          document.querySelector(".slideBtn1").classList.remove("active")
+          document.querySelector(".slideBtn3").classList.remove("active")
+          document.querySelector(".slideBtn4").classList.remove("active")
+          document.querySelector(".slideBtn5").classList.remove("active")
+
+          caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
+          img.style.left = "-1220px"
+     })
+
+     document.querySelector(".slideBtn3").addEventListener("click", ()=>{
+          document.querySelector(".slideBtn3").classList.add("active")
+          
+          document.querySelector(".slideBtn1").classList.remove("active")
+          document.querySelector(".slideBtn2").classList.remove("active")
+          document.querySelector(".slideBtn4").classList.remove("active")
+          document.querySelector(".slideBtn5").classList.remove("active")
+
+          caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
+          img.style.left = "-2440px"
+          
+     })
+
+     document.querySelector(".slideBtn4").addEventListener("click", ()=>{
+          document.querySelector(".slideBtn4").classList.add("active")
+          
+          document.querySelector(".slideBtn1").classList.remove("active")
+          document.querySelector(".slideBtn2").classList.remove("active")
+          document.querySelector(".slideBtn3").classList.remove("active")
+          document.querySelector(".slideBtn5").classList.remove("active")
+          
+          caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
+          img.style.left = "-3660px"
+     })
+
+     document.querySelector(".slideBtn5").addEventListener("click", ()=>{
+          document.querySelector(".slideBtn5").classList.add("active")
+          
+          document.querySelector(".slideBtn1").classList.remove("active")
+          document.querySelector(".slideBtn2").classList.remove("active")
+          document.querySelector(".slideBtn3").classList.remove("active")
+          document.querySelector(".slideBtn4").classList.remove("active")
+
+          caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
+          img.style.left = "-4880px"
+     })
+
+     //carusel
 
      d.getElementById("playFilm").addEventListener("click", async function (e) {
 
@@ -85,23 +235,23 @@ document.addEventListener("DOMContentLoaded", async function (e) {
           }, 300)
           d.querySelector(".carusel-cont").style.display = "flex"
           container.innerHTML = ``
-          resp.forEach(function (e) {
+          resp.forEach(mov=> {
                let card = d.createElement("div")
-               card.classList.add("card", "bg-dark")
-               card.setAttribute("style", "width:18rem;")
+               card.classList.add("card_movie")
                card.innerHTML = `
-               <img src="./images/movie.png" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <h5 class="card-title" style="color: #fff;">${e.title}</h5>
-                 <ul class="list-group list-group-flush">
-                    <li id="li1" class="list-group-item bg-dark" style="padding-top:1px solid #fff";><span style="color:white;">${e.release}</span></li>
-                    <li class="list-group-item bg-dark" style="color: white;">ID: ${e.id}</li>
-                    <li id="li2" class="list-group-item bg-dark" style="padding-bottom:1px solid #fff"><span style="color:white;">${e.duration}</span></li>
-                 </ul>
-                  <span style="display:flex;gap:7px;">
-                  <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
-                  <a href="#" class="btn btn-danger" id="del">Удалить</a>
-                  </span>
+               <img src="https://w0.peakpx.com/wallpaper/363/426/HD-wallpaper-avengers-endgame-avengers-assemble-marvel-entertainment.jpg" alt="">
+                    <div class="bottom-about-card">
+                         <div class="card-top-part">
+                              <h1>${mov.title}</h1>
+                              <div class="card-top-btns">
+                                   <button id="playFilm"><ion-icon name="play-circle"></ion-icon></button>
+                                   <button><ion-icon name="trash"></ion-icon></button>
+                              </div>
+                         </div>
+                         <p><span>Release:</span> ${mov.release}</p>
+                         <p><span>Duration:</span> ${mov.duration}</p>
+                         <p><span>Actors:</span> ${mov.actors.map(ac=>ac.name)}</p>
+                         <p><span>Description: <br></span> ${mov.description}</p>
                </div>
                `
                container.append(card)
@@ -175,18 +325,20 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                     let reqActor2 = await fetch("https://axios.uz/index.php/api/getActors")
                     let respActor2 = await reqActor2.json()
 
-                    respActor2.forEach(a => {
+                    respActor2.forEach(ac => {
                          let card = d.createElement("div")
-                         card.classList.add("col3")
+                         card.classList.add("card_actor")
                          card.innerHTML = ` 
-                         <div class="card bg-dark" style="width: 18rem;">
-                         <img src="${a.photo}" class="card-img-top" alt="...">
-                         <div class="card-body">
-                           <h5 class="card-title" style="color:#fff;">${a.name}</h5>
-                           <p class="card-text" style="color:#fff;">${a.movies.map(t => t.title)}</p>
-                           <a href="#" class="btn btn-primary"  id="playActor">Смотреть</a>
-                           <a href="#" class="btn btn-danger">Удалить</a>
-                         </div>
+                         <img src="${ac.photo}" alt="">
+                         <div class="bottom-about-cardactor">
+                              <h1>${ac.name}</h1>
+                              <div class="card-top-btns">
+                                   <button><ion-icon name="play-circle"></ion-icon></button>
+                                   <button><ion-icon name="trash"></ion-icon></button>
+                              </div>
+                              <p><span>Movies:</span> ${ac.movies.map(t=>t.title)}</p>
+                              <p class="actorReleaseText"><span>Release:</span> ${ac.movies.map(r=>r.release)}</p>
+                              
                          </div>
                          `
                          container2.append(card)
@@ -195,8 +347,6 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                //actor2   click()
 
 
-
-               // maniMenu2 click()
 
                // maniMenu2 click()
 
@@ -216,23 +366,23 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                     let reqMovies2 = await fetch("https://axios.uz/index.php/api/getMovies")
                     let respMovies2 = await reqMovies2.json()
 
-                    resp.forEach(m => {
+                    resp.forEach(mov => {
                          let card = d.createElement("div")
-                         card.classList.add("card", "bg-dark")
-                         card.setAttribute("style", "width:18rem;")
+                         card.classList.add("card_movie")
                          card.innerHTML = `
-                         <img src="./images/movie.png" class="card-img-top" alt="...">
-                         <div class="card-body">
-                           <h5 class="card-title" style="color: #fff;">${m.title}</h5>
-                           <ul class="list-group list-group-flush">
-                              <li id="li1" class="list-group-item bg-dark" style="padding-top:1px solid #fff";><span style="color:white;">${m.release}</span></li>
-                              <li class="list-group-item bg-dark" style="color: white;">ID: ${m.id}</li>
-                              <li id="li2" class="list-group-item bg-dark" style="padding-bottom:1px solid #fff"><span style="color:white;">${m.duration}</span></li>
-                           </ul>
-                            <span style="display:flex;gap:7px;">
-                            <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
-                            <a href="#" class="btn btn-danger" id="del">Удалить</a>
-                            </span>
+                         <img src="https://w0.peakpx.com/wallpaper/363/426/HD-wallpaper-avengers-endgame-avengers-assemble-marvel-entertainment.jpg" alt="">
+                         <div class="bottom-about-card">
+                              <div class="card-top-part">
+                                   <h1>${mov.title}</h1>
+                                   <div class="card-top-btns">
+                                        <button id="playFilm"><ion-icon name="play-circle"></ion-icon></button>
+                                        <button><ion-icon name="trash"></ion-icon></button>
+                                   </div>
+                              </div>
+                              <p><span>Release:</span> ${mov.release}</p>
+                              <p><span>Duration:</span> ${mov.duration}</p>
+                              <p><span>Actors:</span> ${mov.actors.map(ac=>ac.name)}</p>
+                              <p><span>Description: <br></span> ${mov.description}</p>
                          </div>
                          `
                          container2.append(card)
@@ -240,8 +390,8 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
                     })
                })
+               // maniMenu2 click()
                mainMenu2.click()
-
                //container 2
 
 
@@ -281,12 +431,12 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                          d.getElementById("signUp").style.display = "none"
                          d.querySelector(".addMovieBox").style.display = "flex"
                          d.querySelector(".btns").innerHTML = `
-                       <div style="display: flex;align-items: center;justify-content: center;flex-direction: column;position: absolute;left: -50px;top: -10px;" class="acc-box">
-                       <ion-icon name="person-circle-outline" style="color: #fff; font-size: 35px;"></ion-icon>
-                       <p style="color: #fff;">${loginUser}</p>
-                       </div>
-                       <button id="exitAcc" style="background: transparent;border: none;color: #fff;font-size: 25px;position: relative;left: 20px ;"><ion-icon name="exit-outline"></ion-icon></button>
-                       `
+                              <div style="display: flex;align-items: center;justify-content: center;flex-direction: column;position: absolute;left: -50px;top: -10px;" class="acc-box">
+                              <ion-icon name="person-circle-outline" style="color: #fff; font-size: 35px;"></ion-icon>
+                              <p style="color: #fff;">${loginUser}</p>
+                              </div>
+                              <button id="exitAcc" style="background: transparent;border: none;color: #fff;font-size: 25px;position: relative;left: 20px ;"><ion-icon name="exit-outline"></ion-icon></button>
+                         `
                          
                          d.getElementById("login_successful_container").style.display = "flex"
                          d.getElementById("login_successful_container").addEventListener("click", function(e){
@@ -297,8 +447,9 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                     
                          d.getElementById("exitAcc").addEventListener("click", () => {
                               location.reload()
-
                          })
+
+                         //addMovie
                          d.getElementById("addMovieBtn").addEventListener("click", () => {
                               //    container.innerHTML = ``  
                               d.querySelector(".addMovieWindow").style.display = "flex"
@@ -316,7 +467,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
                               let tokenAddMovie = localStorage.getItem("token")
                               let userIdAddMovie = localStorage.getItem("userId")
-                              d.querySelector(".addMovie").addEventListener("submit", async function (e) {
+                              d.querySelector(".addMovie").addEventListener("submit", async function(e) {
                                    e.preventDefault()
                                    let title = d.querySelector("#addMovieTitle").value.trim();
                                    let release = d.querySelector("#addMovieRelease").value.trim();
@@ -345,9 +496,8 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                               })
 
                          })
-                         let tokenAddActor = localStorage.getItem("token")
-                         let userIdAddActor = localStorage.getItem("userId")
-
+                         
+                         //addActor
                          d.getElementById("addActorBtn").addEventListener("click", () => {
                               d.querySelector(".addActorWindow").style.display = "flex"
                               d.getElementById("actorAddExit").addEventListener("click", () => {
@@ -362,13 +512,14 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
                               //form Submit
 
-
-                              d.querySelector(".addActor").addEventListener("submit", async function (e) {
+                              let tokenAddActor = localStorage.getItem("token")
+                              let userIdAddActor = localStorage.getItem("userId")
+                              d.querySelector(".addActorForm").addEventListener("submit", async function(e) {
                                    e.preventDefault()
-                                   let actorName = d.querySelector("#addActorTitle").value.trim();
+                                   let actorName = d.querySelector("#addActorTitle").value.trim()
 
                                    let formDataActor = new FormData()
-                                   formDataMovie.append("actorName", actorName)
+                                   formDataActor.append("actorName", actorName)
 
                                    let requestAddActor = await fetch("https://axios.uz/index.php/api/addActor", {
                                         method: "POST",
@@ -380,10 +531,17 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                                    })
                                    let respAddActor = await requestAddActor.json()
 
+                                   console.log(respAddActor.ok);
+
                                    d.getElementById("actorAddExit").click()
 
+                                   // actorName = d.querySelector("#addActorTitle").value = ``
 
                               })
+                              // document.getElementById("actorAddBtn").addEventListener("click", ()=>{
+                              //      d.querySelector(".addActor").submit();
+
+                              // })
                          })
                     } else if (responseLogin.data.token == undefined) {
                          d.querySelector(".error").style.display = "flex"
@@ -440,28 +598,24 @@ document.addEventListener("DOMContentLoaded", async function (e) {
           let request = await fetch("https://axios.uz/index.php/api/getActors")
           let responsive = await request.json()
 
-          responsive.forEach(e => {
+          responsive.forEach(ac => {
                let card = d.createElement("div")
-               card.classList.add("col3")
-               card.innerHTML = ` 
-               <div class="card bg-dark" style="width: 18rem;">
-               <img src="${e.photo}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <h5 class="card-title" style="color:#fff;">${e.name}</h5>
-                 <p class="card-text" style="color:#fff;">${e.movies.map(t => t.title)}</p>
-                 <a href="#" class="btn btn-primary"  id="playActor">Смотреть</a>
-                 <a href="#" class="btn btn-danger">Удалить</a>
-               </div>
+               card.classList.add("card_actor")
+               card.innerHTML = `
+               <img src="${ac.photo}" alt="">
+               <div class="bottom-about-cardactor">
+                    <h1>${ac.name}</h1>
+                    <div class="card-top-btns">
+                         <button><ion-icon name="play-circle"></ion-icon></button>
+                         <button><ion-icon name="trash"></ion-icon></button>
+                    </div>
+                    <p><span>Movies:</span> ${ac.movies.map(t=>t.title)}</p>
+                    <p class="actorReleaseText"><span>Release:</span> ${ac.movies.map(r=>r.release)}</p>
+                    
                </div>
                `
                container.append(card)
-               d.body.style.backgroundImage = "none"
-               document.querySelector(".navbar").classList.add("bg-dark")
-               document.getElementById("signUp").classList.remove("btn-primary")
-               document.getElementById("signUp").classList.add("btn-warning")
-               // d.body.style.backgroundImage = "none"
-               d.body.style.backgroundColor = "#131313"
-               d.querySelector(".search-box").style.display = "flex"
+               
 
                ///////animation
                let animation = document.querySelector(".weather-nav")
@@ -490,18 +644,23 @@ document.addEventListener("DOMContentLoaded", async function (e) {
           let response = await request.json()
           let mov = response.data
 
-          mov.forEach(m => {
+          mov.forEach(mov => {
                let card = d.createElement("div")
-               card.classList.add("col3")
+               card.classList.add("card_movie")
                card.innerHTML = ` 
-               <div class="card bg-dark" style="width: 18rem;">
-               <img style="height:360px;" src="./images/movie.png" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <h5 class="card-title" style="color:#fff;">${m.title}</h5>
-                 <p class="card-text" style="color:#fff;">${m.duration}</p>
-                 <a href="#" class="btn btn-primary" id="playFilm">Смотреть</a>
-                 <a href="#" class="btn btn-danger">Удалить</a>
-               </div>
+               <img id="movieCardImg" src="https://w0.peakpx.com/wallpaper/363/426/HD-wallpaper-avengers-endgame-avengers-assemble-marvel-entertainment.jpg" alt="">
+               <div class="bottom-about-card">
+                    <div class="card-top-part">
+                         <h1>${mov.title}</h1>
+                         <div class="card-top-btns">
+                              <button id="playFilm"><ion-icon name="play-circle"></ion-icon></button>
+                              <button><ion-icon name="trash"></ion-icon></button>
+                         </div>
+                    </div>
+                    <p><span>Release:</span> ${mov.release}</p>
+                    <p><span>Duration:</span> ${mov.duration}</p>
+                    <p><span>Actors:</span> ${mov.actors.map(ac=>ac.name)}</p>
+                    <p><span>Description: <br></span> ${mov.description}</p>
                </div>
                `
 
@@ -516,16 +675,18 @@ document.addEventListener("DOMContentLoaded", async function (e) {
           let actor_data = response_2.data
           actor_data.forEach(ad => {
                let card = d.createElement("div")
-               card.classList.add("col3")
+               card.classList.add("card_actor")
                card.innerHTML = ` 
-               <div class="card bg-dark" style="width: 18rem;">
-               <img src="${ad.photo}" class="card-img-top" alt="...">
-               <div class="card-body">
-                 <h5 class="card-title" style="color:#fff;">${ad.name}</h5>
-                 <p class="card-text" style="color:#fff;">${ad.movies.map(r => r.release)}</p>
-                 <a href="#" class="btn btn-primary" id="playActor">Смотреть</a>
-                 <a href="#" class="btn btn-danger">Удалить</a>
-               </div>
+               <img src="${ad.photo}" alt="">
+               <div class="bottom-about-cardactor">
+                    <h1>${ad.name}</h1>
+                    <div class="card-top-btns">
+                         <button><ion-icon name="play-circle"></ion-icon></button>
+                         <button><ion-icon name="trash"></ion-icon></button>
+                    </div>
+                    <p><span>Movies:</span> ${ad.movies.map(t=>t.title)}</p>
+                    <p class="actorReleaseText"><span>Release:</span> ${ad.movies.map(r=>r.release)}</p>
+                    
                </div>
                `
                container.append(card)

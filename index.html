@@ -8,7 +8,8 @@
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
-<body style="background: #131313;">
+<body>
+     <div class="bg-img-container"></div>
      <!-- Platfotrms -->
      <div class="platforms-content">
           <a href="https://t.me/misterikh_13" target="_blank">
@@ -145,10 +146,10 @@
                </form>
           </div>
           <div class="addActorWindow" style="z-index: 999;">
-               <form class="addActor">
+               <form class="addActorForm">
                     <h1>Add Actor <span><ion-icon name="person-add-outline"></ion-icon></span></h1>
                     <label for="addActorTitle">Actor Name</label>
-                    <input type="text" id="addActorTitle" placeholder="Actor name...">
+                    <input type="text" id="addActorTitle" placeholder="Actor name..." autocomplete="off">
                     <!-- <label for="addActorDescription">Actor Films</label> -->
                     <!-- <textarea name="" id="addActorDescription" placeholder="Actor films..."></textarea> -->
                     <div class="btnsAddActor">
@@ -158,7 +159,7 @@
                     
                </form>
           </div>
-          <nav class="navbar navbar-expand-lg bg-dark" style="padding: 20px 100px;border-radius: 0 0 10px 10px;animation: navbarAnm 4s linear infinite;" >
+          <nav class="navbar navbar-expand-lg" style="padding: 20px 100px;border-radius: 0 0 10px 10px;animation: navbarAnm 4s linear infinite;background: transparent;backdrop-filter: blur(9px);border-bottom: 2px solid rgba(255, 255, 255, 0.2);" >
                <div class="container-fluid">
                  <a class="navbar-brand" href="#" style="color: #fff;position: relative;top: -2px;" id="weatherPage">Погода</a>
                  <button style="color: #fff; border: 1px solid #fff;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -231,129 +232,6 @@
                </div>
              </nav>
      </div>
-     <style>
-          .carusel-cont {
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               margin-bottom: 20px;
-          }
-
-          .carousel-box {
-               width: 1220px;
-               height: 500px;
-               display: flex;
-               align-items: center;
-               justify-content: flex-start;
-               position: relative;
-               top: 100px;
-               border-radius: 20px;
-               overflow: hidden;
-               box-shadow: 0 0 50px 0 rgb(184, 206, 206); /*interstellar shadow*/
-               /* box-shadow: 0 0 50px 0 rgb(118, 28, 245); avangers shadow */
-               /* box-shadow: 0 0 50px 0 rgb(67, 63, 63); spiderman shadow */
-               /* box-shadow: 0 0 50px 0 rgb(33, 137, 255); aquamen shadow */
-               /* box-shadow: 0 0 40px 0 rgb(9, 131, 25); avatar shadow */
-               position: relative;
-          }
-
-          .carousel-main {
-               display: flex;
-               align-items: center;
-               justify-content: flex-start;
-               position: relative;
-               transition: 0.6s ease;
-               left: 0;
-               /* display: none; */
-          }
-
-          .carousel-main img {
-               width: 1220px;
-               height: 500px;
-          }
-
-          .preview-slide, .next-slide {
-               width: 50px;
-               height: 50px;
-               background: transparent;
-               border: none;
-               outline: none;
-               color: #fff;
-               font-size: 45px;
-               position: relative;
-               top: 100px;
-          }
-
-          .slide-bottom-btns {
-               position: absolute;
-               bottom: 10px;
-               left: 43%;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               gap: 20px;
-          }
-
-          .slide-bottom-btn {
-               width: 15px;
-               height: 15px;
-               border-radius: 50%;
-               border: 2px solid #fff;
-               background: transparent;
-               transition: 0.3s ease;
-               outline: none;
-          }
-          .slide-bottom-btn:hover {
-               transform: scale(1.3);
-               width: 35px;
-               border: none;
-               background: #fff;
-               border-radius: 10px;
-               filter: drop-shadow(0 0 10px #fff);
-          }
-
-          .slide-bottom-btns .active {
-               transform: scale(1.3);
-               width: 35px;
-               border: none;
-               background: #fff;
-               border-radius: 10px;
-               filter: drop-shadow(0 0 10px #fff);
-          }
-
-
-          .slide-film-play {
-               position: absolute;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-          }
-
-          .sfp-box {
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               width: 100px;
-               height: 100px;
-               position: relative;
-               top: 100px;
-               color: rgba(36, 238, 238, 0.514);
-               transition: 0.3s ease;
-               filter: drop-shadow(0 0 10px rgb(184, 206, 206));
-          }
-
-          .sfp-box:hover {
-               transform: scale(1.2);
-               cursor: pointer;
-          }
-
-          .sfp-box ion-icon {
-               width: 100px;
-               height: 100px;
-               transition: 0.3s ease;
-          }
-
-     </style>
 
      <div class="carusel-cont">
           <button class="preview-slide">
@@ -385,142 +263,6 @@
                </div>
           </div>
       </div>
-      <script>
-          let offset = 0
-          let img = document.querySelector(".carousel-main")
-          document.querySelector(".next-slide").addEventListener("click", function(e){
-               // right slide
-               offset = offset + 1220
-               img.style.left = -offset + "px"
-               console.log(offset);
-               if (offset> 4880) {
-                    offset = 0
-                    img.style.left = -offset + "px"
-               }
-               // right slide
-               
-               // box shadow 
-               let caruselBox = document.querySelector(".carousel-box")
-               let playIcon = document.querySelector(".sfp-box")
-               if(offset == 0) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
-                    document.querySelector(".slideBtn1").click()
-               }
-               else if(offset == 1220) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
-                    document.querySelector(".slideBtn2").click()
-               } 
-               else if(offset == 2440) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
-                    document.querySelector(".slideBtn3").click()
-               }
-               else if(offset == 3660) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
-                    document.querySelector(".slideBtn4").click()
-               }
-               else if(offset == 4880) {
-                    caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
-                    document.querySelector(".slideBtn5").click()
-               }
-               // box shadow 
-          })
-
-          setInterval(()=>{
-               document.querySelector(".next-slide").click()
-          },5000)
-
-          document.querySelector(".preview-slide").addEventListener("click", function(e){
-               offset = offset - 1220
-               img.style.left = -offset + "px"
-               console.log(offset);
-               if (offset< 0) {
-                    offset = 4880
-                    img.style.left = -offset + "px"
-               }
-
-               // box shadow 
-               let caruselBox = document.querySelector(".carousel-box")
-               if(offset == 0) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(184, 206, 206)"
-                    document.querySelector(".slideBtn1").click()
-               }
-               else if(offset == 1220) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(118, 28, 245)"
-                    document.querySelector(".slideBtn2").click()
-               } 
-               else if(offset == 2440) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(67, 63, 63)"
-                    document.querySelector(".slideBtn3").click()
-               }
-               else if(offset == 3660) {
-                    caruselBox.style.boxShadow = "0 0 50px 0 rgb(33, 137, 255)"
-                    document.querySelector(".slideBtn4").click()
-               }
-               else if(offset == 4880) {
-                    caruselBox.style.boxShadow = "0 0 40px 0 rgb(9, 131, 25)"
-                    document.querySelector(".slideBtn5").click()
-               }
-               // box shadow 
-               
-          })
-
-          document.querySelector(".slideBtn1").addEventListener("click", ()=>{
-               document.querySelector(".slideBtn1").classList.add("active")
-
-               document.querySelector(".slideBtn2").classList.remove("active")
-               document.querySelector(".slideBtn3").classList.remove("active")
-               document.querySelector(".slideBtn4").classList.remove("active")
-               document.querySelector(".slideBtn5").classList.remove("active")
-
-               img.style.left = "0"
-          })
-
-          document.querySelector(".slideBtn2").addEventListener("click", ()=>{
-               document.querySelector(".slideBtn2").classList.add("active")
-               
-               document.querySelector(".slideBtn1").classList.remove("active")
-               document.querySelector(".slideBtn3").classList.remove("active")
-               document.querySelector(".slideBtn4").classList.remove("active")
-               document.querySelector(".slideBtn5").classList.remove("active")
-
-               img.style.left = "-1220px"
-          })
-
-          document.querySelector(".slideBtn3").addEventListener("click", ()=>{
-               document.querySelector(".slideBtn3").classList.add("active")
-               
-               document.querySelector(".slideBtn1").classList.remove("active")
-               document.querySelector(".slideBtn2").classList.remove("active")
-               document.querySelector(".slideBtn4").classList.remove("active")
-               document.querySelector(".slideBtn5").classList.remove("active")
-
-               img.style.left = "-2440px"
-               
-          })
-
-          document.querySelector(".slideBtn4").addEventListener("click", ()=>{
-               document.querySelector(".slideBtn4").classList.add("active")
-               
-               document.querySelector(".slideBtn1").classList.remove("active")
-               document.querySelector(".slideBtn2").classList.remove("active")
-               document.querySelector(".slideBtn3").classList.remove("active")
-               document.querySelector(".slideBtn5").classList.remove("active")
-               
-               img.style.left = "-3660px"
-          })
-
-          document.querySelector(".slideBtn5").addEventListener("click", ()=>{
-               document.querySelector(".slideBtn5").classList.add("active")
-               
-               document.querySelector(".slideBtn1").classList.remove("active")
-               document.querySelector(".slideBtn2").classList.remove("active")
-               document.querySelector(".slideBtn3").classList.remove("active")
-               document.querySelector(".slideBtn4").classList.remove("active")
-
-               img.style.left = "-4880px"
-          })
-          
-      </script>
         
         <div class="container container1" style="padding: 35px 0;display: flex;align-items: center;justify-content: center;gap: 20px;flex-wrap: wrap;position: relative;top: 80px;">
           
