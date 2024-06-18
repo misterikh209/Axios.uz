@@ -4,21 +4,919 @@
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Document</title>
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
      <style>
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
           * {
                padding: 0;
                margin: 0;
                box-sizing: border-box;
-               transition: 0.5s ease;
+               transition: 1s ease;
           }
-          .container {
-                    
+          .api-container {
+               font-family: "Poppins", sans-serif;
+               color: #fff;
+               width: 100%;
+               height: 100%;
+               position: fixed;
+               top: 0;
+               left: 0;
+               z-index: 999;
+               background: #000;
+               display: flex;
+               justify-content: center;
+               overflow: auto;
+               /* flex-direction: column; */
+               /* padding: 30px 100px; */
+          }
+
+          .api-container h1 {
+               font-size: 45px;
+               color: #fff;
+               font-weight: 400;
+               letter-spacing: 0.05em;
+               position: absolute;
+               top: 10px;
+          }
+          .api-cards {
+               display: flex;
+               justify-content: top;
+               flex-direction: column;
+               position: relative;
+               top: 100px;
+          }
+          .api-card-content {
+               display: flex;
+               align-items: top;
+               justify-content: center;
+               gap: 50px;
+               margin: 10px;
+               padding: 20px;
+          }
+
+          .api-card {
+               width: 600px;
+               height: 95px;
+               /* height: 600px; */
+               border-radius: 18px;
+               overflow: hidden;
+          }
+
+          
+          .about-api-card {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               flex-direction: column;
+               width: 100%;
+          }
+          .aac-top {
+               display: flex;
+               align-items: center;
+               justify-content: left;
+               padding-left: 30px;
+               position: relative;
+               width: 100%;
+               height: 50px;
+               background: red;
+               gap: 25px;
+               cursor: pointer;
+          }
+          
+          .method-card {
+               font-weight: 600;
+               font-size: 22px;
+               background: #15b5d8;
+               width: 50px;
+               height: 50px;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               border-radius: 0 0 10px 10px;
+               position: relative;
+               top: -10px;
+               margin-top: 10px;
+          }
+          .line-api-card {
+               width: 5px;
+               border-radius: 18px;
+               height: 40px;
+               background: #fff;
+          }
+          .aac-text {
+               font-size: 25px;
+               font-weight: 600;
+               letter-spacing: 0.05em;
+               display: flex;
+               align-items: center;
+               justify-content: left;
+          }
+          .aac-text span {
+               position: absolute;
+               right: 15px;
+               font-size: 35px;
+          }
+          .bottomIconApiCard {
+               position: relative;
+               /* display: flex; */
+          }
+          .link-content {
+               display: flex;
+               align-items: center;
+               justify-content: left;
+               padding-left: 35px;
+               width: 100%;
+               height: 45px;
+               background: green;
+               /* border-radius: 0 0 15px 15px; */
+               overflow: hidden;
+               position: relative;
+               cursor: pointer;
+          }
+          .icon-content-api-card {
+               width: 50px;
+               height: 50px;
+               background: blue;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               border-radius: 0 0 10px 10px;
+               position: relative;
+               top: -6px;
+          }
+          .link-content:active {
+               background: aqua;
+          }
+          .link-content span ion-icon {
+               font-size: 35px;
+               margin-right: 10px;
+               margin-top: 5px;
+          }
+          .copyBtn {
+               background: transparent;
+               border: none;
+               outline: none;
+               color: #fff;
+               font-size: 25px;
+               position: absolute;
+               right: -15px;
+               width: 60px;
+               height: 38px;
+               background: blue;
+               border-radius: 10px 0 0 10px;  
+          }
+          .copyBtn ion-icon {
+               position: relative;
+               left: -8px;
+          }
+          .main-api-card {
+               width: 600px;
+               height: 505px;
+               display: none;
+               background: #131313;
+               overflow: auto;
+          }
+          .main-api-card::-webkit-scrollbar {
+               width: 15px;         
+               
+          }
+          .main-api-card::-webkit-scrollbar-track {
+               background: #0cd4c3;    
+               border-radius: 7px;
+          }
+          .main-api-card::-webkit-scrollbar-thumb {
+               background: #d613dd;   
+               border-radius: 7px; 
+          }
+          pre {
+               color: #fff;
+               /* background: #131313; */
+               font-size: 13px;
+               width: 100%;
+               height: 600px;
+               
+          }
+          .preBlue {
+               color: rgb(26, 143, 244);
+          }
+          .preGreen {
+               color: #20bb12;
+          }
+          .preOrange {
+               color: #ff8000;
+          }
+          .preYellow {
+               color: #efef08;
+          }
+          .api-card-link-copied-container {
+               width: 400px;
+               height: 200px;
+               position: fixed;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               top: -200px;
+               border-radius: 18px;
+               backdrop-filter: blur(9px);
+               border: 2px solid rgba(255, 255, 255, .2);
+               background: red;
+               
+          }
+          .copiedAnm{ 
+               animation: copiedAnm 0.3s;
+          }
+          @keyframes copiedAnm {
+               0% {
+                    top: -200px;
+               }
+               100% {
+                    top: -100px;
+               }
+          }
+          .api-card-link-copied-container h1 {
+               position: relative;
+               top: 50px;
+          }
+
+          .required-field-container {
+               width: 600px;
+               margin-bottom: 10px;
+               background: green;
+               position: absolute;
+               top: 0;
+               text-align: left;
+               padding-left: 30px;
+               padding-right: 30px;
+               border-radius: 0 0 18px 18px;
+          }
+          .required-field-container h4 {
+               font-size: 18px;
+               font-weight: 400;
+          }
+          .required-field-container p {
+               color: #f81a4a;
+          }
+          .required-field-container p span {
+               color: #15b5d8;
           }
      </style>
 </head>
 <body>
-     <div class="container"></div>
+     <div class="api-container">
+          <h1>Доступные маршруты:</h1>
+          <div class="api-cards">
+
+               <!-- Api card 1, 2 -->
+               <div class="api-card-content">
+                    <!-- Api card 1 -->
+                    <div class="api-card api-card1">
+                         <div class="about-api-card">
+                              <div class="aac-top">
+                                   <div class="method-card">GET</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text">
+                                        Получение всех фильмов 
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard1 openCardApi1" onclick="openCard()" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard1" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                              
+
+
+                         </div>
+                         <div class="main-api-card main-api-card1">
+                              <pre id="pre">
+  <span class="preYellow">[</span>
+    <span class="preYellow">{</span>
+       <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+       <span class="preBlue">"title"</span>: <span class="preGreen">"Титаник"</span>,
+       <span class="preBlue">"release"</span>: <span class="preGreen">"1995"</span>,
+       <span class="preBlue">"duration"</span>: <span class="preGreen">"03:14:00"</span>,
+       <span class="preBlue">"description"</span>: <span class="preGreen">"Молодые влюбленные Джек и Роза находят друг друга в
+                       первом и последнем плавании «непотопляемого» Титаника.
+                       Они не могли знать,  что шикарный лайнер столкнется с 
+                       айсбергом в холодных водах Северной Атлантики, и их 
+                       страстная любовь превратится в схватку со смертью…", </span>
+       <span class="preBlue">"actors"</span>: <span class="preYellow">[</span>
+            <span class="preYellow">{</span>
+                 <span class="preBlue">"name"</span>: <span class="preGreen">"Леонардо Ди Каприо"</span>,
+                 <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>
+            <span class="preYellow">}</span>,
+            <span class="preYellow">{</span>
+                 <span class="preBlue">"name"</span>: <span class="preGreen">"Кейт Уинслет"</span>,
+                 <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>
+            <span class="preYellow">}</span>
+       <span class="preYellow">]</span>,
+       <span class="preBlue">"genres"</span>: <span class="preYellow">[</span>
+            <span class="preYellow">{</span>
+                 <span class="preBlue">"genre"</span>: <span class="preGreen">"Романтика"</span>,
+                 <span class="preBlue">"id"</span>: <span class="preGreen">"3"</span>
+            <span class="preYellow">}</span>,
+            <span class="preYellow">{</span>
+                 <span class="preBlue">"genre"</span>: <span class="preGreen">"Драмма"</span>,
+                 <span class="preBlue">"id"</span>: "2"
+            <span class="preYellow">}</span>,
+            <span class="preYellow">{</span>
+                 <span class="preBlue">"genre"</span>: <span class="preGreen">"История"</span>,
+                 <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>
+            <span class="preYellow">}</span>
+       <span class="preYellow">]</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+         <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+         <span class="preBlue">"title"</span>: <span class="preGreen">"Начало"</span>,
+         <span class="preBlue">"release"</span>: <span class="preGreen">"2005"</span>,
+         <span class="preBlue">"duration"</span>: <span class="preGreen">"02:28:00"</span>,
+         <span class="preBlue">"description"</span>: <span class="preGreen">"Кобб — талантливый вор, лучший из лучших в опасном 
+                          искусстве извлечения: он крадет ценные секреты из 
+                          глубин подсознания во время сна, когда человеческий 
+                          разум наиболее уязвим. Редкие способности Кобба 
+                          сделали его ценным игроком в привычном к 
+                          предательству мире промышленного шпионажа, но они же 
+                          превратили его в извечного беглеца и лишили всего, 
+                          то он когда-либо любил."</span>,
+         <span class="preBlue">"actors"</span>: <span class="preYellow">[</span>
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"name"</span>: <span class="preGreen">"Леонардо Ди Каприо"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>
+              <span class="preYellow">}</span>,
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"name"</span>: <span class="preGreen">"Том Харди"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"3"</span>
+              <span class="preYellow">}</span>,
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"name"</span>: <span class="preGreen">"Киллиан Мёрфи"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"4"</span>
+              <span class="preYellow">}</span>,
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"name"</span>: <span class="preGreen">"Майкл Кейн"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"5"</span>
+              <span class="preYellow">}</span>,
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"name"</span>: <span class="preGreen">"Джозеф Гордон-Левитт"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"6"</span>
+              <span class="preYellow">}</span>,
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"name"</span>: <span class="preGreen">"Марион Котийяр"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"8"</span>
+              <span class="preYellow">}</span>
+         <span class="preYellow">]</span>,
+         <span class="preBlue">"genres"</span>: <span class="preYellow">[</span>
+              <span class="preYellow">{</span>
+                   <span class="preBlue">"genre"</span>: <span class="preGreen">"Научная фантастика"</span>,
+                   <span class="preBlue">"id"</span>: <span class="preGreen">"5"</span>
+              <span class="preYellow">}</span>
+         <span class="preYellow">]</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{}</span>,
+    <span class="preYellow">{}</span>
+  <span class="preYellow">]</span>
+                              </pre>
+                         </div>
+                         <div class="link-content link-content1 openCardApi1">
+                                   <span><ion-icon class="openCardApi" name="link-outline"></ion-icon></span>
+                                   <span class="openCardApi1 copyTextLink1">https://axios.uz/index.php/api/getMovies</span>
+                                   <button class="copyBtn copyBtn1"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 1 -->
+
+
+                    <!-- Api card 2 -->    
+                    <div class="api-card api-card2">
+                         <div class="about-api-card">
+                              <div class="aac-top">
+                                   <div class="method-card">GET</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text">
+                                        Получение всех актёров 
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard2 openCardApi2" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard2" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                         </div>
+
+                         <div class="main-api-card main-api-card2" style="overflow: hidden;">
+                              <pre id="pre">
+  <span class="preYellow">[</span>
+    <span class="preYellow">{</span>
+       <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+       <span class="preBlue">"name"</span>: <span class="preGreen">"Леонардо Ди Каприо"</span>,
+       <span class="preBlue">"photo"</span>: <span class="preGreen">"http://axios.uz/materials/actors/Leo.jpg"</span>,
+       <span class="preBlue">"movies"</span>: <span class="preYellow">[</span>
+          <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+               <span class="preBlue">"title"</span>: <span class="preGreen">"Титаник"</span>,
+               <span class="preBlue">"release"</span>: <span class="preGreen">"1995"</span>
+          <span class="preYellow">}</span>,
+          <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+               <span class="preBlue">"title"</span>: <span class="preGreen">"Начало"</span>,
+               <span class="preBlue">"release"</span>: <span class="preGreen">"2005"</span>
+          <span class="preYellow">}</span>
+        <span class="preYellow">]</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+       <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+       <span class="preBlue">"name"</span>: <span class="preGreen">"Кейт Уинслет"</span>,
+       <span class="preBlue">"photo"</span>: <span class="preGreen">"http://axios.uz/materials/actors/Kate.jpg"</span>,
+       <span class="preBlue">"movies"</span>: <span class="preYellow">[</span>
+          <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+               <span class="preBlue">"title"</span>: <span class="preGreen">"Титаник"</span>,
+               <span class="preBlue">"release"</span>: <span class="preGreen">"1995"</span>
+          <span class="preYellow">}</span>
+        <span class="preYellow">]</span>
+    <span class="preYellow">}</span>,
+  <span class="preYellow">{}</span>,
+  <span class="preYellow">{}</span>
+  <span class="preYellow">]</span>
+                              </pre>
+                         </div>
+
+                         <div class="link-content openCardApi2">
+                              <span><ion-icon class="openCardApi2" name="link-outline"></ion-icon></span>
+                              <span class="openCardApi2 copyTextLink2">https://axios.uz/index.php/api/getActors</span>
+                              <button class="copyBtn copyBtn2"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 2 --> 
+               </div>
+               <!-- Api card 1, 2 -->
+
+
+               <!-- Api card 3, 4 -->
+               <div class="api-card-content">
+                    <!-- Api card 3 -->
+                    <div class="api-card api-card3">
+                         <div class="about-api-card">
+                              <div class="aac-top">
+                                   <div class="method-card">GET</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text">
+                                        Получение всех жанров
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard3 openCardApi3" onclick="openCard()" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard1" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                              
+
+
+                         </div>
+                         <div class="main-api-card main-api-card3" style="overflow: hidden;">
+                              <pre id="pre" style="position: relative;top: 20px;">
+  <span class="preYellow">[</span>
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"История"</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"Драмма"</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"3"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"Романтика"</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"4"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"Фантастика"</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"5"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"Научная фантастика"</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"6"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"Детектив"</span>
+    <span class="preYellow">}</span>,
+    <span class="preYellow">{</span>
+          <span class="preBlue">"id"</span>: <span class="preGreen">"7"</span>,
+          <span class="preBlue">"genre"</span>: <span class="preGreen">"Криминал"</span>
+    <span class="preYellow">}</span>
+  <span class="preYellow">]</span>
+                              </pre>
+                         </div>
+                         <div class="link-content link-content3 openCardApi3">
+                                   <span><ion-icon class="openCardApi3" name="link-outline"></ion-icon></span>
+                                   <span class="openCardApi3 copyTextLink3">https://axios.uz/index.php/api/getGenres</span>
+                                   <button class="copyBtn copyBtn3"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 3 -->
+
+                    
+                    <!-- Api card 4 -->
+                    <div class="api-card api-card4">
+                         <div class="about-api-card">
+                              <div class="aac-top">
+                                   <div class="method-card">GET</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text">
+                                        Поиск фильмов 
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard4 openCardApi4" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard2" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                         </div>
+
+                         <div class="main-api-card main-api-card4" style="padding-top: 60px;position: relative;overflow-x: hidden;">
+                              <div class="required-field-container">
+                                   <h4>Необходимые поля:</h4>
+                                   <p>search: "Титаник"</p>
+                              </div>
+                              <pre id="pre">
+  <span class="preYellow">{</span>
+     <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
+     <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
+     <span class="preBlue">"message"</span>: <span class="preGreen">"Данные успешно обработаны!"</span>,
+     <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>,
+     <span class="preBlue">"data"</span>: <span class="preYellow">[</span>
+          <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preOrange">1</span>,
+               <span class="preBlue">"title"</span>: <span class="preGreen">"Титаник"</span>,
+               <span class="preBlue">"release"</span>: <span class="preGreen">"1995"</span>,
+               <span class="preBlue">"duration"</span>: <span class="preGreen">"03:14:00"</span>,
+               <span class="preBlue">"description"</span>: <span class="preGreen">"Молодые влюбленные Джек и Роза находят друг друга
+                               в первом и последнем плавании «непотопляемого»
+                               Титаника. Они не могли знать, что шикарный лайнер
+                               столкнется с айсбергом в холодных водах Северной
+                               Атлантики, и их страстная любовь превратится в 
+                               схватку со смертью…"</span>,
+               <span class="preBlue">"actors"</span>: <span class="preYellow">[</span>
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+                         <span class="preBlue">"name"</span>: <span class="preGreen">"Леонардо Ди Каприо"</span>
+                    <span class="preYellow">}</span>,
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+                         <span class="preBlue">"name"</span>: <span class="preGreen">"Кейт Уинслет"</span>
+                    <span class="preYellow">}</span>
+               <span class="preYellow">]</span>,
+               <span class="preBlue">"genres"</span>: <span class="preYellow">[</span>
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"3"</span>,
+                         <span class="preBlue">"genre"</span>: <span class="preGreen">"Романтика"</span>
+                    <span class="preYellow">}</span>,
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+                         <span class="preBlue">"genre"</span>: <span class="preGreen">"Драмма"</span>
+                    <span class="preYellow">}</span>,
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+                         <span class="preBlue">"genre"</span>: <span class="preGreen">"История"</span>
+                    <span class="preYellow">}</span>
+               <span class="preYellow">]</span>
+          <span class="preYellow">}</span>
+     <span class="preYellow">]</span>
+  <span class="preYellow">}</span>
+                              </pre>
+                         </div>
+
+                         <div class="link-content openCardApi4">
+                              <span><ion-icon class="openCardApi4" name="link-outline"></ion-icon></span>
+                              <span class="openCardApi4 copyTextLink4">https://axios.uz/index.php/api/searchMovie</span>
+                              <button class="copyBtn copyBtn4"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 4 -->
+               </div>
+               <!-- Api card 3, 4 -->
+
+               <!-- Api card 5, 6 -->
+               <div class="api-card-content">
+                    <!-- Api card 5 -->
+                    <div class="api-card api-card5">
+                         <div class="about-api-card">
+                              <div class="aac-top">
+                                   <div class="method-card">GET</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text">
+                                        Поиск Актёров
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard5 openCardApi5" onclick="openCard()" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard1" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                              
+
+
+                         </div>
+                         <div class="main-api-card main-api-card5" style="overflow: hidden;position: relative;">
+                              <div class="required-field-container">
+                                   <h4>Необходимые поля:</h4>
+                                   <p>search: "Леонардо"</p>
+                              </div>
+                              <pre id="pre" style="position: relative;top: 52px;font-size: 15px;">
+  <span class="preYellow">{</span>
+     <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
+     <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
+     <span class="preBlue">"message"</span>: <span class="preGreen">"Данные успешно обработаны!"</span>,
+     <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>,
+     <span class="preBlue">"data"</span>: <span class="preYellow">[</span>
+          <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preOrange">1</span>,
+               <span class="preBlue">"name"</span>: <span class="preGreen">"Леонардо Ди Каприо"</span>,
+               <span class="preBlue">"photo"</span>: <span class="preGreen">"http://axios.uz/materials/actors/Leo.jpg"</span>,
+               <span class="preBlue">"movies"</span>: <span class="preYellow">[</span>
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
+                         <span class="preBlue">"title"</span>: <span class="preGreen">"Титаник"</span>,
+                         <span class="preBlue">"release"</span>: <span class="preGreen">"1995"</span>
+                    <span class="preYellow">}</span>,
+                    <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"2"</span>,
+                         <span class="preBlue">"title"</span>: <span class="preGreen">"Начало"</span>,
+                         <span class="preBlue">"release"</span>: <span class="preGreen">"2005"</span>
+                    <span class="preYellow">}</span>
+               <span class="preYellow">]</span>
+          <span class="preYellow">}</span>
+     <span class="preYellow">]</span>
+  <span class="preYellow">}</span>
+                              </pre>
+                         </div>
+                         <div class="link-content link-content5 openCardApi5">
+                                   <span><ion-icon class="openCardApi5" name="link-outline"></ion-icon></span>
+                                   <span class="openCardApi5 copyTextLink5">https://axios.uz/index.php/api/searchActor</span>
+                                   <button class="copyBtn copyBtn5"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 5 -->
+
+                    
+                    <!-- Api card 6 -->
+                    <div class="api-card api-card6">
+                         <div class="about-api-card">
+                              <div class="aac-top" style="gap: 10px;">
+                                   <div class="method-card" style="width: 80px;">POST</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text" style="font-size: 22px;">
+                                        Авторизация/Получение токена   
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard6 openCardApi6" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard2" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                         </div>
+
+                         <div class="main-api-card main-api-card6" style="padding-top: 80px;position: relative;overflow: hidden;">
+                              <div class="required-field-container">
+                                   <h4>Необходимые поля:</h4>
+                                   <p>login: "user",</p>
+                                   <p>password: "password"</p>
+                              </div>
+                              <pre id="pre" style="font-size: 17px;">
+  <span class="preYellow">{</span>
+     <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
+     <span class="preBlue">"message"</span>: <span class="preGreen">"token created/updated"</span>,
+     <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
+     <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>,
+     <span class="preBlue">"data"</span>: <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preGreen">"9999"</span>,
+               <span class="preBlue">"userId"</span>: <span class="preGreen">"99999"</span>,
+               <span class="preBlue">"token"</span>: <span class="preGreen">"user62ct66zebc228"</span>,
+               <span class="preBlue">"expiry"</span>: <span class="preGreen">"2022-07-13 12:32:08"</span>,
+               <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
+          <span class="preYellow">}</span>
+  <span class="preYellow">}</span>
+                              </pre>
+                         </div>
+
+                         <div class="link-content openCardApi6">
+                              <span><ion-icon class="openCardApi6" name="link-outline"></ion-icon></span>
+                              <span class="openCardApi6 copyTextLink6">https://axios.uz/index.php/api/auth</span>
+                              <button class="copyBtn copyBtn6"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 6 -->
+               </div>
+               <!-- Api card 5, 6 -->
+
+               <!-- Api card 7, 8 -->
+               <div class="api-card-content">
+                    <!-- Api card 7 -->
+                    <div class="api-card api-card7">
+                         <div class="about-api-card">
+                              <div class="aac-top">
+                                   <div class="method-card" style="width: 80px;">POST</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text">
+                                        Добавление фильма
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard7 openCardApi7" onclick="openCard()" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard1" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                              
+
+
+                         </div>
+                         <div class="main-api-card main-api-card7" style="overflow-x: hidden;position: relative;">
+                              <div class="required-field-container">
+                                   <h4>Необходимые поля:</h4>
+
+                                   <h3>HEADERS:</h3>
+                                   <hr>
+                                   <p>User-Id: "999"</p>
+                                   <p>Token: "user62ct66zebc228"</p>
+                                   <hr>
+                                   <h3>Обязательные поля:</h3>
+                                   <hr>
+                                   <p>title: "Название фильма"</p>
+                                   <p>release: "2000"</p>
+                                   <p>description: "Описание фильма"</p>
+                                   <p>duration: "Длительность"</p>
+                                   <hr>
+                                   <h3>Необязательные поля:</h3>
+                                   <hr>
+                                   <p>genres: "1,2,3" <span>// ID - Жанров </span></p>
+                                   <p>actors: "2,3,4" <span>// ID - Актёров</span></p>
+
+                              </div>
+                              <pre id="pre" style="position: relative;top: 340px;font-size: 17px;">
+  <span class="preYellow">{</span>
+     <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>, 
+     <span class="preBlue">"message"</span>: <span class="preGreen">"Фильм добавлен!"</span>,
+     <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
+     <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>, 
+     <span class="preBlue">"data"</span>: <span class="preYellow">{</span>
+               <span class="preBlue">"message"</span>: <span class="preGreen">"Фильм добавлен!"</span>,
+               <span class="preBlue">"token"</span>: <span class="preYellow">{</span>
+                         <span class="preBlue">"id"</span>: <span class="preGreen">"9999"</span>,
+                         <span class="preBlue">"userId"</span>: <span class="preGreen">"99999"</span>,
+                         <span class="preBlue">"token"/span>: <span class="preGreen">"user62ct66zebc228"</span>,
+                         <span class="preBlue">"expiry"</span>: <span class="preGreen">"2022-07-13 12:32:08"</span>,
+                         <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
+                    <span class="preYellow">}</span>
+       <span class="preYellow">}</span>
+  <span class="preYellow">}</span>
+                              </pre>
+                         </div>
+                         <div class="link-content link-content7 openCardApi7">
+                                   <span><ion-icon class="openCardApi7" name="link-outline"></ion-icon></span>
+                                   <span class="openCardApi7 copyTextLink7">https://axios.uz/index.php/api/addMovie</span>
+                                   <button class="copyBtn copyBtn7"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 7 -->
+
+                    
+                    <!-- Api card 8 -->
+                    <div class="api-card api-card8">
+                         <div class="about-api-card">
+                              <div class="aac-top" style="gap: 10px;">
+                                   <div class="method-card" style="width: 80px;">POST</div>
+                                   <div class="line-api-card"></div>
+                                   <div class="aac-text" style="font-size: 22px;">
+                                        Добавление актёра   
+                                        <span class="icon-content-api-card">
+                                             <ion-icon class="bottomIconApiCard bottomIconApiCard8 openCardApi8" name="arrow-down-outline"></ion-icon>
+                                             <!-- <ion-icon class="topIconApiCard topIconApiCard2" name="arrow-up-outline"></ion-icon> -->
+                                        </span>
+                                   </div>
+                                   
+                              </div> 
+                         </div>
+
+                         <div class="main-api-card main-api-card8" style="padding-top: 240px;position: relative;overflow: hidden;">
+                              <div class="required-field-container">
+                                   <h4>Необходимые поля:</h4>
+                                   <h3>HEADERS:</h3>
+                                   <hr>
+                                   <p>User-Id: "999"</p>
+                                   <p>Token: "user62ct66zebc228"</p>
+                                   <hr>
+                                   <h3>Обязательные поля:</h3>
+                                   <hr>
+                                   <p>actorName: "Имя актёра"</p>
+                                   <hr>
+                                   <h3>Необязательные поля:</h3>
+                                   <hr>
+                                   <p>films: "1,2,3" <span>// ID - Фильмов в которых сыграл актёр</span></p>
+                              </div>
+                              <pre id="pre">
+  <span class="preYellow">{</span>
+     <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
+     <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
+     <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
+     <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>,
+     <span class="preBlue">"data"</span>: <span class="preYellow">{</span>
+          <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
+          <span class="preBlue">"token"</span>: <span class="preYellow">{</span>
+               <span class="preBlue">"id"</span>: <span class="preGreen">"9999"</span>,
+               <span class="preBlue">"userId"</span>: <span class="preGreen">"99999"</span>,
+               <span class="preBlue">"token"</span>: <span class="preGreen">"user62ct66zebc228"</span>,
+               <span class="preBlue">"expiry"</span>: <span class="preGreen">"2022-07-13 12:32:08"</span>,
+               <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
+          <span class="preYellow">}</span>
+     <span class="preYellow">}</span>
+  <span class="preYellow">}</span>
+                              </pre>
+                         </div>
+
+                         <div class="link-content openCardApi8">
+                              <span><ion-icon class="openCardApi8" name="link-outline"></ion-icon></span>
+                              <span class="openCardApi8 copyTextLink8">https://axios.uz/index.php/api/addActor</span>
+                              <button class="copyBtn copyBtn8"><ion-icon name="clipboard-outline"></ion-icon></button>
+                         </div>
+                    </div>
+                    <!-- Api card 8 -->
+               </div>
+               <!-- Api card 7, 8 -->
+
+          </div>
+
+          <div class="api-card-link-copied-container">
+               <h1>Link Copied</h1>
+          </div>
+     </div>
+
+
+     <script src="./api.js"></script>
+
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <span class="preYellow">{</span>
+          <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
+          <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
+          <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
+          <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>,
+          <span class="preBlue">"data"</span>: <span class="preYellow">{</span>
+               <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
+               <span class="preBlue">"token"</span>: <span class="preYellow">{</span>
+                    <span class="preBlue">"id"</span>: <span class="preGreen">"9999"</span>,
+                    <span class="preBlue">"userId"</span>: <span class="preGreen">"99999"</span>,
+                    <span class="preBlue">"token"</span>: <span class="preGreen">"user62ct66zebc228"</span>,
+                    <span class="preBlue">"expiry"</span>: <span class="preGreen">"2022-07-13 12:32:08"</span>,
+                    <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
+               <span class="preYellow">}</span>
+          <span class="preYellow">}</span>
+     <span class="preYellow">}</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
