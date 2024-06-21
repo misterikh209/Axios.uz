@@ -1077,6 +1077,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                          setTimeout(() => {
                               document.querySelector(".add-movie-info-content").style.top = "-180px"
                               document.querySelector(".add-movie-info-container").style.display = "none"
+                              document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-true")
                          }, 1000);
                     },1000)
                     document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-anm-close")
@@ -1097,6 +1098,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                          setTimeout(() => {
                               document.querySelector(".add-movie-info-content").style.top = "-180px"
                               document.querySelector(".add-movie-info-container").style.display = "none"
+                              document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-false")
                          }, 1000);
                     },1000)
                     document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-anm-close")
