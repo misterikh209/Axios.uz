@@ -1,12 +1,30 @@
-document.addEventListener("DOMContentLoaded", async function (e) {
-     if(localStorage.getItem("userId") != undefined && localStorage.getItem("token") != undefined){
-          location.href = "loginSucces.html"
-     }
+document.addEventListener("DOMContentLoaded", async function(e){
      let d = document
+     let userId = localStorage.getItem("userId")
+     let token = localStorage.getItem("token")
      let inputs = document.querySelectorAll("input")
+     document.getElementById("accountNameText").innerText = localStorage.getItem("accountName")
      inputs.forEach((inputAll)=>{
           inputAll.setAttribute("autocomplete", "off")
      })
+     // let allATegs = d.querySelectorAll("a")
+     // let allButtons = d.querySelectorAll("button")
+     // allATegs.forEach(a=>{
+     //      a.style.cursor = "pointer"
+     // })
+     // allButtons.forEach(btn=>{
+     //      btn.style.cursor = "pointer"
+     // })
+
+     if(userId == undefined && token == undefined){
+          location.href = "index.html"
+     }
+     document.getElementById("exitAcc").addEventListener("click", () => {
+          localStorage.removeItem("userId")
+          localStorage.removeItem("token")
+          location.href = "index.html"
+     })
+     
      let container = d.querySelector(".container1")
      let container2 = d.querySelector(".container2")
      let offset = 0
@@ -17,8 +35,6 @@ document.addEventListener("DOMContentLoaded", async function (e) {
      let resp = await req.json()
 
      resp.forEach(function(mov) {
-          
-
           let card = d.createElement("div")
           card.classList.add("card_movie")
           card.innerHTML = `
@@ -268,6 +284,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
 
      ///////////////////////////////////////////////////////////////////////
      /// Войти click
+     d.querySelector(".carusel-cont").style.display = "flex"
      d.getElementById("login").addEventListener("click", async function (e) {
           
           d.querySelector(".login_click_container").style.display = "flex"
@@ -276,7 +293,7 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                d.querySelector(".login_click_container").classList.remove("login_click_container_anm_open")
           }, 1000);
           
-     
+
           d.querySelector(".login_click_container").addEventListener("click", function (e) {
                if (e.target.classList.contains("login_click_container")) {
                     d.querySelector(".login_click_container").classList.add("login_click_container_anm_close")
@@ -286,54 +303,67 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                     }, 1000)
                }
           })
-     
+
           ///////animation
           let animation = document.querySelector(".weather-nav")
           setTimeout(() => {
                animation.style.top = "-30px"
           }, 1000)
-     
+
           document.querySelector("#forms_login").addEventListener("submit", async function (e) {
-     
-     
+
+
                //loading animation 
-     
+
                document.getElementById("loading").style.display = "flex"
                document.body.style.overflow = "hidden"
                d.querySelector(".login_click_container").style.display = "none"
                setTimeout(() => {
                     document.getElementById("loading").style.display = "none"
                     document.body.style.overflow = "auto"
-     
+
                }, 200)
-     
+
                //loading animation 
-     
+
+
+               //container 2
+               container.innerHTML = ``
+               container2.innerHTML = ``
+
+               let mainMenu2 = d.getElementById("mainMenu2")
+               let actor2 = d.getElementById("actor2")
+               d.getElementById("mainMenu").style.display = "none"
+               d.getElementById("actor").style.display = "none"
+               mainMenu2.style.display = "flex"
+               actor2.style.display = "flex"
+
+
                //Add Movie,  Add Actor
-     
+
                e.preventDefault()
-     
+
                let loginUser = document.querySelector("#login_username").value.trim()
                let passwordUser = document.querySelector("#login_password").value.trim()
+               d.getElementById("personLogin").innerText = loginUser
                if (loginUser && passwordUser) {
                     let formData = new FormData()
                     formData.append("login", loginUser)
                     formData.append("password", passwordUser)
-     
+
                     let requestLogin = await fetch("https://axios.uz/index.php/api/auth",
                          {
                               method: "POST",
                               body: formData,
                          })
                     let responseLogin = await requestLogin.json()
-     
+
                     localStorage.setItem("token", responseLogin.data.token)
                     localStorage.setItem("userId", responseLogin.data.userId)
                     if (responseLogin.data.token != undefined) {
-                         localStorage.setItem("accountName", loginUser)
-                         // localStorage.setItem("accountPassword", passwordUser)
                          location.href = "loginSucces.html"
-                    } else if (responseLogin.data.token == undefined) {
+                    }
+                    else if (responseLogin.data.token == undefined) {
                          d.querySelector(".error").style.display = "flex"
                          d.getElementById("errorOk").addEventListener("click", () => {
                               d.querySelector(".error").style.display = "none"
@@ -343,8 +373,8 @@ document.addEventListener("DOMContentLoaded", async function (e) {
                          }, 3000)
                     }
                }
-     
-     
+
+
                d.querySelector("#login_username").value = ""
                d.querySelector("#login_password").value = ""
           })
@@ -955,7 +985,174 @@ document.addEventListener("DOMContentLoaded", async function (e) {
           },300)
      })
 
-
+     
      })
 
+
+     //Add Movie Full
+
+     d.getElementById("addMovieBtn").addEventListener("click", () => {
+          //    container.innerHTML = ``  
+          d.querySelector(".addMovieWindow").style.display = "flex"
+          d.querySelector(".addMovie").classList.add("addMovieAnmOpen")
+          setTimeout(()=>{
+               d.querySelector(".addMovie").classList.remove("addMovieAnmOpen")
+
+          },500)
+
+         
+          d.querySelector(".addMovieWindow").addEventListener("click", function (e) {
+               if (e.target.classList.contains("addMovieWindow")) {
+                    d.querySelector(".addMovieWindow").style.display = "none"
+               }
+          })
+
+          d.querySelector(".addMovie").addEventListener("submit", async function(e) {
+               e.preventDefault()
+               let title = d.querySelector("#addMovieTitle").value.trim();
+               let release = d.querySelector("#addMovieRelease").value.trim();
+               let duration = d.querySelector("#addMovieDuration").value.trim();
+               let description = d.querySelector("#addMovieDescription").value.trim();
+
+               
+
+               let formDataMovie = new FormData()
+               formDataMovie.append("title", title)
+               formDataMovie.append("release", release)
+               formDataMovie.append("duration", duration)
+               formDataMovie.append("description", description)
+
+               let requestAddMovie = await fetch("http://axios.uz/index.php/api/addMovie", {
+                    method: "POST",
+                    body: formDataMovie,
+                    headers: {
+                         "User-Id": userId,
+                         "Token": token,
+                    }
+               })
+               let respAddMovie = await requestAddMovie.json()
+               console.log(respAddMovie.ok);
+               
+               if(respAddMovie.ok == true){
+                    document.querySelector(".add-movie-info-container").style.display = "flex"
+                    document.getElementById("addMovieInfoText").innerText = `Kino qo'shildi!`
+                    document.getElementById("addMovieInfoText").style.top = "60px"
+                    document.querySelector(".add-movie-info-content").classList.add("add-movie-info-content-true")
+                    document.querySelector(".add-movie-info-content").classList.add("add-movie-info-content-anm-open")
+                    
+                    setTimeout(()=>{
+                         document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-anm-open")
+                         document.querySelector(".add-movie-info-content").classList.add("add-movie-info-content-anm-close")
+                         
+                         setTimeout(() => {
+                              document.querySelector(".add-movie-info-content").style.top = "-180px"
+                              document.querySelector(".add-movie-info-container").style.display = "none"
+                         }, 1000);
+                    },1000)
+                    document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-anm-close")
+
+                    d.querySelector(".addMovieWindow").click()
+               }
+               else if(respAddMovie.ok == false){
+                    document.querySelector(".add-movie-info-container").style.display = "flex"
+                    document.getElementById("addMovieInfoText").innerText = `Kino qo'shilmadi. Xatolik!`
+                    document.getElementById("addMovieInfoText").style.top = "43px"
+                    document.querySelector(".add-movie-info-content").classList.add("add-movie-info-content-false")
+                    document.querySelector(".add-movie-info-content").classList.add("add-movie-info-content-anm-open")
+                    
+                    setTimeout(()=>{
+                         document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-anm-open")
+                         document.querySelector(".add-movie-info-content").classList.add("add-movie-info-content-anm-close")
+                         
+                         setTimeout(() => {
+                              document.querySelector(".add-movie-info-content").style.top = "-180px"
+                              document.querySelector(".add-movie-info-container").style.display = "none"
+                         }, 1000);
+                    },1000)
+                    document.querySelector(".add-movie-info-content").classList.remove("add-movie-info-content-anm-close")
+
+               }
+               d.querySelector("#addMovieTitle").value = ""
+               d.querySelector("#addMovieRelease").value = ""
+               d.querySelector("#addMovieDuration").value = ""
+               d.querySelector("#addMovieDescription").value = ""
+               
+          })
+     })
+
+
+     //Add Actor Full
+     document.getElementById("addActorBtn").addEventListener("click", async function(e){
+          document.querySelector(".addActorWindow").style.display = "flex"
+          
+          document.querySelector(".addActorWindow").addEventListener("click", function(e){
+               if(e.target.classList.contains("addActorWindow")){
+                    document.querySelector(".addActorWindow").style.display = "none"
+               }
+          })
+
+          document.querySelector(".addActorForm").addEventListener("submit", async function(e){
+               e.preventDefault()
+               let addActorTitle = document.getElementById("addActorTitle")
+               
+               let formDataAddActor = new FormData()
+               formDataAddActor.append("actorName", addActorTitle)
+               let requestAddActors = await fetch("https://axios.uz/index.php/api/addActor", {
+                    method: "POST",
+                    body: formDataAddActor,
+                    headers: {
+                         "User-Id": userId,
+                         "Token": token,
+                    }
+               })
+               let responseAddActors = await requestAddActors.json()
+               console.log(responseAddActors.ok);
+
+               
+          })
+     })
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

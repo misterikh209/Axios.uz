@@ -741,7 +741,45 @@ body {
      border-radius: 20px;
      position: relative;
      backdrop-filter: blur(9px);
+     
 }
+.addMovieAnmOpen {
+     animation: addMovieAnmOpen 0.5s;
+     /* transform: scale(0.5);
+     top: -400px;
+     opacity: 0; */
+}
+@keyframes addMovieAnmOpen {
+     0%{
+          top: -400px;
+          opacity: 0;
+          transform: scale(0.5);
+     }
+     100% {
+          top: 0;
+          opacity: 1;
+          transform: scale(1);
+     }
+}
+.addMovieAnmClose {
+     animation: addMovieAnmClose 0.5s;
+     /* transform: scale(0.5);
+     top: -400px;
+     opacity: 0; */
+}
+@keyframes addMovieAnmClose {
+     0% {
+          transform: scale(1);
+          top: 0;
+          opacity: 1;
+     }
+     100% {
+          transform: scale(0.5);
+          top: -400px;
+          opacity: 0;
+     }
+}
+
 .addMovie h1 span {
      position: relative;
      top: 5px;
@@ -827,42 +865,44 @@ body {
      border: 2px solid rgba(255, 255, 255, .2);
 }
 
-.btnsAddActor {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     width: 250px;
-     margin-top: 20px;
-     gap: 10px;
+.addActorForm {
+     /* position: relative;
+     top: -300px;
+     transform: scale(0.5); */
+     animation: addActorAnmOpen 0.5s;
+}
+@keyframes addActorAnmOpen {
+     0% {
+          opacity: 0;
+          top: -300px;
+          transform: scale(0.5);
+     }
+     100% {
+          opacity: 1;
+          top: 0;
+          transform: scale(1);
+     }
 }
 
-.btnsAddActor button {
-     width: 125px;
+
+.addActorForm button {
+     width: 250px;
+     margin-top: 20px;
      height: 40px;
      color: #fff;
      border-radius: 6px;
      font-size: 18px;
      border: none;
      transition: 0.3s ease;
+     background: transparent;
+     border: 2px solid rgba(255, 255, 255, .2);
 }
 
-.btnsAddActor button:first-child{
+.addActorForm button:active {
      background: #0a6c1d;
-}
-.btnsAddActor button:last-child{
-     background: #780d0d;
-}
-.btnsAddActor button:first-child:active {
-     background: transparent;
-     border: 1px solid #0a6c1d;
      box-shadow: 0 1px 30px 3px #0a6c1d;
-     color: #0a6c1d;
-}
-.btnsAddActor button:last-child:active {
-     background: transparent;
-     border: 1px solid #780d0d;
-     box-shadow: 0 1px 30px 3px #780d0d;
-     color: #780d0d;
+     color: #fff;
+     border: none;
 }
 
 /* /////////////////////////////////////////////////////////////// */
@@ -875,7 +915,7 @@ body {
      background: rgba(0, 0, 0, 0.6);
      font-family: sans-serif;
      color: #fff;
-     position: absolute; 
+     position: fixed; 
      top: 0;
      display: none;
 }
@@ -921,45 +961,89 @@ body {
      box-shadow: 0 1px 15px 0 #fff
 }
 
-.btnsAddMovie {
-     display: flex;
-     align-items: center;
-     justify-content: center;
+
+.addMovie button {
      width: 250px;
      margin-top: 20px;
-     gap: 10px;
-}
-
-.btnsAddMovie button {
-     width: 125px;
      height: 40px;
      color: #fff;
      border-radius: 6px;
      font-size: 18px;
      border: none;
      transition: 0.3s ease;
+     background: transparent;
+     border: 2px solid rgba(255, 255, 255, .2);
 }
-
-.btnsAddMovie button:first-child{
+.addMovie button:active {
      background: #0a6c1d;
-}
-.btnsAddMovie button:last-child{
-     background: #780d0d;
-}
-.btnsAddMovie button:first-child:active {
-     background: transparent;
-     border: 1px solid #0a6c1d;
+     /* background: transparent; */
+     border: none;
      box-shadow: 0 1px 30px 3px #0a6c1d;
-     color: #0a6c1d;
-}
-.btnsAddMovie button:last-child:active {
-     background: transparent;
-     border: 1px solid #780d0d;
-     box-shadow: 0 1px 30px 3px #780d0d;
-     color: #780d0d;
 }
 
+.add-movie-info-container {
+     width: 100%;
+     height: 100vh;
+     position: fixed;
+     top: 0;
+     left: 0;
+     display: flex;
+     align-items: top;
+     justify-content: center;
+     z-index: 998;
+     display: none;
+}
 
+.add-movie-info-content {
+     width: 400px;
+     height: 150px;
+     position: relative;;
+     top: -30px;
+     text-align: center;
+     color: #fff;
+     border-radius: 18px;
+}
+.add-movie-info-content-true {
+     background: #07940b94;
+     backdrop-filter: blur(5px);
+     box-shadow: 0 0 50px 0 #07940b94;
+}
+.add-movie-info-content-false {
+     background: #87070794;
+     backdrop-filter: blur(5px);
+     box-shadow: 0 0 50px 0 #87070794;
+}
+.add-movie-info-content-anm-open{
+     animation: addMovieInfoContentAnmOpen 1s;
+}
+@keyframes addMovieInfoContentAnmOpen {
+     0% {
+          opacity: 0;
+          top: -150px;
+     }
+     100% {
+          opacity: 1;
+          top: -30px;
+     }
+}
+.add-movie-info-content-anm-close{
+     animation: addMovieInfoContentAnmClose 1s;
+}
+@keyframes addMovieInfoContentAnmClose {
+     0% {
+          opacity: 1;
+          top: -30px;
+     }
+     100% {
+          opacity: 0;
+          top: -150px;
+     }
+}
+.add-movie-info-content h1 {
+     position: relative;
+     top: 60px;
+     font-size: 40px;
+}
 
 #mainMenu2, #actor2 {
      display: none;

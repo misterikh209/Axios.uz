@@ -7,6 +7,7 @@
      <link rel="stylesheet" href="./main.css">
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+     
 </head>
 <body>
      <div class="bg-img-container"></div>
@@ -126,39 +127,7 @@
      </div>
      <div class="stick" style="position: fixed; width: 100%;z-index: 888;">
           
-          <div class="addMovieWindow" style="z-index: 999;">
-               <form class="addMovie">
-                    <h1>Add Movie <span><ion-icon name="film-outline"></ion-icon></span></h1>
-                    <label for="addMovieTitle">Movie Name</label>
-                    <input type="text" id="addMovieTitle" placeholder="Movie name...">
-                    <label for="addMovieRelease">Movie Release</label>
-                    <input type="number" id="addMovieRelease" placeholder="Movie release...">
-                    <label for="addMovieDescription">Movie Descripion</label>
-                    <textarea name="" id="addMovieDescription" placeholder="Movie descripion"></textarea>
-                    <label for="addMovieDuration">Movie Duration</label>
-                    <input type="time" id="addMovieDuration">
-                    <div class="btnsAddMovie">
-                         <button id="movieAddBtn">Add</button>
-                         <button id="movieAddExit">Cancel</button>
-                    </div>
-                    
-                    
-               </form>
-          </div>
-          <div class="addActorWindow" style="z-index: 999;">
-               <form class="addActorForm">
-                    <h1>Add Actor <span><ion-icon name="person-add-outline"></ion-icon></span></h1>
-                    <label for="addActorTitle">Actor Name</label>
-                    <input type="text" id="addActorTitle" placeholder="Actor name..." autocomplete="off">
-                    <!-- <label for="addActorDescription">Actor Films</label> -->
-                    <!-- <textarea name="" id="addActorDescription" placeholder="Actor films..."></textarea> -->
-                    <div class="btnsAddActor">
-                         <button id="actorAddBtn">Add</button>
-                         <button id="actorAddExit">Cancel</button>
-                    </div>
-                    
-               </form>
-          </div>
+          
           <nav class="navbar navbar-expand-lg" style="padding: 20px 100px;border-radius: 0 0 10px 10px;animation: navbarAnm 4s linear infinite;background: transparent;backdrop-filter: blur(9px);border-bottom: 2px solid rgba(255, 255, 255, 0.2);" >
                <div class="container-fluid">
                  <a class="navbar-brand" href="#" style="color: #fff;position: relative;top: -2px;" id="weatherPage">Погода</a>
@@ -204,16 +173,7 @@
                      </li>
                    </ul>
                  </div>
-                 <div class="addMovieBox">
-                    <button id="addMovieBtn">
-                         <ion-icon name="add-circle-outline"></ion-icon>
-                         <p>Movie</p>
-                    </button>
-                    <button id="addActorBtn">
-                         <ion-icon name="add-circle-outline"></ion-icon>
-                         <p>Actor</p>
-                    </button>
-                 </div>
+                 
                  <div class="search-box" style="display: flex;align-items: center;justify-content: center;gap: 10px;">
                     <input autocomplete="off" id="searchInp" style="background: transparent;color: #fff;" class="form-control me-2" type="search" placeholder="Поиск филм..." aria-label="Search">
                     <button id="searchBtn" class="btn btn-outline-light">Поиск</button>
@@ -896,6 +856,7 @@
           <h1>Link Copied!</h1>
      </div>
      
+     
 
 
 
@@ -920,9 +881,9 @@
 
 
         
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <script src="./script.js"></script>
-        <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
+     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+     <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
+     <script src="./script.js"></script>
 </body>
 </html>

@@ -3,265 +3,297 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Document</title>
-     <style>
-          @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-          * {
-               padding: 0;
-               margin: 0;
-               box-sizing: border-box;
-               transition: 1s ease;
-          }
-          .api-container {
-               font-family: "Poppins", sans-serif;
-               color: #fff;
-               width: 100%;
-               height: 100%;
-               position: fixed;
-               top: 0;
-               left: 0;
-               z-index: 999;
-               background: #000;
-               display: flex;
-               justify-content: center;
-               overflow: auto;
-               /* flex-direction: column; */
-               /* padding: 30px 100px; */
-          }
-
-          .api-container h1 {
-               font-size: 45px;
-               color: #fff;
-               font-weight: 400;
-               letter-spacing: 0.05em;
-               position: absolute;
-               top: 10px;
-          }
-          .api-cards {
-               display: flex;
-               justify-content: top;
-               flex-direction: column;
-               position: relative;
-               top: 100px;
-          }
-          .api-card-content {
-               display: flex;
-               align-items: top;
-               justify-content: center;
-               gap: 50px;
-               margin: 10px;
-               padding: 20px;
-          }
-
-          .api-card {
-               width: 600px;
-               height: 95px;
-               /* height: 600px; */
-               border-radius: 18px;
-               overflow: hidden;
-          }
-
-          
-          .about-api-card {
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               flex-direction: column;
-               width: 100%;
-          }
-          .aac-top {
-               display: flex;
-               align-items: center;
-               justify-content: left;
-               padding-left: 30px;
-               position: relative;
-               width: 100%;
-               height: 50px;
-               background: red;
-               gap: 25px;
-               cursor: pointer;
-          }
-          
-          .method-card {
-               font-weight: 600;
-               font-size: 22px;
-               background: #15b5d8;
-               width: 50px;
-               height: 50px;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               border-radius: 0 0 10px 10px;
-               position: relative;
-               top: -10px;
-               margin-top: 10px;
-          }
-          .line-api-card {
-               width: 5px;
-               border-radius: 18px;
-               height: 40px;
-               background: #fff;
-          }
-          .aac-text {
-               font-size: 25px;
-               font-weight: 600;
-               letter-spacing: 0.05em;
-               display: flex;
-               align-items: center;
-               justify-content: left;
-          }
-          .aac-text span {
-               position: absolute;
-               right: 15px;
-               font-size: 35px;
-          }
-          .bottomIconApiCard {
-               position: relative;
-               /* display: flex; */
-          }
-          .link-content {
-               display: flex;
-               align-items: center;
-               justify-content: left;
-               padding-left: 35px;
-               width: 100%;
-               height: 45px;
-               background: green;
-               /* border-radius: 0 0 15px 15px; */
-               overflow: hidden;
-               position: relative;
-               cursor: pointer;
-          }
-          .icon-content-api-card {
-               width: 50px;
-               height: 50px;
-               background: blue;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               border-radius: 0 0 10px 10px;
-               position: relative;
-               top: -6px;
-          }
-          .link-content:active {
-               background: aqua;
-          }
-          .link-content span ion-icon {
-               font-size: 35px;
-               margin-right: 10px;
-               margin-top: 5px;
-          }
-          .copyBtn {
-               background: transparent;
-               border: none;
-               outline: none;
-               color: #fff;
-               font-size: 25px;
-               position: absolute;
-               right: -15px;
-               width: 60px;
-               height: 38px;
-               background: blue;
-               border-radius: 10px 0 0 10px;  
-          }
-          .copyBtn ion-icon {
-               position: relative;
-               left: -8px;
-          }
-          .main-api-card {
-               width: 600px;
-               height: 505px;
-               display: none;
-               background: #131313;
-               overflow: auto;
-          }
-          .main-api-card::-webkit-scrollbar {
-               width: 15px;         
-               
-          }
-          .main-api-card::-webkit-scrollbar-track {
-               background: #0cd4c3;    
-               border-radius: 7px;
-          }
-          .main-api-card::-webkit-scrollbar-thumb {
-               background: #d613dd;   
-               border-radius: 7px; 
-          }
-          pre {
-               color: #fff;
-               /* background: #131313; */
-               font-size: 13px;
-               width: 100%;
-               height: 600px;
-               
-          }
-          .preBlue {
-               color: rgb(26, 143, 244);
-          }
-          .preGreen {
-               color: #20bb12;
-          }
-          .preOrange {
-               color: #ff8000;
-          }
-          .preYellow {
-               color: #efef08;
-          }
-          .api-card-link-copied-container {
-               width: 400px;
-               height: 200px;
-               position: fixed;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               top: -200px;
-               border-radius: 18px;
-               backdrop-filter: blur(9px);
-               border: 2px solid rgba(255, 255, 255, .2);
-               background: red;
-               
-          }
-          .copiedAnm{ 
-               animation: copiedAnm 0.3s;
-          }
-          @keyframes copiedAnm {
-               0% {
-                    top: -200px;
-               }
-               100% {
-                    top: -100px;
-               }
-          }
-          .api-card-link-copied-container h1 {
-               position: relative;
-               top: 50px;
-          }
-
-          .required-field-container {
-               width: 600px;
-               margin-bottom: 10px;
-               background: green;
-               position: absolute;
-               top: 0;
-               text-align: left;
-               padding-left: 30px;
-               padding-right: 30px;
-               border-radius: 0 0 18px 18px;
-          }
-          .required-field-container h4 {
-               font-size: 18px;
-               font-weight: 400;
-          }
-          .required-field-container p {
-               color: #f81a4a;
-          }
-          .required-field-container p span {
-               color: #15b5d8;
-          }
-     </style>
+     <title>Axios Uz</title>
+     <link rel="stylesheet" href="./main.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+     
 </head>
 <body>
-     <div class="api-container">
+     <div class="bg-img-container"></div>
+     <!-- Platfotrms -->
+     <div class="platforms-content">
+          <a href="https://t.me/misterikh_13" target="_blank">
+               <img width="75" src="./images/telegram.svg" alt="">
+          </a>
+          <a href="https://www.instagram.com/saitov_209/" target="_blank">
+               <ion-icon name="logo-instagram"></ion-icon>
+          </a>
+          <a href="https://github.com/misterikh209" target="_blank">
+               <ion-icon name="logo-github"></ion-icon>
+          </a>
+          
+     </div>
+     <!-- Platfotrms -->
+     <!-- Weather -->
+     <div class="weather-click-container">
+          <div class="content2">
+               <div class="search-box2">
+                    <input id="inp2" type="text" placeholder="Search weather" autocomplete="off">
+                    <button id="btn2">
+                         <ion-icon name="search-outline"></ion-icon>
+                    </button>
+               </div>
+               <h1 id="text2" style="text-align: center;">Weather Search</h1>
+               <div class="img-box2">
+                    <img src="../weather.png" alt="" id="img2">
+               </div>
+               <h1 id="weather2" style="text-align: center;"></h1>
+          </div>
+     </div>
+     <!-- Weather -->
+     <!-- SignUp -->
+     
+     <div class="signUp_click_container">
+          <div class="content">
+               <h1 style="text-align: center;">Sign Up</h1>
+               <div class="inputs">
+               
+                    <input type="text" placeholder="Your Name">
+                    <select name="" id="">
+                         <option value="">Frontend-20</option>
+                         <option value="">Frontend-21</option>
+                         <option value="">Frontend-22</option>
+                         <option value="">Frontend-23</option>
+                         <option value="">Frontend-24</option>
+                         <option value="">Frontend-25</option>
+                    </select>
+                    <input type="text" placeholder="Username">
+                    <input type="password" placeholder="Password">
+               </div>
+               <button class="loginBtn">Ro'yxatdan o'tish</button>
+               
+          </div>
+     </div>
+     <!-- SignUp -->
+     <!-- Login -->
+     <div class="login_click_container">
+          <form class="content" id="forms_login">
+               <h1 style="text-align: center;">Login</h1>
+               <div class="inputs">
+               
+                    <input autocomplete="off" type="text" placeholder="Username" id="login_username">
+                    <input type="password" placeholder="Parol" id="login_password">
+               </div>
+               <div class="remFor">
+                    <div class="remember">
+                         <input type="checkbox" id="checkBox">
+                         <label for="checkBox">Meni eslab qol</label>
+                    </div>
+                    <a href="#">Forgot password</a>
+               </div>
+               <button class="loginBtn">Login</button>
+               <p style="text-align: center;padding-top: 15px;">Sizda akkaunt yo'qmi? <span><a href="#">Ro'yxatdan o'tish</a></span></p>
+          </form>
+     </div>
+     <!-- Login -->
+     <!-- Loading Animation -->
+     <div id="loading">
+          <div class="loading-content">
+               <div class="loading-box">
+                    <div class="loading-gif-1">
+                         <div class="loading-gif-2">
+                              <p>Loading Axios</p>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <script>
+               setTimeout(()=>{
+                    document.getElementById("loading").style.display = "none"
+                    document.body.style.overflow = "auto"
+                    
+               },1000)
+          </script>
+     </div>
+     <!-- Loading Animation -->
+     <div id="login_successful_container" style="position: fixed;">
+          <div class="login-success-content">
+               <h1 id="personLogin"></h1>
+               <p>akkauntiga kirildi!</p>
+               <div class="lsc-btns">
+                    <button id="lscBtnOk">OK</button>
+                    <button id="lscBtnExit">Exit Acc</button>
+               </div>
+          </div>
+          <script>
+               document.getElementById("lscBtnOk").addEventListener("click", ()=>{
+                    document.getElementById("login_successful_container").style.display = "none"
+               })
+               document.getElementById("lscBtnExit").addEventListener("click", ()=>{
+                    location.reload()
+               })
+          </script>
+     </div>
+     <div class="stick" style="position: fixed; width: 100%;z-index: 888;">
+          
+          <div class="addMovieWindow" style="z-index: 999;">
+               <form class="addMovie">
+                    <h1>Add Movie <span><ion-icon name="film-outline"></ion-icon></span></h1>
+                    <label for="addMovieTitle">Movie Name</label>
+                    <input type="text" id="addMovieTitle" placeholder="Movie name...">
+                    <label for="addMovieRelease">Movie Release</label>
+                    <input type="number" id="addMovieRelease" placeholder="Movie release...">
+                    <label for="addMovieDescription">Movie Descripion</label>
+                    <textarea name="" id="addMovieDescription" placeholder="Movie descripion"></textarea>
+                    <label for="addMovieDuration">Movie Duration</label>
+                    <input type="time" id="addMovieDuration">
+                    <button id="movieAddBtn">Add</button>
+                    
+                    
+                    
+               </form>
+          </div>
+          <div class="addActorWindow" style="z-index: 999;">
+               <form class="addActorForm">
+                    <h1>Add Actor <span><ion-icon name="person-add-outline"></ion-icon></span></h1>
+                    <label for="addActorTitle">Actor Name</label>
+                    <input type="text" id="addActorTitle" placeholder="Actor name..." autocomplete="off">
+                    <button id="actorAddBtn">Add</button>
+               </form>
+          </div>
+          <nav class="navbar navbar-expand-lg" style="padding: 20px 100px;border-radius: 0 0 10px 10px;animation: navbarAnm 4s linear infinite;background: transparent;backdrop-filter: blur(9px);border-bottom: 2px solid rgba(255, 255, 255, 0.2);" >
+               <div class="container-fluid">
+                 <a class="navbar-brand" href="#" style="color: #fff;position: relative;top: -2px;" id="weatherPage">Погода</a>
+                 <button style="color: #fff; border: 1px solid #fff;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                   <span class="navbar-toggler-icon" style="color: #fff;"></span>
+                 </button>
+                 <div class="collapse navbar-collapse" id="navbarNav">
+                   <ul class="navbar-nav">
+                     <li class="nav-item">
+                       <a class="nav-link active" aria-current="page" href="#" style="color: #fff;" id="mainMenu">Главное меню</a>
+                     </li>
+                     <li class="nav-item">
+                       <a class="nav-link" href="#" style="color: #fff;" id="actor">Актёры</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" href="#" style="color: #fff;" id="apiBtn">API</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link" aria-current="page" href="#" style="color: #fff;" id="qrcode">Qr Code</a>
+                       </li>
+                     <li>
+                         <div class="weather-nav" id="weatherNav">
+                              <div class="weather-nav-box">
+                                   <div class="line-content"></div>
+                                   <div class="w-text">
+                                        <h1 style="color: #fff;font-size: 20px;" id="weatherNavName"></h1>
+                                        <div class="w-text2">
+                                             <p style="color: #fff;font-size: 15px;" id="weatherNavText"> </p>
+                                             <p style="color: #fff;font-size: 15px;" id="weatherNavGr"></p>
+                                        </div>
+                                   </div>
+                                   <div class="weather-nav-img">
+                                        <img id="weatherNavImg" src="./weather.png" width="50px" alt="" style="position: relative;top: -10px;">
+                                   </div>
+                              </div>
+                         </div>
+                         <script>
+                              let animation = document.querySelector(".weather-nav")
+                              setTimeout(()=>{
+                                   animation.style.display = "block"
+                                   animation.style.top = "-30px"
+                              }, 1900)
+                         </script>
+                     </li>
+                   </ul>
+                 </div>
+                 <div class="addMovieBox" style="display: flex;">
+                    <button id="addMovieBtn" style="transition: 0.3s ease;">
+                         <ion-icon name="add-circle-outline"></ion-icon>
+                         <p>Movie</p>
+                    </button>
+                    <button id="addActorBtn" style="transition: 0.3s ease;">
+                         <ion-icon name="add-circle-outline"></ion-icon>
+                         <p>Actor</p>
+                    </button>
+                 </div>
+                 <div class="search-box" style="display: flex;align-items: center;justify-content: center;gap: 10px;">
+                    <input autocomplete="off" id="searchInp" style="background: transparent;color: #fff;" class="form-control me-2" type="search" placeholder="Поиск филм..." aria-label="Search">
+                    <button id="searchBtn" class="btn btn-outline-light">Поиск</button>
+                 </div>
+                 
+                 <div class="btns" style="position: relative;">
+                    
+                    <button type="button" class="btn btn-outline-light" id="login" style="display: none;">Войти</button>
+                    <button type="button" class="btn btn-primary" id="signUp" style="display: none;">Зарегистрироваться</button>
+
+                    <div style="display: flex;align-items: center;justify-content: center;flex-direction: column;position: absolute;left: -50px;top: -10px;" class="acc-box">
+                         <ion-icon name="person-circle-outline" style="color: #fff; font-size: 35px;"></ion-icon>
+                         <p style="color: #fff;" id="accountNameText">Ixtiyor</p>
+                    </div>
+                    <button id="exitAcc" style="background: transparent;border: none;color: #fff;font-size: 25px;position: relative;left: 20px ;"><ion-icon name="exit-outline"></ion-icon></button>
+                 </div>
+               </div>
+             </nav>
+     </div>
+
+     <div class="carusel-cont">
+          <button class="preview-slide">
+               <ion-icon name="chevron-back-outline"></ion-icon>
+          </button>
+          <div class="carousel-box">
+               <div class="carousel-main">
+                    <img id="slideImg" src="https://static1.moviewebimages.com/wordpress/wp-content/uploads/article/nV2VonPhcU8eYBJssm1tpCIHKgpHb8.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5" alt="">
+                    <img id="slideImg" src="https://w0.peakpx.com/wallpaper/156/622/HD-wallpaper-avengers-endgame-all-characters-superheroes-movies.jpg" alt="">
+                    <img id="slideImg" src="https://heroichollywood.com/wp-content/uploads/2021/07/Spider-Man-No-Way-Home-Banner-Tom-Holland.avif" alt="">
+                    <img id="slideImg" src="https://i0.wp.com/batman-news.com/wp-content/uploads/2018/11/Aquaman-Official-Images-08.jpg?resize=696%2C320&quality=80&strip=info&ssl=1" alt="">
+                    <img id="slideImg" src="https://c4.wallpaperflare.com/wallpaper/7/32/867/avatar-forest-avatar-2-pandora-entertainment-movies-hd-art-wallpaper-preview.jpg" alt="">
+               </div>
+               <div class="slide-bottom-btns">
+                    <button class="slideBtn1 slide-bottom-btn active"></button>
+                    <button class="slideBtn2 slide-bottom-btn"></button>
+                    <button class="slideBtn3 slide-bottom-btn"></button>
+                    <button class="slideBtn4 slide-bottom-btn"></button>
+                    <button class="slideBtn5 slide-bottom-btn"></button>
+               </div>
+          </div>
+          <button class="next-slide">
+               <ion-icon name="chevron-forward-outline"></ion-icon>
+          </button>
+
+          <div class="slide-film-play">
+               <div class="sfp-box">
+                    <ion-icon name="play-circle-sharp"></ion-icon>
+               </div>
+          </div>
+      </div>
+        
+        <div class="container container1" style="padding: 35px 0;display: flex;align-items: center;justify-content: left;gap: 20px;flex-wrap: wrap;position: relative;top: 80px;left: 55px;">
+          
+        </div>
+
+        <div class="container container2 mt-5" style="padding: 35px 0;display: flex;align-items: center;justify-content: left;flex-wrap: wrap;gap: 20px;position: relative;left: 55px;"></div>
+
+     <div class="error">
+          
+          <div class="error-content">
+               <img src="./images/error-icon.png" alt="" width="200px">
+               <h1>Xatolik!</h1>
+               <h2>Login yoki Parolda Xatolik!</h2>
+               <p>Qayta urinib ko'ring</p>
+               <button id="errorOk">OK</button>
+          </div>
+     </div>
+
+     <!-- Api btn click -->
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <div class="api-container" style="display: none;">
           <h1>Доступные маршруты:</h1>
           <div class="api-cards">
 
@@ -286,8 +318,8 @@
 
 
                          </div>
-                         <div class="main-api-card main-api-card1">
-                              <pre id="pre">
+                         <div class="main-api-card main-api-card1" style="overflow: hidden;">
+                          <div class="pre-content">    <pre id="pre" style="font-size: 13px;overflow: hidden;">
   <span class="preYellow">[</span>
     <span class="preYellow">{</span>
        <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
@@ -373,7 +405,7 @@
     <span class="preYellow">{}</span>,
     <span class="preYellow">{}</span>
   <span class="preYellow">]</span>
-                              </pre>
+                              </pre> </div>
                          </div>
                          <div class="link-content link-content1 openCardApi1">
                                    <span><ion-icon class="openCardApi" name="link-outline"></ion-icon></span>
@@ -402,7 +434,7 @@
                          </div>
 
                          <div class="main-api-card main-api-card2" style="overflow: hidden;">
-                              <pre id="pre">
+                              <div class="pre-content" style="overflow: auto;"><pre id="pre" style="font-size: 17px;">
   <span class="preYellow">[</span>
     <span class="preYellow">{</span>
        <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
@@ -436,7 +468,7 @@
   <span class="preYellow">{}</span>,
   <span class="preYellow">{}</span>
   <span class="preYellow">]</span>
-                              </pre>
+                              </pre></div>
                          </div>
 
                          <div class="link-content openCardApi2">
@@ -472,7 +504,7 @@
 
                          </div>
                          <div class="main-api-card main-api-card3" style="overflow: hidden;">
-                              <pre id="pre" style="position: relative;top: 20px;">
+                            <div class="pre-content" style="overflow: auto;position: relative;top: 35px;">  <pre id="pre" style="position: relative;top: 20px;font-size: 20px;">
   <span class="preYellow">[</span>
     <span class="preYellow">{</span>
           <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
@@ -503,7 +535,7 @@
           <span class="preBlue">"genre"</span>: <span class="preGreen">"Криминал"</span>
     <span class="preYellow">}</span>
   <span class="preYellow">]</span>
-                              </pre>
+                              </pre> </div>
                          </div>
                          <div class="link-content link-content3 openCardApi3">
                                    <span><ion-icon class="openCardApi3" name="link-outline"></ion-icon></span>
@@ -531,12 +563,12 @@
                               </div> 
                          </div>
 
-                         <div class="main-api-card main-api-card4" style="padding-top: 60px;position: relative;overflow-x: hidden;">
+                         <div class="main-api-card main-api-card4" style="padding-top: 60px;position: relative;overflow: hidden;">
                               <div class="required-field-container">
-                                   <h4>Необходимые поля:</h4>
-                                   <p>search: "Титаник"</p>
+                                   <h4 style="position: relative;top: 10px;">Необходимые поля:</h4>
+                                   <p style="position: relative;top: 10px;">search: "Титаник"</p>
                               </div>
-                              <pre id="pre">
+                              <div class="pre-content" style="position: relative;top: 90px;"><pre id="pre" style="padding-bottom: 80px;font-size: 18px;">
   <span class="preYellow">{</span>
      <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
      <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
@@ -548,12 +580,16 @@
                <span class="preBlue">"title"</span>: <span class="preGreen">"Титаник"</span>,
                <span class="preBlue">"release"</span>: <span class="preGreen">"1995"</span>,
                <span class="preBlue">"duration"</span>: <span class="preGreen">"03:14:00"</span>,
-               <span class="preBlue">"description"</span>: <span class="preGreen">"Молодые влюбленные Джек и Роза находят друг друга
-                               в первом и последнем плавании «непотопляемого»
-                               Титаника. Они не могли знать, что шикарный лайнер
-                               столкнется с айсбергом в холодных водах Северной
-                               Атлантики, и их страстная любовь превратится в 
-                               схватку со смертью…"</span>,
+               <span class="preBlue">"description"</span>: <span class="preGreen">"Молодые влюбленные Джек и 
+                              Роза находят друг друга в 
+                              первом и последнем плавании 
+                              «непотопляемого» Титаника. 
+                              Они не могли знать, что 
+                              шикарный лайнер столкнется 
+                              с айсбергом в холодных водах 
+                              Северной Атлантики, и их 
+                              страстная любовь превратится 
+                              в  схватку со смертью…"</span>,
                <span class="preBlue">"actors"</span>: <span class="preYellow">[</span>
                     <span class="preYellow">{</span>
                          <span class="preBlue">"id"</span>: <span class="preGreen">"1"</span>,
@@ -581,7 +617,7 @@
           <span class="preYellow">}</span>
      <span class="preYellow">]</span>
   <span class="preYellow">}</span>
-                              </pre>
+                              </pre></div>
                          </div>
 
                          <div class="link-content openCardApi4">
@@ -616,11 +652,11 @@
 
                          </div>
                          <div class="main-api-card main-api-card5" style="overflow: hidden;position: relative;">
-                              <div class="required-field-container">
+                              <div class="required-field-container" style="padding-top: 10px;">
                                    <h4>Необходимые поля:</h4>
                                    <p>search: "Леонардо"</p>
                               </div>
-                              <pre id="pre" style="position: relative;top: 52px;font-size: 15px;">
+                              <div class="pre-content" style="overflow: auto;position: relative;top: 80px;"><pre id="pre" style="position: relative;top: 52px;font-size: 15px;padding-bottom: 80px;">
   <span class="preYellow">{</span>
      <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
      <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
@@ -646,7 +682,7 @@
           <span class="preYellow">}</span>
      <span class="preYellow">]</span>
   <span class="preYellow">}</span>
-                              </pre>
+                              </pre></div>
                          </div>
                          <div class="link-content link-content5 openCardApi5">
                                    <span><ion-icon class="openCardApi5" name="link-outline"></ion-icon></span>
@@ -680,7 +716,7 @@
                                    <p>login: "user",</p>
                                    <p>password: "password"</p>
                               </div>
-                              <pre id="pre" style="font-size: 17px;">
+                              <div class="pre-content" style="overflow: auto;position: relative;top: 130px;"><pre id="pre" style="font-size: 17px;overflow: auto;height: 200px;">
   <span class="preYellow">{</span>
      <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
      <span class="preBlue">"message"</span>: <span class="preGreen">"token created/updated"</span>,
@@ -694,7 +730,7 @@
                <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
           <span class="preYellow">}</span>
   <span class="preYellow">}</span>
-                              </pre>
+                              </pre></div>
                          </div>
 
                          <div class="link-content openCardApi6">
@@ -728,8 +764,8 @@
 
 
                          </div>
-                         <div class="main-api-card main-api-card7" style="overflow-x: hidden;position: relative;">
-                              <div class="required-field-container">
+                         <div class="main-api-card main-api-card7" style="position: relative;overflow-x: hidden;">
+                              <div class="required-field-container" style="position: absolute;top: 0;">
                                    <h4>Необходимые поля:</h4>
 
                                    <h3>HEADERS:</h3>
@@ -750,7 +786,8 @@
                                    <p>actors: "2,3,4" <span>// ID - Актёров</span></p>
 
                               </div>
-                              <pre id="pre" style="position: relative;top: 340px;font-size: 17px;">
+                              <!-- <div class="pre-content" style="overflow: hidden;"> -->
+                                   <pre id="pre" style="position: relative;top: 0px;font-size: 17px;overflow: hidden;margin-top: 1150px;">
   <span class="preYellow">{</span>
      <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>, 
      <span class="preBlue">"message"</span>: <span class="preGreen">"Фильм добавлен!"</span>,
@@ -767,8 +804,10 @@
                     <span class="preYellow">}</span>
        <span class="preYellow">}</span>
   <span class="preYellow">}</span>
-                              </pre>
+                                   </pre>                              
+                              <!-- </div> -->
                          </div>
+
                          <div class="link-content link-content7 openCardApi7">
                                    <span><ion-icon class="openCardApi7" name="link-outline"></ion-icon></span>
                                    <span class="openCardApi7 copyTextLink7">https://axios.uz/index.php/api/addMovie</span>
@@ -795,7 +834,7 @@
                               </div> 
                          </div>
 
-                         <div class="main-api-card main-api-card8" style="padding-top: 240px;position: relative;overflow: hidden;">
+                         <div class="main-api-card main-api-card8" style="padding-top: 240px;position: relative;overflow-x: hidden;">
                               <div class="required-field-container">
                                    <h4>Необходимые поля:</h4>
                                    <h3>HEADERS:</h3>
@@ -811,8 +850,8 @@
                                    <hr>
                                    <p>films: "1,2,3" <span>// ID - Фильмов в которых сыграл актёр</span></p>
                               </div>
-                              <pre id="pre">
-  <span class="preYellow">{</span>
+                              <pre id="pre" style="margin-top: 600px;position: relative;left: -20px;font-size: 18px;top: 20px;">
+<span class="preYellow">{</span>
      <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
      <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
      <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
@@ -827,7 +866,7 @@
                <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
           <span class="preYellow">}</span>
      <span class="preYellow">}</span>
-  <span class="preYellow">}</span>
+<span class="preYellow">}</span>
                               </pre>
                          </div>
 
@@ -841,82 +880,41 @@
                </div>
                <!-- Api card 7, 8 -->
 
+               
           </div>
-
-          <div class="api-card-link-copied-container">
-               <h1>Link Copied</h1>
+          <div class="exit-btn-api-card-container">
+               &times;
+          </div>
+     </div>
+     
+     <div class="api-card-link-copied-container">
+          <h1>Link Copied!</h1>
+     </div>
+     <div class="add-movie-info-container">
+          <div class="add-movie-info-content">
+               <h1 id="addMovieInfoText">Kino qo'shildi!</h1>
           </div>
      </div>
 
 
-     <script src="./api.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
 
      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     <span class="preYellow">{</span>
-          <span class="preBlue">"errors"</span>: <span class="preYellow">[]</span>,
-          <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
-          <span class="preBlue">"status"</span>: <span class="preGreen">"success"</span>,
-          <span class="preBlue">"ok"</span>: <span class="preOrange">true</span>,
-          <span class="preBlue">"data"</span>: <span class="preYellow">{</span>
-               <span class="preBlue">"message"</span>: <span class="preGreen">"Актёр добавлен!"</span>,
-               <span class="preBlue">"token"</span>: <span class="preYellow">{</span>
-                    <span class="preBlue">"id"</span>: <span class="preGreen">"9999"</span>,
-                    <span class="preBlue">"userId"</span>: <span class="preGreen">"99999"</span>,
-                    <span class="preBlue">"token"</span>: <span class="preGreen">"user62ct66zebc228"</span>,
-                    <span class="preBlue">"expiry"</span>: <span class="preGreen">"2022-07-13 12:32:08"</span>,
-                    <span class="preBlue">"createdTime"</span>: <span class="preGreen">"2022-07-13 11:31:10"</span>
-               <span class="preYellow">}</span>
-          <span class="preYellow">}</span>
-     <span class="preYellow">}</span>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+     <script src="https://unpkg.com/ionicons@4.1.2/dist/ionicons.js"></script>
+     <script src="./loginSucces.js"></script>
 </body>
 </html>
