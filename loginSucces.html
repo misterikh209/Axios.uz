@@ -169,9 +169,6 @@
                      <li class="nav-item">
                          <a class="nav-link" href="#" style="color: #fff;" id="apiBtn">API</a>
                      </li>
-                     <li class="nav-item">
-                         <a class="nav-link" aria-current="page" href="#" style="color: #fff;" id="qrcode">Qr Code</a>
-                       </li>
                      <li>
                          <div class="weather-nav" id="weatherNav">
                               <div class="weather-nav-box">
@@ -896,7 +893,54 @@
           </div>
      </div>
 
+     <div class="qrcode-container">
+          
+          <h1>Qr Code Generator <span><ion-icon name="qr-code-outline"></ion-icon></span></h1>
+          <div class="box-qrCode">
+               <input type="text" class="qrCodeInp">
+               <button class="qrCodeBtnGenerate">Generate</button>
+          </div>
+          <div class="qrCode-img-content">
+               <img src="" alt="" id="qrCodeImg">
+               <div class="qrCodeLoadingAnmContent">
+                    <div class="qrCodeLoading">
 
+                    </div>
+                    <div class="qrCodeLoadingIcon"><ion-icon name="qr-code-outline"></ion-icon></div>
+               </div>
+          </div>
+     </div>
+
+     <script>
+          document.querySelector(".qrCodeBtnGenerate").addEventListener("click", async function(e){
+               let inpQrCode = document.querySelector(".qrCodeInp").value.trim()
+               if (inpQrCode) {
+                    document.querySelector(".qrCode-img-content").style.display = "flex"
+                    document.querySelector(".qrCodeLoadingAnmContent").style.display = "flex"
+                    setTimeout(()=>{
+                         document.querySelector(".qrCodeLoadingAnmContent").style.display = "none"
+
+                    },500)
+                    document.getElementById("qrCodeImg").setAttribute("src", `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inpQrCode}`)
+                    document.querySelector(".qrCodeInp").value = ""
+               }
+               else {
+                    alert("Malumot kiriting")
+               }
+               
+               
+          })
+          document.addEventListener("keyup", event=>{
+               if(event.keyCode == 13){
+                    document.querySelector(".qrCodeBtnGenerate").click()
+               }
+          })
+          document.body.addEventListener("dblclick", function(e){
+               if(e.target.classList.contains("qrcode-container")){
+                    document.querySelector(".qrcode-container").style.display = "none"
+               }
+          })
+     </script>
 
 
 

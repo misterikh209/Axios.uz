@@ -1753,3 +1753,156 @@ body {
           }
 /* Api content */
 
+/* qrCode */
+.qrcode-container {
+     width: 100%;
+     height: 100vh;
+     z-index: 999;
+     position: fixed;
+     top: 0;
+     left: 0;
+     backdrop-filter: blur(9px);
+     display: flex;
+     justify-content: top;
+     flex-direction: column;
+     align-items: center;
+     background: rgba(0, 0, 0, 0.6);
+     display: none;
+}
+.exitQrCodeContainerBtn {
+     font-size: 100px;
+     color: #fff;
+     position: absolute;
+     right: 20px;
+     top: -30px;
+}
+.qrcode-container h1 {
+     text-align: center;
+     color: #fff;
+     margin-top: 20px;
+     margin-bottom: 20px;
+     font-size: 55px;
+     font-weight: 300;
+}
+/* .qrcode-container h1:hover span ion-icon{
+     transform: scale(1.2);
+} */
+.qrcode-container h1 span {
+     position: relative;
+     top: 8px;
+     left: 7px;
+}
+.qrcode-container h1 span ion-icon {
+     transition: 0.5s ease;
+     animation: qrCodeIcon 2s linear infinite;
+     filter: drop-shadow(0 0 2px #fff);
+}
+@keyframes qrCodeIcon {
+     0% {
+          transform: scale(1);
+     }
+     50% {
+          transform: scale(1.2);
+     }
+     100% {
+          transform: scale(1);
+     }
+}
+.box-qrCode {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     gap: 10px;
+}
+
+.box-qrCode input {
+     background: transparent;
+     border: 2px solid rgba(255, 255, 255, .2);
+     outline: none;
+     border-radius: 10px;
+     width: 400px;
+     height: 50px;
+     padding: 0 30px;
+     color: #fff;
+     font-size: 18px;
+     letter-spacing: 0.2em;
+     font-weight: 600;
+}
+
+.box-qrCode input:focus {
+     /* border: 2px solid #fff; */
+     box-shadow: 0 0 20px 0 #fff;
+}
+
+.box-qrCode button {
+     width: 100px;
+     height: 50px;
+     background: transparent;
+     color: #fff;
+     border: 2px solid rgba(255, 255, 255, .2);
+     border-radius: 10px;
+     transition: 0.3s ease;
+     font-size: 18px;
+     font-weight: 550;
+}
+.box-qrCode button:active {
+     background: rgba(255, 255, 255, .2);
+     box-shadow: 2px 2px 20px 0 #7d7b7b;
+}
+
+.qrCode-img-content {
+     position: relative;
+     width: 510px;
+     height: 510px;
+     top: 45px;
+     border-radius: 18px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     overflow: hidden;
+     display: none;
+}
+.qrCode-img-content img {
+     width: 100%;
+     height: 100%;
+     border-radius: 25px;
+}
+.qrCodeLoadingAnmContent {
+     width: 510px;
+     height: 510px;
+     backdrop-filter: blur(9px);
+     background: rgba(0, 0, 0, 0.9);
+     position: absolute;
+     border-radius: 18px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     display: none;
+}
+.qrCodeLoading{
+     width: 200px;
+     height: 200px;
+     /* background: #fff; */
+     border-radius: 50%;
+     border-top: 5px solid #fff;
+     border-left: 5px solid #fff;
+     border-bottom: 5px solid transparent;
+     animation: loadingQrCodeAnm 0.5s linear infinite;
+}
+
+@keyframes loadingQrCodeAnm {
+     0% {
+          rotate: 0;
+     }
+     100% {
+          rotate: 360deg;
+     }
+}
+
+.qrCodeLoadingIcon {
+     position: absolute;
+     font-size: 55px;
+     color: #fff;
+     animation: qrCodeIcon 2s linear infinite;
+     filter: drop-shadow(0 0 2px #fff);
+}

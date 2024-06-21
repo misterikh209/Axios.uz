@@ -7,6 +7,36 @@ document.addEventListener("DOMContentLoaded", async function(e){
      inputs.forEach((inputAll)=>{
           inputAll.setAttribute("autocomplete", "off")
      })
+     document.addEventListener("keydown", event=>{
+          // console.log(event.key);
+          if(event.key == "q"){
+               document.addEventListener("keyup", event=>{
+                    if(event.key == "r"){
+                         document.addEventListener("keyup", event=>{
+                              if(event.key == "c"){
+                                   document.addEventListener("keyup", event=>{
+                                        if(event.key == "o"){
+                                             document.addEventListener("keyup", event=>{
+                                                  if(event.key == "d"){
+                                                       document.addEventListener("keyup", event=>{
+                                                            if(event.key == "e"){
+                                                                 document.addEventListener("keyup", event=>{
+                                                                      if(event.key == "Shift"){
+                                                                           document.querySelector(".qrcode-container").style.display = "flex"
+                                                                      }
+                                                                 }) 
+                                                            }
+                                                       }) 
+                                                  }
+                                             }) 
+                                        }
+                                   }) 
+                              }
+                         }) 
+                    }
+               })
+          }
+     })
      // let allATegs = d.querySelectorAll("a")
      // let allButtons = d.querySelectorAll("button")
      // allATegs.forEach(a=>{
@@ -1112,6 +1142,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
           })
      })
 })
+
 
 
 
