@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", async function(e){
      let token = localStorage.getItem("token")
      let inputs = document.querySelectorAll("input")
      document.getElementById("accountNameText").innerText = localStorage.getItem("accountName")
+     // if(localStorage.getItem("token")==undefined){
+     //      location.href  = 'index.html'
+     // }
      inputs.forEach((inputAll)=>{
           inputAll.setAttribute("autocomplete", "off")
      })
@@ -52,6 +55,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
      document.getElementById("exitAcc").addEventListener("click", () => {
           localStorage.removeItem("userId")
           localStorage.removeItem("token")
+          localStorage.removeItem("accountName")
           location.href = "index.html"
      })
      
@@ -73,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                     <div class="card-top-part">
                          <h1>${mov.title}</h1>
                          <div class="card-top-btns">
-                              <button id="playFilm"><ion-icon name="play-circle"></ion-icon></button>
+                              <button id="comentsContainerFilm"><ion-icon name="play-circle"></ion-icon></button>
                               <button><ion-icon name="trash"></ion-icon></button>
                          </div>
                     </div>
@@ -85,6 +89,81 @@ document.addEventListener("DOMContentLoaded", async function(e){
           `
           container.append(card)
 
+          let openComentsContainerBtn = document.querySelectorAll("#comentsContainerFilm")
+          openComentsContainerBtn.forEach((btnComent)=>{
+               btnComent.addEventListener("click", function(e){
+                    document.querySelector(".coments-container").style.display = "flex"
+                    document.body.style.overflow = "hidden"
+
+                    document.querySelector(".coments-container").innerHTML = ``
+                    document.querySelector(".coments-container").innerHTML = `
+                         <div class="coments-content">
+                              <div class="movie-img-coment-top">
+                                   <div class="mict-img">
+
+                                   </div>
+                                   <div class="mict-about">
+                                        <h1 id="movieNameComent">Titanik</h1>
+                                        <p id="movieRelizComent">Yili: 1995</p>
+                                        <p id="movieGenreComent">Janr: Романтика Драмма История Мелодрамма</p>
+                                        <p id="movieActorsComent">Aktyorlar: Леонардо Ди Каприо Кейт Уинслет</p>
+                                        <p id="movieDurationComent">Duration: 03:14:00</p>
+                    
+                                        <h1>Описание</h1>
+                                        <h6 id="movieOpisanionComent" style="padding-right: 50px;">Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…</h3>
+                                   </div>
+                              </div>
+                              <div class="coment-container-bottom">
+                              
+                                   <div class="comments-person">
+                                   
+                                        
+                                        
+                                   </div>
+                    
+                    
+
+                                   <div class="coments-input-poly">
+                                        <input type="text" class="coment-input">
+                                        <button class="add-coment-btn">Add</button>
+                                   </div>
+                              </div>
+                         </div>
+                    `
+                    
+                    document.querySelector(".add-coment-btn").addEventListener("click", function(e){
+                         let inputAddComent = document.querySelector(".coment-input").value.trim()
+                         if(inputAddComent){
+                              let dataComent = new Date()
+                              
+                              let comentPerson = document.createElement("div")
+                              comentPerson.classList.add("coments")
+                              comentPerson.innerHTML = `
+                              <p>${inputAddComent}</p>
+                              <div class="timeComentAdd">Time: ${dataComent.getHours()}:${dataComent.getMinutes()}:${dataComent.getSeconds()}</div>
+                              
+                              
+                              `
+                              document.querySelector(".comments-person").prepend(comentPerson)
+                              document.querySelector(".coment-input").value = ""
+                              
+                         }
+                         
+                    })
+                    document.body.addEventListener("click", function(e){
+                         if(e.target.classList.contains("coments-container")) {
+                              document.querySelector(".coments-container").style.display = "none"
+                              document.body.style.overflow = "auto"
+                         }
+                    })
+                    document.querySelector(".coment-input").addEventListener("keyup", function(e){
+                         if(e.keyCode == 13){
+                              document.querySelector(".add-coment-btn").click()
+                         }
+                    })
+               })
+          })
+          
           
           // else if(offset == 1220){
           //      document.getElementById("movieCardImg").setAttribute("src", "https://w0.peakpx.com/wallpaper/982/511/HD-wallpaper-interstellar-nolan.jpg")
@@ -237,39 +316,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
 
      //carusel
 
-     d.getElementById("playFilm").addEventListener("click", async function (e) {
-
-          container.innerHTML = `
-          <div class="container">
-          <div class="movie-about-box">
-              <div class="movie-about">
-                  <div class="img-content"><img src="./titanik.jpg" alt=""></div>
-                  <div class="right-content">
-                      <h1 class="movie-title">Титаник</h1>
-                      <p class="reliz">Релиз: <a href="#">1995</a></p>
-                      <p class="genre">Жанр: <a href="#">Романтика Драмма История Мелодрамма</a></p>
-                      <p class="actors">Актёры: <a href="#">Леонардо Ди Каприо Кейт Уинслет</a></p>
-                      <p class="duration">Длительность: 03:14:00</p>
-                      <h2>Описание</h2>
-                      <p class="description" style="position: relative;left: 10px;margin-top: 10px;">
-                          Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…
-                      </p>
-                      <p class="views" style="text-align: right;margin-right: 20px;">
-                          Просмотры: 400
-                      </p>
-                  </div>
-              </div>
-              <div class="comment">
-                  <p>Чтобы отсавлять коментарии пожалуйста, <a href="#">авторизуйтесь!</a></p>
-              </div>
-              <div class="comments">
-                  <p>Комментарии...</p>
-              </div>
-          </div>
-          
-          </div>
-          `
-     })
+     
 
 
 
@@ -289,24 +336,99 @@ document.addEventListener("DOMContentLoaded", async function(e){
           container.innerHTML = ``
           resp.forEach(mov=> {
                let card = d.createElement("div")
-               card.classList.add("card_movie")
-               card.innerHTML = `
-               <img src="./images/movie.png" alt="">
-                    <div class="bottom-about-card">
-                         <div class="card-top-part">
-                              <h1>${mov.title}</h1>
-                              <div class="card-top-btns">
-                                   <button id="playFilm"><ion-icon name="play-circle"></ion-icon></button>
-                                   <button><ion-icon name="trash"></ion-icon></button>
+          card.classList.add("card_movie")
+          card.innerHTML = `
+          <img id="movieCardImg" src="./images/movie.png" alt="">
+               <div class="bottom-about-card">
+                    <div class="card-top-part">
+                         <h1>${mov.title}</h1>
+                         <div class="card-top-btns">
+                              <button id="comentsContainerFilm"><ion-icon name="play-circle"></ion-icon></button>
+                              <button><ion-icon name="trash"></ion-icon></button>
+                         </div>
+                    </div>
+                    <p><span>Release:</span> ${mov.release}</p>
+                    <p><span>Duration:</span> ${mov.duration}</p>
+                    <p><span>Actors:</span> ${mov.actors.map(ac=>ac.name)}</p>
+                    <p><span>Description: <br></span> ${mov.description}</p>
+          </div>
+          `
+          container.append(card)
+
+          let openComentsContainerBtn = document.querySelectorAll("#comentsContainerFilm")
+          openComentsContainerBtn.forEach((btnComent)=>{
+               btnComent.addEventListener("click", function(e){
+                    document.querySelector(".coments-container").style.display = "flex"
+                    document.body.style.overflow = "hidden"
+
+                    document.querySelector(".coments-container").innerHTML = ``
+                    document.querySelector(".coments-container").innerHTML = `
+                         <div class="coments-content">
+                              <div class="movie-img-coment-top">
+                                   <div class="mict-img">
+
+                                   </div>
+                                   <div class="mict-about">
+                                        <h1 id="movieNameComent">Titanik</h1>
+                                        <p id="movieRelizComent">Yili: 1995</p>
+                                        <p id="movieGenreComent">Janr: Романтика Драмма История Мелодрамма</p>
+                                        <p id="movieActorsComent">Aktyorlar: Леонардо Ди Каприо Кейт Уинслет</p>
+                                        <p id="movieDurationComent">Duration: 03:14:00</p>
+                    
+                                        <h1>Описание</h1>
+                                        <h6 id="movieOpisanionComent" style="padding-right: 50px;">Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…</h3>
+                                   </div>
+                              </div>
+                              <div class="coment-container-bottom">
+                              
+                                   <div class="comments-person">
+                                   
+                                        
+                                        
+                                   </div>
+                    
+                    
+
+                                   <div class="coments-input-poly">
+                                        <input type="text" class="coment-input">
+                                        <button class="add-coment-btn">Add</button>
+                                   </div>
                               </div>
                          </div>
-                         <p><span>Release:</span> ${mov.release}</p>
-                         <p><span>Duration:</span> ${mov.duration}</p>
-                         <p><span>Actors:</span> ${mov.actors.map(ac=>ac.name)}</p>
-                         <p><span>Description: <br></span> ${mov.description}</p>
-               </div>
-               `
-               container.append(card)
+                    `
+                    
+                    document.querySelector(".add-coment-btn").addEventListener("click", function(e){
+                         let inputAddComent = document.querySelector(".coment-input").value.trim()
+                         if(inputAddComent){
+                              let dataComent = new Date()
+                              
+                              let comentPerson = document.createElement("div")
+                              comentPerson.classList.add("coments")
+                              comentPerson.innerHTML = `
+                              <p>${inputAddComent}</p>
+                              <div class="timeComentAdd">Time: ${dataComent.getHours()}:${dataComent.getMinutes()}:${dataComent.getSeconds()}</div>
+                              
+                              
+                              `
+                              document.querySelector(".comments-person").prepend(comentPerson)
+                              document.querySelector(".coment-input").value = ""
+                              
+                         }
+                         
+                    })
+                    document.body.addEventListener("click", function(e){
+                         if(e.target.classList.contains("coments-container")) {
+                              document.querySelector(".coments-container").style.display = "none"
+                              document.body.style.overflow = "auto"
+                         }
+                    })
+                    document.querySelector(".coment-input").addEventListener("keyup", function(e){
+                         if(e.keyCode == 13){
+                              document.querySelector(".add-coment-btn").click()
+                         }
+                    })
+               })
+          })
 
 
           })
@@ -555,24 +677,27 @@ document.addEventListener("DOMContentLoaded", async function(e){
                document.getElementById("loading").style.display = "none"
                document.body.style.overflow = "auto"
                document.querySelector(".weather-click-container").style.display = "flex"
-               document.querySelector(".weather-click-container").classList.add("weather-click-container-anm-open")
-               setTimeout(() => {
-                    document.querySelector(".weather-click-container").classList.remove("weather-click-container-anm-open")
-                    
-               }, 1000);
+               
                
                document.querySelector(".weather-click-container").addEventListener("click", function (e) {
                     if (e.target.classList.contains("weather-click-container")) {
-                         document.querySelector(".weather-click-container").classList.add("weather-click-container-anm-close")
+                         document.querySelector(".content2").classList.add("content2CloseAnm")
                          setTimeout(()=>{
-                              document.querySelector(".weather-click-container").classList.remove("weather-click-container-anm-close")
+                              document.querySelector(".content2").classList.remove("content2CloseAnm")
+
                               document.querySelector(".weather-click-container").style.display = "none"
-                         },1000)
+
+
+
+
+
+                              ///////animation
+                              let animation = document.querySelector(".weather-nav")
+                              animation.style.top = "-30px"
+                         },300)
+                         
                          
      
-                         ///////animation
-                         let animation = document.querySelector(".weather-nav")
-                         animation.style.top = "-30px"
                     }
                })
           }, 300)
