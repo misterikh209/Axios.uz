@@ -1972,7 +1972,7 @@ body {
      align-items: center;
      justify-content: center;
      gap: 20px;
-     backdrop-filter: blur(9px);
+     backdrop-filter: blur(50px);
      border: 2px solid rgba(255, 255, 255, .2);
      border-radius: 5px;
      width: 1100px;
@@ -1995,7 +1995,9 @@ body {
 }
 .coment-container-bottom {
      width: 1100px;
-     height: 400px;
+     /* height: 300px; */
+     padding: 10px;
+     padding-bottom: 70px;
      border-radius: 10px;
      backdrop-filter: blur(9px);
      border: 2px solid rgba(255, 255, 255, .2);
@@ -2014,7 +2016,7 @@ body {
      justify-content: top;
      flex-direction: column;
      row-gap: 5px;
-     overflow-x: hidden;
+     /* overflow-x: hidden; */
      padding-top: 10px;
 }
 .coments-input-poly {
@@ -2037,7 +2039,19 @@ body {
      align-items: center;
      justify-content: left;
      position: relative;
-     overflow: auto;
+     overflow-x: auto;
+     overflow-y: hidden;
+     animation: comentsAnmAdd 0.5s;
+}
+@keyframes comentsAnmAdd {
+     0% {
+          left: 1100px;
+          opacity: 0;
+     }
+     100% {
+          left: 0;
+          opacity: 1;
+     }
 }
 .coments p {
      position: relative;
