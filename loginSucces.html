@@ -946,33 +946,7 @@
                </div>
           </div>
      </div>
-     <script>
-          // document.querySelector(".add-coment-btn").addEventListener("click", function(e){
-          //      let inputAddComent = document.querySelector(".coment-input").value.trim()
-          //      if(inputAddComent){
-          //           let dataComent = new Date()
-                    
-          //           let comentPerson = document.createElement("div")
-          //           comentPerson.classList.add("coments")
-          //           comentPerson.innerHTML = `
-          //           <p>${inputAddComent}</p>
-          //           <div class="timeComentAdd">Time: ${dataComent.getHours()}:${dataComent.getMinutes()}:${dataComent.getSeconds()}</div>
-          //           `
-          //           document.querySelector(".comments-person").append(comentPerson)
-          //           document.querySelector(".coment-input").value = ""
-                   
-          //      }
-               
-          // })
-          
-          
-          
-          // document.querySelector(".coment-input").addEventListener("onkeyup", event=>{
-          //      if(event.keyCode == 13){
-          //           document.querySelector(".add-coment-btn").click()
-          //      }
-          // })
-     </script>
+     
 
      <script>
           document.querySelector(".qrCodeBtnGenerate").addEventListener("click", async function(e){
@@ -987,17 +961,7 @@
                     document.getElementById("qrCodeImg").setAttribute("src", `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${inpQrCode}`)
                     document.querySelector(".qrCodeInp").value = ""
                }
-               // else {
-               //      alert("Malumot kiriting")
-               // }
-               
-               
           })
-          // document.addEventListener("keyup", event=>{
-          //      if(event.keyCode == 13){
-          //           document.querySelector(".qrCodeBtnGenerate").click()
-          //      }
-          // })
           document.body.addEventListener("dblclick", function(e){
                if(e.target.classList.contains("qrcode-container")){
                     document.querySelector(".qrcode-container").style.display = "none"

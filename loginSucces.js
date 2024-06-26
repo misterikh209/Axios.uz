@@ -90,89 +90,6 @@ document.addEventListener("DOMContentLoaded", async function(e){
           `
           container.append(card)
 
-          // let openComentsContainerBtn = document.querySelectorAll("#comentsContainerFilm")
-          // openComentsContainerBtn.forEach((btnComent)=>{
-               
-               
-          //      btnComent.addEventListener("click", async function(e){
-                    
-          //           document.body.style.overflow = "hidden"
-          //           document.querySelector(".coments-container").style.display = "flex"
-                    
-          //           document.querySelector(".coments-container").innerHTML = ``
-          //           document.querySelector(".coments-container").innerHTML = `
-          //                <div class="coments-content">
-          //                     <div class="movie-img-coment-top">
-          //                          <div class="mict-img">
-
-          //                          </div>
-          //                          <div class="mict-about">
-          //                               <h1 id="movieNameComent">Titanik</h1>
-          //                               <p id="movieRelizComent">Yili: 1995</p>
-          //                               <p id="movieGenreComent">Janr: Романтика Драмма История Мелодрамма</p>
-          //                               <p id="movieActorsComent">Aktyorlar: Леонардо Ди Каприо Кейт Уинслет</p>
-          //                               <p id="movieDurationComent">Duration: 03:14:00</p>
-                    
-          //                               <h1>Описание</h1>
-          //                               <h6 id="movieOpisanionComent" style="padding-right: 50px;">Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…</h3>
-          //                          </div>
-          //                     </div>
-          //                     <div class="coment-container-bottom">
-                              
-          //                          <div class="comments-person">
-                                   
-                                        
-                                        
-          //                          </div>
-                    
-                    
-
-          //                          <div class="coments-input-poly">
-          //                               <input type="text" class="coment-input">
-          //                               <button class="add-coment-btn">Add</button>
-          //                          </div>
-          //                     </div>
-          //                </div>
-          //           `
-                    
-          //           document.querySelector(".add-coment-btn").addEventListener("click", function(e){
-          //                let inputAddComent = document.querySelector(".coment-input").value.trim()
-          //                if(inputAddComent){
-          //                     let dataComent = new Date()
-                              
-          //                     let comentPerson = document.createElement("div")
-          //                     comentPerson.classList.add("coments")
-          //                     comentPerson.innerHTML = `
-          //                     <p>${inputAddComent}</p>
-          //                     <div class="timeComentAdd">Time: ${dataComent.getHours()}:${dataComent.getMinutes()}:${dataComent.getSeconds()}</div>
-                              
-                              
-          //                     `
-          //                     document.querySelector(".comments-person").prepend(comentPerson)
-          //                     document.querySelector(".coment-input").value = ""
-                              
-          //                }
-                         
-          //           })
-          //           document.body.addEventListener("click", function(e){
-          //                if(e.target.classList.contains("coments-container")) {
-          //                     document.querySelector(".coments-container").style.display = "none"
-          //                     document.body.style.overflow = "auto"
-          //                }
-          //           })
-          //           document.querySelector(".coment-input").addEventListener("keyup", function(e){
-          //                if(e.keyCode == 13){
-          //                     document.querySelector(".add-coment-btn").click()
-          //                }
-          //           })
-          //      })
-          // })
-          
-          
-          // else if(offset == 1220){
-          //      document.getElementById("movieCardImg").setAttribute("src", "https://w0.peakpx.com/wallpaper/982/511/HD-wallpaper-interstellar-nolan.jpg")
-          // }
-
      })
 
      // carusel
@@ -347,7 +264,7 @@ document.addEventListener("DOMContentLoaded", async function(e){
                     <div class="card-top-part">
                          <h1>${mov.title}</h1>
                          <div class="card-top-btns">
-                              <button id="comentsContainerFilm"><ion-icon name="play-circle"></ion-icon></button>
+                         <button id="comentsContainerFilm"><a href="moviesView.html?id=${mov.id}"><ion-icon name="play-circle"></ion-icon></a></button>
                               <button><ion-icon name="trash"></ion-icon></button>
                          </div>
                     </div>
@@ -359,80 +276,80 @@ document.addEventListener("DOMContentLoaded", async function(e){
           `
           container.append(card)
 
-          let openComentsContainerBtn = document.querySelectorAll("#comentsContainerFilm")
-          openComentsContainerBtn.forEach((btnComent)=>{
-               btnComent.addEventListener("click", function(e){
-                    document.querySelector(".coments-container").style.display = "flex"
-                    document.body.style.overflow = "hidden"
+          // let openComentsContainerBtn = document.querySelectorAll("#comentsContainerFilm")
+          // openComentsContainerBtn.forEach((btnComent)=>{
+          //      btnComent.addEventListener("click", function(e){
+          //           document.querySelector(".coments-container").style.display = "flex"
+          //           document.body.style.overflow = "hidden"
 
-                    document.querySelector(".coments-container").innerHTML = ``
-                    document.querySelector(".coments-container").innerHTML = `
-                         <div class="coments-content">
-                              <div class="movie-img-coment-top">
-                                   <div class="mict-img">
+          //           document.querySelector(".coments-container").innerHTML = ``
+          //           document.querySelector(".coments-container").innerHTML = `
+          //                <div class="coments-content">
+          //                     <div class="movie-img-coment-top">
+          //                          <div class="mict-img">
 
-                                   </div>
-                                   <div class="mict-about">
-                                        <h1 id="movieNameComent">Titanik</h1>
-                                        <p id="movieRelizComent">Yili: 1995</p>
-                                        <p id="movieGenreComent">Janr: Романтика Драмма История Мелодрамма</p>
-                                        <p id="movieActorsComent">Aktyorlar: Леонардо Ди Каприо Кейт Уинслет</p>
-                                        <p id="movieDurationComent">Duration: 03:14:00</p>
+          //                          </div>
+          //                          <div class="mict-about">
+          //                               <h1 id="movieNameComent">Titanik</h1>
+          //                               <p id="movieRelizComent">Yili: 1995</p>
+          //                               <p id="movieGenreComent">Janr: Романтика Драмма История Мелодрамма</p>
+          //                               <p id="movieActorsComent">Aktyorlar: Леонардо Ди Каприо Кейт Уинслет</p>
+          //                               <p id="movieDurationComent">Duration: 03:14:00</p>
                     
-                                        <h1>Описание</h1>
-                                        <h6 id="movieOpisanionComent" style="padding-right: 50px;">Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…</h3>
-                                   </div>
-                              </div>
-                              <div class="coment-container-bottom">
+          //                               <h1>Описание</h1>
+          //                               <h6 id="movieOpisanionComent" style="padding-right: 50px;">Молодые влюбленные Джек и Роза находят друг друга в первом и последнем плавании «непотопляемого» Титаника. Они не могли знать, что шикарный лайнер столкнется с айсбергом в холодных водах Северной Атлантики, и их страстная любовь превратится в схватку со смертью…</h3>
+          //                          </div>
+          //                     </div>
+          //                     <div class="coment-container-bottom">
                               
-                                   <div class="comments-person">
+          //                          <div class="comments-person">
                                    
                                         
                                         
-                                   </div>
+          //                          </div>
                     
                     
 
-                                   <div class="coments-input-poly">
-                                        <input type="text" class="coment-input">
-                                        <button class="add-coment-btn">Add</button>
-                                   </div>
-                              </div>
-                         </div>
-                    `
+          //                          <div class="coments-input-poly">
+          //                               <input type="text" class="coment-input">
+          //                               <button class="add-coment-btn">Add</button>
+          //                          </div>
+          //                     </div>
+          //                </div>
+          //           `
                     
-                    document.querySelector(".add-coment-btn").addEventListener("click", function(e){
-                         let inputAddComent = document.querySelector(".coment-input").value.trim()
-                         if(inputAddComent){
-                              let dataComent = new Date()
+          //           document.querySelector(".add-coment-btn").addEventListener("click", function(e){
+          //                let inputAddComent = document.querySelector(".coment-input").value.trim()
+          //                if(inputAddComent){
+          //                     let dataComent = new Date()
                               
-                              let comentPerson = document.createElement("div")
-                              comentPerson.classList.add("coments")
-                              comentPerson.innerHTML = `
-                              <p>${inputAddComent}</p>
-                              <div class="timeComentAdd">Time: ${dataComent.getHours()}:${dataComent.getMinutes()}:${dataComent.getSeconds()}</div>
+          //                     let comentPerson = document.createElement("div")
+          //                     comentPerson.classList.add("coments")
+          //                     comentPerson.innerHTML = `
+          //                     <p>${inputAddComent}</p>
+          //                     <div class="timeComentAdd">Time: ${dataComent.getHours()}:${dataComent.getMinutes()}:${dataComent.getSeconds()}</div>
                               
                               
-                              `
-                              document.querySelector(".comments-person").prepend(comentPerson)
-                              document.querySelector(".coment-input").value = ""
+          //                     `
+          //                     document.querySelector(".comments-person").prepend(comentPerson)
+          //                     document.querySelector(".coment-input").value = ""
                               
-                         }
+          //                }
                          
-                    })
-                    document.body.addEventListener("click", function(e){
-                         if(e.target.classList.contains("coments-container")) {
-                              document.querySelector(".coments-container").style.display = "none"
-                              document.body.style.overflow = "auto"
-                         }
-                    })
-                    document.querySelector(".coment-input").addEventListener("keyup", function(e){
-                         if(e.keyCode == 13){
-                              document.querySelector(".add-coment-btn").click()
-                         }
-                    })
-               })
-          })
+          //           })
+          //           document.body.addEventListener("click", function(e){
+          //                if(e.target.classList.contains("coments-container")) {
+          //                     document.querySelector(".coments-container").style.display = "none"
+          //                     document.body.style.overflow = "auto"
+          //                }
+          //           })
+          //           document.querySelector(".coment-input").addEventListener("keyup", function(e){
+          //                if(e.keyCode == 13){
+          //                     document.querySelector(".add-coment-btn").click()
+          //                }
+          //           })
+          //      })
+          // })
 
 
           })
@@ -579,8 +496,8 @@ document.addEventListener("DOMContentLoaded", async function(e){
                <img src="${ac.photo}" alt="">
                <div class="bottom-about-cardactor">
                     <h1>${ac.name}</h1>
-                    <div class="card-top-btns">
-                         <button><ion-icon name="play-circle"></ion-icon></button>
+                    <div class="card-top-btns" style="display:"flex";>
+                         <button id="viewActorBtn"><a href="actorView.html?id=${ac.id}"><ion-icon name="play-circle"></ion-icon></a></button>
                          <button><ion-icon name="trash"></ion-icon></button>
                     </div>
                     <p><span>Movies:</span> ${ac.movies.map(t=>t.title)}</p>
